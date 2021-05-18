@@ -1,6 +1,6 @@
 #include <iostream>
-#include "route_guide.pb.h"
-#include "route_guide.grpc.pb.h"
+#include "hello.pb.h"
+#include "hello.grpc.pb.h"
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
