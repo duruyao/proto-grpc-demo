@@ -1,10 +1,8 @@
 if (WIN32)
-    ## TODO: set HIKSDK_DIR
     ## TODO: set grpc_home
     ##
 elseif (UNIX AND NOT APPLE)
-    set(HIKSDK_DIR /data1/duruyao/HikSDK)
-    set(grpc_home ${HIKSDK_DIR}/grpc)
+    set(grpc_home /opt/HikSDK/grpc)
     set(grpc_bin_dir ${grpc_home}/bin)
     set(grpc_lib_dir ${grpc_home}/lib)
     set(grpc_include_dir ${grpc_home}/include)
@@ -17,13 +15,11 @@ elseif (UNIX AND NOT APPLE)
     include_directories(${grpc_gen_dir})
 
     ## ass `absl`
-#    set(absl_home ${HIKSDK_DIR}/absl)
-#    set(absl_lib_dir ${absl_home}/lib)
-#    set(absl_include_dir ${absl_home}/include)
+    set(absl_home /opt/HikSDK/absl)
+    set(absl_include_dir ${absl_home}/include)
 #    link_directories(${absl_lib_dir})
-#    include_directories(${absl_include_dir})
+    include_directories(${absl_include_dir})
 else (APPLE)
-    ## TODO: set HIKSDK_DIR
     ## TODO: set grpc_home
     ##
 endif ()
@@ -47,4 +43,4 @@ if (DEFINED grpc_src_dir)
     add_custom_target(grpc_2_cxx DEPENDS grpc_gen_files)
 endif ()
 
-list(APPEND 3rd_party_libs grpc++_reflection grpc++ pthread)
+list(APPEND 3rd_party_libs protobuf grpc++_reflection grpc++ pthread)

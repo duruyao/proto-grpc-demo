@@ -2,16 +2,21 @@
 
 ## https://github.com/abseil/abseil-cpp/releases
 
-zip_dir="${PWD}/abseil-cpp-master.zip"
+if [ $# != 2 ]; then
+    printf "USAGE (sudo permission may be needed):\n"
+	printf "	\`${0} <ZIP_DIR> <INSTALL_DIR>\`\n"
+	exit 1;
+fi
+
+zip_dir="${1}"
+ins_dir="${2}"
 new_folder="${PWD}/abseil_source"
-HIKSDK_DIR="/data1/duruyao/HikSDK"
 
 mkdir -p ${new_folder} && rm -rf ${new_folder}/*
 unzip -q ${zip_dir} -d ${new_folder}
 
 src_dir="${new_folder}/`ls ${new_folder}`"
 build_dir="${src_dir}/build"
-ins_dir="${HIKSDK_DIR}/absl"
 
 mkdir -p ${build_dir} && rm -rf ${build_dir}/*
 mkdir -p ${ins_dir} && rm -rf ${ins_dir}/*

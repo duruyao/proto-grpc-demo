@@ -111,12 +111,12 @@ mkdir -p ${grpc_ins_dir} && rm -rf ${grpc_ins_dir}/*
 grpc_build_dir="${grpc_src_dir}/cmake/build"
 mkdir -p ${grpc_build_dir} && cd ${grpc_build_dir}
 
-HIKSDK_DIR="/data1/duruyao/HikSDK"
+HIKSDK_DIR="/opt/HikSDK"
 
-my_prefix_path="${HIKSDK_DIR}/proto;${HIKSDK_DIR}/zlib;${HIKSDK_DIR}/absl;${HIKSDK_DIR}/cares;${HIKSDK_DIR}/re2"
-my_cxx_flags="-I${HIKSDK_DIR}/proto/include ${HIKSDK_DIR}/zlib/include"
+my_prefix_path="${HIKSDK_DIR}/proto;${HIKSDK_DIR}/absl;${HIKSDK_DIR}/cares;${HIKSDK_DIR}/re2;${HIKSDK_DIR}/zlib"
+#my_cxx_flags="-I${HIKSDK_DIR}/proto/include ${HIKSDK_DIR}/zlib/include"    ## (higher version cmake be needed)
 
-/data1/duruyao/HikSDK/cmake/bin/cmake ${grpc_src_dir} -DgRPC_INSTALL=ON                		\
+cmake ${grpc_src_dir} -DgRPC_INSTALL=ON                		\
 					  -DBUILD_SHARED_LIBS=ON		   		\
 	        		  -DCMAKE_BUILD_TYPE=Release       		\
 					  -DCMAKE_INSTALL_PREFIX=${grpc_ins_dir}\
@@ -127,7 +127,7 @@ my_cxx_flags="-I${HIKSDK_DIR}/proto/include ${HIKSDK_DIR}/zlib/include"
 					  -DgRPC_SSL_PROVIDER=package      		\
 					  -DgRPC_ZLIB_PROVIDER=package			\
 					  -DCMAKE_PREFIX_PATH=${my_prefix_path}	\
-					  -DCMAKE_CXX_FLAGS=${my_cxx_flags}				## (higher version cmake may be needed)
+					  #-DCMAKE_CXX_FLAGS=${my_cxx_flags}		
 
 cmake --build ${grpc_build_dir} --target clean 
 cmake --build ${grpc_build_dir} --target all -- -j 16

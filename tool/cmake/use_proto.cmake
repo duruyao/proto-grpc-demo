@@ -3,12 +3,10 @@
 ################################################################################
 
 if (WIN32)
-    ## TODO: set HIKSDK_DIR
     ## TODO: set proto_home
     ##
 elseif (UNIX AND NOT APPLE)
-    set(HIKSDK_DIR /data1/duruyao/HikSDK)
-    set(proto_home ${HIKSDK_DIR}/proto)
+    set(proto_home /opt/HikSDK/proto)
     set(proto_bin_dir ${proto_home}/bin)
     set(proto_lib_dir ${proto_home}/lib)
     set(proto_include_dir ${proto_home}/include)
@@ -20,7 +18,6 @@ elseif (UNIX AND NOT APPLE)
     include_directories(${proto_include_dir})
     include_directories(${proto_gen_dir})
 else (APPLE)
-    ## TODO: set HIKSDK_DIR
     ## TODO: set proto_home
     ##
 endif ()
