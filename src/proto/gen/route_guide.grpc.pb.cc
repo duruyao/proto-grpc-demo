@@ -68,7 +68,7 @@ void RouteGuide::Stub::experimental_async::GetFeature(::grpc::ClientContext* con
   return ::grpc::internal::ClientReaderFactory< ::routeguide::Feature>::Create(channel_.get(), rpcmethod_ListFeatures_, context, request);
 }
 
-void RouteGuide::Stub::experimental_async::ListFeatures(::grpc::ClientContext* context, const ::routeguide::Rectangle* request, ::grpc::experimental::ClientReadReactor< ::routeguide::Feature>* reactor) {
+void RouteGuide::Stub::experimental_async::ListFeatures(::grpc::ClientContext* context, ::routeguide::Rectangle* request, ::grpc::experimental::ClientReadReactor< ::routeguide::Feature>* reactor) {
   ::grpc::internal::ClientCallbackReaderFactory< ::routeguide::Feature>::Create(stub_->channel_.get(), stub_->rpcmethod_ListFeatures_, context, request, reactor);
 }
 

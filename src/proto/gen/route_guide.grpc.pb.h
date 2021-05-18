@@ -128,9 +128,9 @@ class RouteGuide final {
       // repeated field), as the rectangle may cover a large area and contain a
       // huge number of features.
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void ListFeatures(::grpc::ClientContext* context, const ::routeguide::Rectangle* request, ::grpc::ClientReadReactor< ::routeguide::Feature>* reactor) = 0;
+      virtual void ListFeatures(::grpc::ClientContext* context, ::routeguide::Rectangle* request, ::grpc::ClientReadReactor< ::routeguide::Feature>* reactor) = 0;
       #else
-      virtual void ListFeatures(::grpc::ClientContext* context, const ::routeguide::Rectangle* request, ::grpc::experimental::ClientReadReactor< ::routeguide::Feature>* reactor) = 0;
+      virtual void ListFeatures(::grpc::ClientContext* context, ::routeguide::Rectangle* request, ::grpc::experimental::ClientReadReactor< ::routeguide::Feature>* reactor) = 0;
       #endif
       // A client-to-server streaming RPC.
       // 
@@ -218,9 +218,9 @@ class RouteGuide final {
       void GetFeature(::grpc::ClientContext* context, const ::routeguide::Point* request, ::routeguide::Feature* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void ListFeatures(::grpc::ClientContext* context, const ::routeguide::Rectangle* request, ::grpc::ClientReadReactor< ::routeguide::Feature>* reactor) override;
+      void ListFeatures(::grpc::ClientContext* context, ::routeguide::Rectangle* request, ::grpc::ClientReadReactor< ::routeguide::Feature>* reactor) override;
       #else
-      void ListFeatures(::grpc::ClientContext* context, const ::routeguide::Rectangle* request, ::grpc::experimental::ClientReadReactor< ::routeguide::Feature>* reactor) override;
+      void ListFeatures(::grpc::ClientContext* context, ::routeguide::Rectangle* request, ::grpc::experimental::ClientReadReactor< ::routeguide::Feature>* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void RecordRoute(::grpc::ClientContext* context, ::routeguide::RouteSummary* response, ::grpc::ClientWriteReactor< ::routeguide::Point>* reactor) override;
