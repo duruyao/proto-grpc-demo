@@ -17,7 +17,7 @@ elseif (UNIX AND NOT APPLE)
     ## ass `absl`
     set(absl_home /opt/HikSDK/absl)
     set(absl_include_dir ${absl_home}/include)
-#    link_directories(${absl_lib_dir})
+    link_directories(${absl_lib_dir})
     include_directories(${absl_include_dir})
 else (APPLE)
     ## TODO: set grpc_home
@@ -43,4 +43,29 @@ if (DEFINED grpc_src_dir)
     add_custom_target(grpc_2_cxx DEPENDS grpc_gen_files)
 endif ()
 
-list(APPEND 3rd_party_libs protobuf grpc++_reflection grpc++ pthread)
+list(APPEND 3rd_party_libs grpc++_reflection grpc++ pthread)
+### try
+#set(protobuf_MODULE_COMPATIBLE TRUE)
+#find_package(Protobuf CONFIG REQUIRED)
+#message(STATUS "Using protobuf ${protobuf_VERSION}")
+#
+#set(_PROTOBUF_LIBPROTOBUF protobuf::libprotobuf)
+#set(_REFLECTION gRPC::grpc++_reflection)
+#if (CMAKE_CROSSCOMPILING)
+#    find_program(_PROTOBUF_PROTOC protoc)
+#else ()
+#    set(_PROTOBUF_PROTOC $<TARGET_FILE:protobuf::protoc>)
+#endif ()
+#
+#find_package(gRPC CONFIG REQUIRED)
+#message(STATUS "Using gRPC ${gRPC_VERSION}")
+#
+#set(_GRPC_GRPCPP gRPC::grpc++)
+#if (CMAKE_CROSSCOMPILING)
+#    find_program(_GRPC_CPP_PLUGIN_EXECUTABLE grpc_cpp_plugin)
+#else ()
+#    set(_GRPC_CPP_PLUGIN_EXECUTABLE $<TARGET_FILE:gRPC::grpc_cpp_plugin>)
+#endif ()
+#
+#SET(EXTRA_LIBS ${_REFLECTION} ${_GRPC_GRPCPP} ${_PROTOBUF_LIBPROTOBUF} pthread ${EXTRA_LIBS})
+

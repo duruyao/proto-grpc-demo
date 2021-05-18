@@ -42,3 +42,15 @@ if (DEFINED proto_src_dir)
 endif ()
 
 list(APPEND 3rd_party_libs protobuf)
+### try
+#set(protobuf_MODULE_COMPATIBLE TRUE)
+#message(STATUS "Using protobuf ${protobuf_VERSION}")
+#set(_PROTOBUF_LIBPROTOBUF protobuf::libprotobuf)
+#
+#if (CMAKE_CROSSCOMPILING)
+#    find_program(_PROTOBUF_PROTOC protoc)
+#else ()
+#    set(_PROTOBUF_PROTOC $<TARGET_FILE:protobuf::protoc>)
+#endif ()
+#
+#SET(EXTRA_LIBS ${_PROTOBUF_LIBPROTOBUF} ${EXTRA_LIBS})

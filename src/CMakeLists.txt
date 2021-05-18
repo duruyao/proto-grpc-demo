@@ -7,9 +7,7 @@ set(grpc_src_dir ${CMAKE_CURRENT_SOURCE_DIR}/proto)         ## set your folder o
 include(${PROJECT_SOURCE_DIR}/tool/cmake/use_grpc.cmake)    ## generate .cc, .h files to `${grpc_gen_dir}`
 
 include_directories(${proto_gen_dir})
-#include_directories(${proto_include_dir})
 include_directories(${grpc_gen_dir})
-#include_directories(${grpc_include_dir})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/main)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/service)
 
@@ -21,9 +19,13 @@ AUX_SOURCE_DIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/service source_files)
 message(STATUS "3RD_PARTY_LIBS: ${3rd_party_libs}")
 
 get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
-foreach(dir ${dirs})
+foreach (dir ${dirs})
     message(STATUS "INCLUDE DIR: ${dir}")
-endforeach()
+endforeach ()
 
 add_executable(${PROJECT_NAME} ${source_files})
-target_link_libraries(${PROJECT_NAME})
+### try
+#set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-Wl,-rpath,./")
+target_link_libraries(${PROJECT_NAME} ${3rd_party_libs})
+### try
+#target_link_libraries(${PROJECT_NAME} ${EXTRA_LIBS})
