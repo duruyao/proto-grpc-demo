@@ -1,10 +1,17 @@
+################################################################################
+#       USING GRPC                                                             #
+################################################################################
+
+include(${PROJECT_SOURCE_DIR}/tools/cmake/use_hiksdk.cmake)
+
 if (WIN32)
     ## TODO: set grpc_home
     ##
 elseif (UNIX AND NOT APPLE)
-    set(grpc_home /opt/HikSDK/grpc)
+    set(grpc_home ${HIKSDK_DIR}/grpc)
     set(grpc_bin_dir ${grpc_home}/bin)
-    set(grpc_lib_dir ${grpc_home}/lib)
+#    set(grpc_lib_dir ${grpc_home}/lib)
+    set(grpc_lib_dir "/data1/duruyao/download/grpc_source/grpc-1.37.1/cmake/build")
     set(grpc_include_dir ${grpc_home}/include)
 
     list(APPEND CMAKE_PREFIX_PATH ${grpc_home}/cmake)
@@ -18,7 +25,7 @@ else (APPLE)
     ##
 endif ()
 
-include(${PROJECT_SOURCE_DIR}/tool/cmake/use_absl.cmake)
+include(${PROJECT_SOURCE_DIR}/tools/cmake/use_absl.cmake)
 
 #set(grpc_src_dir ${CMAKE_CURRENT_SOURCE_DIR}/proto)
 

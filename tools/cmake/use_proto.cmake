@@ -2,11 +2,13 @@
 #       USING PROTOCOL BUFFERS                                                 #
 ################################################################################
 
+include(${PROJECT_SOURCE_DIR}/tools/cmake/use_hiksdk.cmake)
+
 if (WIN32)
     ## TODO: set proto_home
     ##
 elseif (UNIX AND NOT APPLE)
-    set(proto_home /opt/HikSDK/proto)
+    set(proto_home ${HIKSDK_DIR}/proto)
     set(proto_bin_dir ${proto_home}/bin)
     set(proto_lib_dir ${proto_home}/lib)
     set(proto_include_dir ${proto_home}/include)

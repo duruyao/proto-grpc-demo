@@ -116,6 +116,8 @@ HIKSDK_DIR="/opt/HikSDK"
 my_prefix_path="${HIKSDK_DIR}/proto;${HIKSDK_DIR}/absl;${HIKSDK_DIR}/cares;${HIKSDK_DIR}/re2;${HIKSDK_DIR}/zlib"
 #my_cxx_flags="-I${HIKSDK_DIR}/proto/include ${HIKSDK_DIR}/zlib/include"    ## (higher version cmake be needed)
 
+mkdir ${grpc_src_dir}/build && cd ${grpc_src_dir}/build
+
 cmake ${grpc_src_dir} -DgRPC_INSTALL=ON                		\
 					  -DBUILD_SHARED_LIBS=ON		   		\
 	        		  -DCMAKE_BUILD_TYPE=Release       		\
@@ -135,7 +137,6 @@ cmake --build ${grpc_build_dir} --target install
 
 printf "\n"
 printf "Install grpcbuf "
-#prt_ye "(`${grpc_ins_dir}/bin/protoc --version`) "
 printf "to \`${grpc_ins_dir}\`:\n"
 ls -all ${grpc_ins_dir}
 printf "\n"
