@@ -6,7 +6,7 @@ if (NOT DEFINED USE_GRPC_CMAKE)
     set(USE_GRPC_CMAKE)
 
     include(${PROJECT_SOURCE_DIR}/tools/cmake/use_hiksdk.cmake)
-    include(${PROJECT_SOURCE_DIR}/tools/cmake/use_absl.cmake)
+    #include(${PROJECT_SOURCE_DIR}/tools/cmake/use_absl.cmake)
     #include(${PROJECT_SOURCE_DIR}/tools/cmake/use_proto.cmake)
 
     if (WIN32)
