@@ -136,7 +136,7 @@ ${my_cmake} ${grpc_src_dir}                             \
 		    -DCMAKE_CXX_FLAGS=${my_cxx_flags}           \
             -DCMAKE_SKIP_BUILD_RPATH=OFF                \
             -DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF        \
-            -DCMAKE_INSTALL_RPATH="${grpc_ins_dir}/lib" \
+            -DCMAKE_INSTALL_RPATH="${grpc_ins_dir}/lib;${HIKSDK_DIR}/re2/lib" \
             -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON
 
 ${my_cmake} --build ${grpc_build_dir} --target clean
