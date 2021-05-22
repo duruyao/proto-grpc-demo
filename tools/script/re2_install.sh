@@ -26,4 +26,3 @@ cd ${src_dir}
 sed -i "s/\/usr\/local/\/opt\/HikSDK\/re2/g" `grep "\/usr\/local" -rl `
 
 make -j16 && make install
-

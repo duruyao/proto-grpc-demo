@@ -114,29 +114,37 @@ mkdir -p ${grpc_build_dir} && cd ${grpc_build_dir}
 HIKSDK_DIR="/opt/HikSDK"
 
 my_prefix_path="${HIKSDK_DIR}/proto;${HIKSDK_DIR}/absl;${HIKSDK_DIR}/cares;${HIKSDK_DIR}/re2;${HIKSDK_DIR}/zlib"
-#my_cxx_flags="-I${HIKSDK_DIR}/proto/include ${HIKSDK_DIR}/zlib/include"    ## (higher version cmake be needed)
+my_cxx_flags="-I${HIKSDK_DIR}/proto/include ${HIKSDK_DIR}/zlib/include"    ## (higher version cmake be needed)
+my_cmake=${HIKSDK_DIR}/cmake/bin/cmake
 
 mkdir ${grpc_src_dir}/build && cd ${grpc_src_dir}/build
 
-cmake ${grpc_src_dir} -DgRPC_INSTALL=ON                		\
-					  -DBUILD_SHARED_LIBS=ON		   		\
-	        		  -DCMAKE_BUILD_TYPE=Release       		\
-					  -DCMAKE_INSTALL_PREFIX=${grpc_ins_dir}\
-					  -DgRPC_ABSL_PROVIDER=package     		\
-					  -DgRPC_CARES_PROVIDER=package    		\
-					  -DgRPC_PROTOBUF_PROVIDER=package 		\
-					  -DgRPC_RE2_PROVIDER=package      		\
-					  -DgRPC_SSL_PROVIDER=package      		\
-					  -DgRPC_ZLIB_PROVIDER=package			\
-					  -DCMAKE_PREFIX_PATH=${my_prefix_path}	\
-					  #-DCMAKE_CXX_FLAGS=${my_cxx_flags}		
+## add rpath for the installed lib
 
-cmake --build ${grpc_build_dir} --target clean 
-cmake --build ${grpc_build_dir} --target all -- -j 16
-cmake --build ${grpc_build_dir} --target install
+${my_cmake} ${grpc_src_dir}                             \
+            -DgRPC_INSTALL=ON                		    \
+		    -DBUILD_SHARED_LIBS=ON		   		        \
+	        -DCMAKE_BUILD_TYPE=Release       		    \
+		    -DCMAKE_INSTALL_PREFIX=${grpc_ins_dir}      \
+		    -DgRPC_ABSL_PROVIDER=package     		    \
+		    -DgRPC_CARES_PROVIDER=package    		    \
+		    -DgRPC_PROTOBUF_PROVIDER=package 		    \
+		    -DgRPC_RE2_PROVIDER=package      		    \
+		    -DgRPC_SSL_PROVIDER=package      		    \
+		    -DgRPC_ZLIB_PROVIDER=package			    \
+		    -DCMAKE_PREFIX_PATH=${my_prefix_path}	    \
+		    -DCMAKE_CXX_FLAGS=${my_cxx_flags}           \
+            -DCMAKE_SKIP_BUILD_RPATH=OFF                \
+            -DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF        \
+            -DCMAKE_INSTALL_RPATH="${grpc_ins_dir}/lib" \
+            -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON
+
+${my_cmake} --build ${grpc_build_dir} --target clean
+${my_cmake} --build ${grpc_build_dir} --target all -- -j 16
+${my_cmake} --build ${grpc_build_dir} --target install
 
 printf "\n"
-printf "Install grpcbuf "
+printf "Install grpc "
 printf "to \`${grpc_ins_dir}\`:\n"
 ls -all ${grpc_ins_dir}
 printf "\n"

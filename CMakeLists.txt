@@ -2,9 +2,6 @@ cmake_minimum_required(VERSION 3.0)
 project(proto_grpc_demo C CXX)
 set(CMAKE_CXX_STANDARD 11)
 
-#include_directories(/data1/duruyao/HikSDK/proto/include)
-#include_directories(/data1/duruyao/HikSDK/grpc/include)
-
 if (WIN32)
     ##
     ##

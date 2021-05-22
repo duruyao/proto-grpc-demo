@@ -23,4 +23,3 @@ cd ${src_dir}
 ./configure --prefix=${ins_dir}
 
 make -j16 && make install
-
