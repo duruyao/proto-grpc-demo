@@ -11,7 +11,7 @@ elseif (UNIX AND NOT APPLE)
     list(APPEND CMAKE_PREFIX_PATH ${grpc_home}/lib/cmake)
 
     link_directories(${grpc_lib_dir})
-    include_directories(${grpc_include_dir})
+    include_directories(SYSTEM ${grpc_include_dir})
     include_directories(${grpc_gen_dir})
 
     ## ass `absl`

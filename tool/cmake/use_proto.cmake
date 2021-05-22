@@ -15,7 +15,7 @@ elseif (UNIX AND NOT APPLE)
     list(APPEND CMAKE_PREFIX_PATH ${proto_home}/lib/cmake)
 
     link_directories(${proto_lib_dir})
-    include_directories(${proto_include_dir})
+    include_directories(SYSTEM ${proto_include_dir})
     include_directories(${proto_gen_dir})
 else (APPLE)
     ## TODO: set proto_home
