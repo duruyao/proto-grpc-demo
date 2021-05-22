@@ -13,16 +13,12 @@ elseif (UNIX AND NOT APPLE)
     link_directories(${grpc_lib_dir})
     include_directories(SYSTEM ${grpc_include_dir})
     include_directories(${grpc_gen_dir})
-
-    ## ass `absl`
-    set(absl_home /opt/HikSDK/absl)
-    set(absl_include_dir ${absl_home}/include)
-    link_directories(${absl_lib_dir})
-    include_directories(${absl_include_dir})
 else (APPLE)
     ## TODO: set grpc_home
     ##
 endif ()
+
+include(${PROJECT_SOURCE_DIR}/tool/cmake/use_absl.cmake)
 
 #set(grpc_src_dir ${CMAKE_CURRENT_SOURCE_DIR}/proto)
 
