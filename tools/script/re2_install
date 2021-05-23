@@ -30,3 +30,4 @@ ins_dir_old=${ins_dir_old//\//\\\/}
 sed -i "s/prefix=${ins_dir_old}/prefix=${ins_dir}/g" `grep "prefix=${ins_dir_old}" -rl Makefile`
 
 make -j16 && make install
+
