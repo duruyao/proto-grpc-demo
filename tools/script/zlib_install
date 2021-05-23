@@ -3,14 +3,14 @@
 ## https://www.zlib.net/
 
 if [ $# != 2 ]; then
-    printf "USAGE (sudo permission may be needed):\n"
+  printf "USAGE (sudo permission may be needed):\n"
 	printf "	\`${0} <ZIP_DIR> <INSTALL_DIR>\`\n"
 	exit 1;
 fi
 
 zip_dir="${1}"
 ins_dir="${2}"
-new_folder="${PWD}/zlib_source"
+new_folder="`dirname ${zip_dir}`/zlib_source"
 
 mkdir -p ${new_folder} && rm -rf ${new_folder}/*
 unzip -q ${zip_dir} -d ${new_folder}

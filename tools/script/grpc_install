@@ -45,9 +45,9 @@ grpc_ins_dir="/opt/HikSDK/grpc"
 
 if [ -n "${1}" ] && [ -n "${2}" ]; then
 	grpc_zip_dir="${1}"
-    grpc_ins_dir="${2}"
+  grpc_ins_dir="${2}"
 else
-    prt_ye "USAGE (sudo permission may be needed):\n"
+  prt_ye "USAGE (sudo permission may be needed):\n"
 	printf "	\`${0} <GRPC_ZIP_DIR> <GRPC_INSTALL_DIR>\`\n"
 	exit 1;
 fi
@@ -89,7 +89,7 @@ printf "   \`sudo apt-get install ${req_app_list[*]}\`\n\n"
 prt_ye "2)\n"
 printf "Unzip \`${grpc_zip_dir}\` ...\n"
 
-new_folder="${PWD}/grpc_source"
+new_folder="`dirname ${grpc_zip_dir}`/grpc_source"
 
 mkdir -p ${new_folder} && rm -rf ${new_folder}/*
 unzip -q ${grpc_zip_dir} -d ${new_folder}
@@ -119,21 +119,21 @@ my_cmake=${HIKSDK_DIR}/cmake/bin/cmake
 
 ## add rpath for the installed lib
 
-${my_cmake} ${grpc_src_dir}                             \
-            -DgRPC_INSTALL=ON                		    \
-		        -DBUILD_SHARED_LIBS=ON		   		        \
-	          -DCMAKE_BUILD_TYPE=Release       		    \
-		        -DCMAKE_INSTALL_PREFIX=${grpc_ins_dir}      \
-		        -DgRPC_ABSL_PROVIDER=package     		    \
-		        -DgRPC_CARES_PROVIDER=package    		    \
-		        -DgRPC_PROTOBUF_PROVIDER=package 		    \
-		        -DgRPC_RE2_PROVIDER=package      		    \
-		        -DgRPC_SSL_PROVIDER=package      		    \
-		        -DgRPC_ZLIB_PROVIDER=package			    \
-		        -DCMAKE_PREFIX_PATH=${my_prefix_path}	    \
-		        -DCMAKE_CXX_FLAGS=${my_cxx_flags}           \
-            -DCMAKE_SKIP_BUILD_RPATH=OFF                \
-            -DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF        \
+${my_cmake} ${grpc_src_dir}                                                   \
+            -DgRPC_INSTALL=ON                		                              \
+		        -DBUILD_SHARED_LIBS=ON		   		                                  \
+	          -DCMAKE_BUILD_TYPE=Release       		                              \
+		        -DCMAKE_INSTALL_PREFIX=${grpc_ins_dir}                            \
+		        -DgRPC_ABSL_PROVIDER=package     		                              \
+		        -DgRPC_CARES_PROVIDER=package    		                              \
+		        -DgRPC_PROTOBUF_PROVIDER=package 		                              \
+		        -DgRPC_RE2_PROVIDER=package      		                              \
+		        -DgRPC_SSL_PROVIDER=package      		                              \
+		        -DgRPC_ZLIB_PROVIDER=package			                                \
+		        -DCMAKE_PREFIX_PATH=${my_prefix_path}	                            \
+		        -DCMAKE_CXX_FLAGS=${my_cxx_flags}                                 \
+            -DCMAKE_SKIP_BUILD_RPATH=OFF                                      \
+            -DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF                              \
             -DCMAKE_INSTALL_RPATH="${grpc_ins_dir}/lib;${HIKSDK_DIR}/re2/lib" \
             -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON
 

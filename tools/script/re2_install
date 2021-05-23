@@ -3,14 +3,14 @@
 ## https://github.com/google/re2/releases
 
 if [ $# != 2 ]; then
-    printf "USAGE (sudo permission may be needed):\n"
+  printf "USAGE (sudo permission may be needed):\n"
 	printf "	\`${0} <ZIP_DIR> <INSTALL_DIR>\`\n"
 	exit 1;
 fi
 
 zip_dir="${1}"
 ins_dir="${2}"
-new_folder="${PWD}/re2_source"
+new_folder="`dirname ${zip_dir}`/re2_source"
 
 mkdir -p ${new_folder} && rm -rf ${new_folder}/*
 unzip -q ${zip_dir} -d ${new_folder}
@@ -22,7 +22,11 @@ old_ins_dir="/usr/local"
 mkdir -p ${ins_dir} && rm -rf ${ins_dir}/*
 cd ${src_dir}
 
-## modify `prefix="/opt/HikSDK/re2"` in `MakeFile`
-sed -i "s/\/usr\/local/\/opt\/HikSDK\/re2/g" `grep "\/usr\/local" -rl `
+## modify `prefix="/usr/local"` in `Makefile`
+ins_dir=${ins_dir//\//\\\/}
+ins_dir_old="/usr/local"
+ins_dir_old=${ins_dir_old//\//\\\/}
+
+sed -i "s/prefix=${ins_dir_old}/prefix=${ins_dir}/g" `grep "prefix=${ins_dir_old}" -rl Makefile`
 
 make -j16 && make install
