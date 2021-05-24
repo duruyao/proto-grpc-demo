@@ -1,8 +1,8 @@
 #! /bin/bash
 
-## date:	2021.05.17
-## file:	compile and install re2
-## author:	duruyao@hikvision.com
+## date:    2021.05.17
+## file:    compile and install re2
+## author:  duruyao@hikvision.com
 ## release: https://github.com/google/re2/releases
 
 if [ $# != 2 ]; then

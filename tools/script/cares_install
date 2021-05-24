@@ -1,8 +1,8 @@
 #! /bin/bash
 
-## date:	2021.05.17
-## file:	compile and install c-ares
-## author:	duruyao@hikvision.com
+## date:    2021.05.17
+## file:    compile and install c-ares
+## author:  duruyao@hikvision.com
 ## release: https://github.com/c-ares/c-ares/releases
 
 if [ $# != 2 ]; then
