@@ -9,6 +9,7 @@
     - [2.3. re2](#23-re2)
     - [2.4. zlib](#24-zlib)
 - [3. gRPC](#3-grpc)
+- [4. Remark](#4-remark)
 
 ---
 
@@ -20,9 +21,14 @@ Download source files (ZIP format) from [https://github.com/protocolbuffers/prot
 
 ### 1.2. Compile & Install
 
-Execute the script named [proto_install](../tools/script/proto_install) which is in `tools/scripts` to check pre-requisites , compile source codes, link shared libraries and install.
+Execute the script named [proto_install](../tools/script/proto_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
 
-The usage is likes `./proto_install <PROTO_ZIP_DIR> <PROTO_INSTALL_DIR>`
+The usage likes this:
+
+```shell
+$ chmod +x proto_install
+$ ./proto_install <PROTO_ZIP_DIR> <PROTO_INSTALL_DIR>
+```
 
 ### 1.3. Check
 
@@ -42,9 +48,14 @@ Download source files (ZIP format) from [https://github.com/abseil/abseil-cpp/re
 
 #### 2.1.2. Compile & Install
 
-Execute the script named [abseil_install](../tools/script/abseil_install) which is in `tools/scripts` to check pre-requisites, compile source codes, link shared libraries and install.
+Execute the script named [abseil_install](../tools/script/abseil_install) which is in [tools/scripts/](../tools/script) to check pre-requisites, compile source codes, link shared libraries and install.
 
-The usage is likes `./abseil_install <ABSL_ZIP_DIR> <ABSL_INSTALL_DIR>`
+The usage likes this:
+
+```shell
+$ chmod +x abseil_install
+$ ./abseil_install <ABSL_ZIP_DIR> <ABSL_INSTALL_DIR>
+```
 
 #### 2.1.3. Check
 
@@ -58,9 +69,14 @@ Download source files (ZIP format) from [https://github.com/c-ares/c-ares/releas
 
 #### 2.2.2. Compile & Install
  
-Execute the script named [cares_install](../tools/script/cares_install) which is in `tools/scripts` to check pre-requisites , compile source codes, link shared libraries and install.
+Execute the script named [cares_install](../tools/script/cares_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
  
-The usage is likes `./cares_install <CARES_ZIP_DIR> <CARES_INSTALL_DIR>`
+The usage likes this:
+
+```shell
+$ chmod +x cares_install
+$ ./cares_install <CARES_ZIP_DIR> <CARES_INSTALL_DIR>
+```
 
 #### 2.2.3. Check
 
@@ -74,9 +90,14 @@ Download source files (ZIP format) from [https://github.com/google/re2/releases]
 
 #### 2.3.2. Compile & Install
 
-Execute the script named [re2_install](../tools/script/re2_install) which is in `tools/scripts` to check pre-requisites , compile source codes, link shared libraries and install.
+Execute the script named [re2_install](../tools/script/re2_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
 
-The usage is likes `./re2_install <RE2_ZIP_DIR> <RE2_INSTALL_DIR>`
+The usage likes this:
+
+```shell
+$ chmod +x re2_install
+$ ./re2_install <RE2_ZIP_DIR> <RE2_INSTALL_DIR>
+```
 
 #### 2.3.3. Check
 
@@ -90,9 +111,14 @@ Download source files (ZIP format) from [https://www.zlib.net/](https://www.zlib
 
 #### 2.4.2. Compile & Install
 
--Execute the script named [zlib_install](../tools/script/zlib_install) which is in `tools/scripts` to check pre-requisites , compile source codes, link shared libraries and install.
+-Execute the script named [zlib_install](../tools/script/zlib_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
 
-The usage is likes `./zlib_install <ZLIB_ZIP_DIR> <ZLIB_INSTALL_DIR>`
+The usage likes this:
+
+```shell
+$ chmod +x zlib_install
+$ ./zlib_install <ZLIB_ZIP_DIR> <ZLIB_INSTALL_DIR>
+```
 
 #### 2.4.3. Check
 
@@ -106,9 +132,14 @@ Download source files (ZIP format) from [https://github.com/grpc/grpc/releases](
 
 ### 3.2. Compile & Install
 
-Execute the script named [grpc_install](../tools/script/grpc_install) which is in `tools/scripts` to check pre-requisites , compile source codes, link shared libraries and install.
+Execute the script named [grpc_install](../tools/script/grpc_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
 
-The usage is likes `./grpc_install <GRPC_ZIP_DIR> <GRPC_INSTALL_DIR>`.
+The usage likes this:
+
+```shell
+$ chmod +x grpc_install
+$ ./grpc_install <GRPC_ZIP_DIR> <GRPC_INSTALL_DIR>
+```
 
 Make sure you have set the value of **`my_prefix_path`** and **`my_cxx_flags`** rightly by modifying [grpc_install](../tools/script/grpc_install) before compiling source codes.
 
@@ -118,7 +149,7 @@ Check if gRPC is installed successfully by command `ldd <GRPC_INSTALL_DIR>/lib/l
 
 ### 4. Remark
 
-It is recommended that all libraries or applications are installed to `<HIKSDK_DIR>/<APP_NAME>`, likes this:
+It is recommended that all libraries or applications are installed to `<YOUR_SDK_DIR>/<APP_NAME>`, likes this:
 
 ```shell
 /opt/HikSDK/
