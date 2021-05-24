@@ -293,7 +293,7 @@ class RouteGuide final {
   template <class BaseClass>
   class WithAsyncMethod_GetFeature : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetFeature() {
       ::grpc::Service::MarkMethodAsync(0);
@@ -313,7 +313,7 @@ class RouteGuide final {
   template <class BaseClass>
   class WithAsyncMethod_ListFeatures : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListFeatures() {
       ::grpc::Service::MarkMethodAsync(1);
@@ -333,7 +333,7 @@ class RouteGuide final {
   template <class BaseClass>
   class WithAsyncMethod_RecordRoute : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_RecordRoute() {
       ::grpc::Service::MarkMethodAsync(2);
@@ -353,7 +353,7 @@ class RouteGuide final {
   template <class BaseClass>
   class WithAsyncMethod_RouteChat : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_RouteChat() {
       ::grpc::Service::MarkMethodAsync(3);
@@ -374,7 +374,7 @@ class RouteGuide final {
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_GetFeature : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     ExperimentalWithCallbackMethod_GetFeature() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -421,7 +421,7 @@ class RouteGuide final {
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_ListFeatures : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     ExperimentalWithCallbackMethod_ListFeatures() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -459,7 +459,7 @@ class RouteGuide final {
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_RecordRoute : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     ExperimentalWithCallbackMethod_RecordRoute() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -497,7 +497,7 @@ class RouteGuide final {
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_RouteChat : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     ExperimentalWithCallbackMethod_RouteChat() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -540,7 +540,7 @@ class RouteGuide final {
   template <class BaseClass>
   class WithGenericMethod_GetFeature : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetFeature() {
       ::grpc::Service::MarkMethodGeneric(0);
@@ -557,7 +557,7 @@ class RouteGuide final {
   template <class BaseClass>
   class WithGenericMethod_ListFeatures : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListFeatures() {
       ::grpc::Service::MarkMethodGeneric(1);
@@ -574,7 +574,7 @@ class RouteGuide final {
   template <class BaseClass>
   class WithGenericMethod_RecordRoute : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_RecordRoute() {
       ::grpc::Service::MarkMethodGeneric(2);
@@ -591,7 +591,7 @@ class RouteGuide final {
   template <class BaseClass>
   class WithGenericMethod_RouteChat : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_RouteChat() {
       ::grpc::Service::MarkMethodGeneric(3);
@@ -608,7 +608,7 @@ class RouteGuide final {
   template <class BaseClass>
   class WithRawMethod_GetFeature : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetFeature() {
       ::grpc::Service::MarkMethodRaw(0);
@@ -628,7 +628,7 @@ class RouteGuide final {
   template <class BaseClass>
   class WithRawMethod_ListFeatures : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListFeatures() {
       ::grpc::Service::MarkMethodRaw(1);
@@ -648,7 +648,7 @@ class RouteGuide final {
   template <class BaseClass>
   class WithRawMethod_RecordRoute : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_RecordRoute() {
       ::grpc::Service::MarkMethodRaw(2);
@@ -668,7 +668,7 @@ class RouteGuide final {
   template <class BaseClass>
   class WithRawMethod_RouteChat : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_RouteChat() {
       ::grpc::Service::MarkMethodRaw(3);
@@ -688,7 +688,7 @@ class RouteGuide final {
   template <class BaseClass>
   class ExperimentalWithRawCallbackMethod_GetFeature : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     ExperimentalWithRawCallbackMethod_GetFeature() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -726,7 +726,7 @@ class RouteGuide final {
   template <class BaseClass>
   class ExperimentalWithRawCallbackMethod_ListFeatures : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     ExperimentalWithRawCallbackMethod_ListFeatures() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -764,7 +764,7 @@ class RouteGuide final {
   template <class BaseClass>
   class ExperimentalWithRawCallbackMethod_RecordRoute : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     ExperimentalWithRawCallbackMethod_RecordRoute() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -802,7 +802,7 @@ class RouteGuide final {
   template <class BaseClass>
   class ExperimentalWithRawCallbackMethod_RouteChat : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     ExperimentalWithRawCallbackMethod_RouteChat() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -840,7 +840,7 @@ class RouteGuide final {
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetFeature : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetFeature() {
       ::grpc::Service::MarkMethodStreamed(0,
@@ -868,7 +868,7 @@ class RouteGuide final {
   template <class BaseClass>
   class WithSplitStreamingMethod_ListFeatures : public BaseClass {
    private:
-    void BaseClassMustBeDerivedFromService(const Service* /*server*/) {}
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithSplitStreamingMethod_ListFeatures() {
       ::grpc::Service::MarkMethodStreamed(1,

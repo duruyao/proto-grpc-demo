@@ -2,4 +2,4 @@
 
 - [Installation Guide of Protocol Buffers and gRPC](./doc/0-install-guide.md)
 
-- [Usage Guide of Protocol Buffers and gRPC](./doc)
+- [Usage Guide of Protocol Buffers and gRPC](./doc/1-usage-guide.md)

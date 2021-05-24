@@ -6,8 +6,7 @@ if (NOT DEFINED USE_GRPC_CMAKE)
     set(USE_GRPC_CMAKE)
 
     include(${PROJECT_SOURCE_DIR}/tools/cmake/use_hiksdk.cmake)
-    #include(${PROJECT_SOURCE_DIR}/tools/cmake/use_absl.cmake)
-    #include(${PROJECT_SOURCE_DIR}/tools/cmake/use_proto.cmake)
+    include(${PROJECT_SOURCE_DIR}/tools/cmake/use_absl.cmake)
 
     if (WIN32)
         ## TODO: set grpc_home
@@ -28,8 +27,6 @@ if (NOT DEFINED USE_GRPC_CMAKE)
         ## TODO: set grpc_home
         ##
     endif ()
-
-    include(${PROJECT_SOURCE_DIR}/tools/cmake/use_absl.cmake)
 
     #set(grpc_src_dir ${CMAKE_CURRENT_SOURCE_DIR}/proto)
 

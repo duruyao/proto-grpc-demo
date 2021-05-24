@@ -1,6 +1,9 @@
 #! /bin/bash
 
-## https://www.zlib.net/
+## date:	2021.05.17
+## file:	compile and install zlib
+## author:	duruyao@hikvision.com
+## release: https://www.zlib.net/
 
 if [ $# != 2 ]; then
   printf "USAGE (sudo permission may be needed):\n"
@@ -23,4 +26,10 @@ cd ${src_dir}
 ./configure --prefix=${ins_dir}
 
 make -j16 && make install
+
+printf "\n"
+printf "Install zlib "
+printf "to \`${ins_dir}\`:\n"
+ls -all ${ins_dir}
+printf "\n"
 

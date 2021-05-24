@@ -109,3 +109,20 @@ message RouteSummary {
     // The duration of the traversal in seconds.
     int32 elapsed_time = 4;
 }
+
+message TestMsg {
+    int32 id = 1;
+    string title = 2;
+    uint64 timestamp = 3;
+
+    enum MsgType {
+        MSG_TYPE_UNSPECIFIED = 0;
+        MSG_TYPE_INFO = 1;
+        MSG_TYPE_DEBUG = 2;
+        MAG_TYPE_TRACK = 3;
+        MSG_TYPE_WARNING = 4;
+        MSG_TYPE_ERROR = 5;
+        MSG_TYPE_FATAL = 6;
+    }
+    MsgType msg_type = 4;
+}

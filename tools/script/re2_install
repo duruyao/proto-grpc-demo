@@ -1,6 +1,9 @@
 #! /bin/bash
 
-## https://github.com/google/re2/releases
+## date:	2021.05.17
+## file:	compile and install re2
+## author:	duruyao@hikvision.com
+## release: https://github.com/google/re2/releases
 
 if [ $# != 2 ]; then
   printf "USAGE (sudo permission may be needed):\n"
@@ -30,4 +33,10 @@ ins_dir_old=${ins_dir_old//\//\\\/}
 sed -i "s/prefix=${ins_dir_old}/prefix=${ins_dir}/g" `grep "prefix=${ins_dir_old}" -rl Makefile`
 
 make -j16 && make install
+
+printf "\n"
+printf "Install re2 "
+printf "to \`${ins_dir}\`:\n"
+ls -all ${ins_dir}
+printf "\n"
 

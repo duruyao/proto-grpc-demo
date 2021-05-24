@@ -1,6 +1,9 @@
 #! /bin/bash
 
-## https://github.com/abseil/abseil-cpp/releases
+## date:	2021.05.17
+## file:	compile and install abseil
+## author:	duruyao@hikvision.com
+## release: https://github.com/abseil/abseil-cpp/releases
 
 if [ $# != 2 ]; then
   printf "USAGE (sudo permission may be needed):\n"
@@ -35,4 +38,10 @@ cmake ..    -DCMAKE_CXX_FLAGS="-std=c++11"          \
             -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON
 
 make -j16 && make install
+
+printf "\n"
+printf "Install abseil "
+printf "to \`${ins_dir}\`:\n"
+ls -all ${ins_dir}
+printf "\n"
 

@@ -30,6 +30,7 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
@@ -46,7 +47,7 @@ struct TableStruct_route_5fguide_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[5]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[6]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -69,6 +70,9 @@ extern RouteNoteDefaultTypeInternal _RouteNote_default_instance_;
 class RouteSummary;
 struct RouteSummaryDefaultTypeInternal;
 extern RouteSummaryDefaultTypeInternal _RouteSummary_default_instance_;
+class TestMsg;
+struct TestMsgDefaultTypeInternal;
+extern TestMsgDefaultTypeInternal _TestMsg_default_instance_;
 }  // namespace routeguide
 PROTOBUF_NAMESPACE_OPEN
 template<> ::routeguide::Feature* Arena::CreateMaybeMessage<::routeguide::Feature>(Arena*);
@@ -76,9 +80,40 @@ template<> ::routeguide::Point* Arena::CreateMaybeMessage<::routeguide::Point>(A
 template<> ::routeguide::Rectangle* Arena::CreateMaybeMessage<::routeguide::Rectangle>(Arena*);
 template<> ::routeguide::RouteNote* Arena::CreateMaybeMessage<::routeguide::RouteNote>(Arena*);
 template<> ::routeguide::RouteSummary* Arena::CreateMaybeMessage<::routeguide::RouteSummary>(Arena*);
+template<> ::routeguide::TestMsg* Arena::CreateMaybeMessage<::routeguide::TestMsg>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace routeguide {
 
+enum TestMsg_MsgType : int {
+  TestMsg_MsgType_MSG_TYPE_UNSPECIFIED = 0,
+  TestMsg_MsgType_MSG_TYPE_INFO = 1,
+  TestMsg_MsgType_MSG_TYPE_DEBUG = 2,
+  TestMsg_MsgType_MAG_TYPE_TRACK = 3,
+  TestMsg_MsgType_MSG_TYPE_WARNING = 4,
+  TestMsg_MsgType_MSG_TYPE_ERROR = 5,
+  TestMsg_MsgType_MSG_TYPE_FATAL = 6,
+  TestMsg_MsgType_TestMsg_MsgType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  TestMsg_MsgType_TestMsg_MsgType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool TestMsg_MsgType_IsValid(int value);
+constexpr TestMsg_MsgType TestMsg_MsgType_MsgType_MIN = TestMsg_MsgType_MSG_TYPE_UNSPECIFIED;
+constexpr TestMsg_MsgType TestMsg_MsgType_MsgType_MAX = TestMsg_MsgType_MSG_TYPE_FATAL;
+constexpr int TestMsg_MsgType_MsgType_ARRAYSIZE = TestMsg_MsgType_MsgType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* TestMsg_MsgType_descriptor();
+template<typename T>
+inline const std::string& TestMsg_MsgType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, TestMsg_MsgType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function TestMsg_MsgType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    TestMsg_MsgType_descriptor(), enum_t_value);
+}
+inline bool TestMsg_MsgType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, TestMsg_MsgType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<TestMsg_MsgType>(
+    TestMsg_MsgType_descriptor(), name, value);
+}
 // ===================================================================
 
 class Point final :
@@ -862,6 +897,216 @@ class RouteSummary final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_route_5fguide_2eproto;
 };
+// -------------------------------------------------------------------
+
+class TestMsg final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:routeguide.TestMsg) */ {
+ public:
+  inline TestMsg() : TestMsg(nullptr) {}
+  ~TestMsg() override;
+  explicit constexpr TestMsg(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TestMsg(const TestMsg& from);
+  TestMsg(TestMsg&& from) noexcept
+    : TestMsg() {
+    *this = ::std::move(from);
+  }
+
+  inline TestMsg& operator=(const TestMsg& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestMsg& operator=(TestMsg&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TestMsg& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TestMsg* internal_default_instance() {
+    return reinterpret_cast<const TestMsg*>(
+               &_TestMsg_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(TestMsg& a, TestMsg& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestMsg* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TestMsg* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestMsg* New() const final {
+    return new TestMsg();
+  }
+
+  TestMsg* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestMsg>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestMsg& from);
+  void MergeFrom(const TestMsg& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestMsg* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "routeguide.TestMsg";
+  }
+  protected:
+  explicit TestMsg(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef TestMsg_MsgType MsgType;
+  static constexpr MsgType MSG_TYPE_UNSPECIFIED =
+    TestMsg_MsgType_MSG_TYPE_UNSPECIFIED;
+  static constexpr MsgType MSG_TYPE_INFO =
+    TestMsg_MsgType_MSG_TYPE_INFO;
+  static constexpr MsgType MSG_TYPE_DEBUG =
+    TestMsg_MsgType_MSG_TYPE_DEBUG;
+  static constexpr MsgType MAG_TYPE_TRACK =
+    TestMsg_MsgType_MAG_TYPE_TRACK;
+  static constexpr MsgType MSG_TYPE_WARNING =
+    TestMsg_MsgType_MSG_TYPE_WARNING;
+  static constexpr MsgType MSG_TYPE_ERROR =
+    TestMsg_MsgType_MSG_TYPE_ERROR;
+  static constexpr MsgType MSG_TYPE_FATAL =
+    TestMsg_MsgType_MSG_TYPE_FATAL;
+  static inline bool MsgType_IsValid(int value) {
+    return TestMsg_MsgType_IsValid(value);
+  }
+  static constexpr MsgType MsgType_MIN =
+    TestMsg_MsgType_MsgType_MIN;
+  static constexpr MsgType MsgType_MAX =
+    TestMsg_MsgType_MsgType_MAX;
+  static constexpr int MsgType_ARRAYSIZE =
+    TestMsg_MsgType_MsgType_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  MsgType_descriptor() {
+    return TestMsg_MsgType_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& MsgType_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, MsgType>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function MsgType_Name.");
+    return TestMsg_MsgType_Name(enum_t_value);
+  }
+  static inline bool MsgType_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      MsgType* value) {
+    return TestMsg_MsgType_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTitleFieldNumber = 2,
+    kIdFieldNumber = 1,
+    kMsgTypeFieldNumber = 4,
+    kTimestampFieldNumber = 3,
+  };
+  // string title = 2;
+  void clear_title();
+  const std::string& title() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_title(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_title();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_title();
+  void set_allocated_title(std::string* title);
+  private:
+  const std::string& _internal_title() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_title(const std::string& value);
+  std::string* _internal_mutable_title();
+  public:
+
+  // int32 id = 1;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::int32 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // .routeguide.TestMsg.MsgType msg_type = 4;
+  void clear_msg_type();
+  ::routeguide::TestMsg_MsgType msg_type() const;
+  void set_msg_type(::routeguide::TestMsg_MsgType value);
+  private:
+  ::routeguide::TestMsg_MsgType _internal_msg_type() const;
+  void _internal_set_msg_type(::routeguide::TestMsg_MsgType value);
+  public:
+
+  // uint64 timestamp = 3;
+  void clear_timestamp();
+  ::PROTOBUF_NAMESPACE_ID::uint64 timestamp() const;
+  void set_timestamp(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_timestamp() const;
+  void _internal_set_timestamp(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:routeguide.TestMsg)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr title_;
+  ::PROTOBUF_NAMESPACE_ID::int32 id_;
+  int msg_type_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 timestamp_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_route_5fguide_2eproto;
+};
 // ===================================================================
 
 
@@ -1431,9 +1676,120 @@ inline void RouteSummary::set_elapsed_time(::PROTOBUF_NAMESPACE_ID::int32 value)
   // @@protoc_insertion_point(field_set:routeguide.RouteSummary.elapsed_time)
 }
 
+// -------------------------------------------------------------------
+
+// TestMsg
+
+// int32 id = 1;
+inline void TestMsg::clear_id() {
+  id_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TestMsg::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TestMsg::id() const {
+  // @@protoc_insertion_point(field_get:routeguide.TestMsg.id)
+  return _internal_id();
+}
+inline void TestMsg::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  id_ = value;
+}
+inline void TestMsg::set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:routeguide.TestMsg.id)
+}
+
+// string title = 2;
+inline void TestMsg::clear_title() {
+  title_.ClearToEmpty();
+}
+inline const std::string& TestMsg::title() const {
+  // @@protoc_insertion_point(field_get:routeguide.TestMsg.title)
+  return _internal_title();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TestMsg::set_title(ArgT0&& arg0, ArgT... args) {
+ 
+ title_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:routeguide.TestMsg.title)
+}
+inline std::string* TestMsg::mutable_title() {
+  // @@protoc_insertion_point(field_mutable:routeguide.TestMsg.title)
+  return _internal_mutable_title();
+}
+inline const std::string& TestMsg::_internal_title() const {
+  return title_.Get();
+}
+inline void TestMsg::_internal_set_title(const std::string& value) {
+  
+  title_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* TestMsg::_internal_mutable_title() {
+  
+  return title_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* TestMsg::release_title() {
+  // @@protoc_insertion_point(field_release:routeguide.TestMsg.title)
+  return title_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void TestMsg::set_allocated_title(std::string* title) {
+  if (title != nullptr) {
+    
+  } else {
+    
+  }
+  title_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), title,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:routeguide.TestMsg.title)
+}
+
+// uint64 timestamp = 3;
+inline void TestMsg::clear_timestamp() {
+  timestamp_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestMsg::_internal_timestamp() const {
+  return timestamp_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestMsg::timestamp() const {
+  // @@protoc_insertion_point(field_get:routeguide.TestMsg.timestamp)
+  return _internal_timestamp();
+}
+inline void TestMsg::_internal_set_timestamp(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  timestamp_ = value;
+}
+inline void TestMsg::set_timestamp(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_timestamp(value);
+  // @@protoc_insertion_point(field_set:routeguide.TestMsg.timestamp)
+}
+
+// .routeguide.TestMsg.MsgType msg_type = 4;
+inline void TestMsg::clear_msg_type() {
+  msg_type_ = 0;
+}
+inline ::routeguide::TestMsg_MsgType TestMsg::_internal_msg_type() const {
+  return static_cast< ::routeguide::TestMsg_MsgType >(msg_type_);
+}
+inline ::routeguide::TestMsg_MsgType TestMsg::msg_type() const {
+  // @@protoc_insertion_point(field_get:routeguide.TestMsg.msg_type)
+  return _internal_msg_type();
+}
+inline void TestMsg::_internal_set_msg_type(::routeguide::TestMsg_MsgType value) {
+  
+  msg_type_ = value;
+}
+inline void TestMsg::set_msg_type(::routeguide::TestMsg_MsgType value) {
+  _internal_set_msg_type(value);
+  // @@protoc_insertion_point(field_set:routeguide.TestMsg.msg_type)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -1446,6 +1802,16 @@ inline void RouteSummary::set_elapsed_time(::PROTOBUF_NAMESPACE_ID::int32 value)
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace routeguide
+
+PROTOBUF_NAMESPACE_OPEN
+
+template <> struct is_proto_enum< ::routeguide::TestMsg_MsgType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::routeguide::TestMsg_MsgType>() {
+  return ::routeguide::TestMsg_MsgType_descriptor();
+}
+
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 
