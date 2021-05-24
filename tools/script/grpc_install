@@ -119,23 +119,23 @@ my_cmake=${HIKSDK_DIR}/cmake/bin/cmake
 
 ## add rpath for the installed lib
 
-${my_cmake} ${grpc_src_dir}                                                   \
-            -DgRPC_INSTALL=ON                		                              \
-		        -DBUILD_SHARED_LIBS=ON		   		                                  \
-	          -DCMAKE_BUILD_TYPE=Release       		                              \
-		        -DCMAKE_INSTALL_PREFIX=${grpc_ins_dir}                            \
-		        -DgRPC_ABSL_PROVIDER=package     		                              \
-		        -DgRPC_CARES_PROVIDER=package    		                              \
-		        -DgRPC_PROTOBUF_PROVIDER=package 		                              \
-		        -DgRPC_RE2_PROVIDER=package      		                              \
-		        -DgRPC_SSL_PROVIDER=package      		                              \
-		        -DgRPC_ZLIB_PROVIDER=package			                                \
-		        -DCMAKE_PREFIX_PATH=${my_prefix_path}	                            \
-		        -DCMAKE_CXX_FLAGS=${my_cxx_flags}                                 \
-            -DCMAKE_SKIP_BUILD_RPATH=OFF                                      \
-            -DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF                              \
-            -DCMAKE_INSTALL_RPATH="${grpc_ins_dir}/lib;${HIKSDK_DIR}/re2/lib" \
-            -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON
+${my_cmake} ${grpc_src_dir} 														\
+			-DgRPC_INSTALL=ON														\
+			-DBUILD_SHARED_LIBS=ON		   		                                  	\
+			-DCMAKE_BUILD_TYPE=Release       		                              	\
+			-DCMAKE_INSTALL_PREFIX=${grpc_ins_dir}                            		\
+			-DDgRPC_ABSL_PROVIDER=package     		                              	\
+			-DDgRPC_CARES_PROVIDER=package    		                              	\
+			-DDgRPC_PROTOBUF_PROVIDER=package 		                              	\
+			-DDgRPC_RE2_PROVIDER=package      		                              	\
+			-DDgRPC_SSL_PROVIDER=package      		                              	\
+			-DDgRPC_ZLIB_PROVIDER=package			                                \
+			-DDCMAKE_PREFIX_PATH=${my_prefix_path}	                            	\
+			-DDCMAKE_CXX_FLAGS=${my_cxx_flags}                                 		\
+			-DCMAKE_SKIP_BUILD_RPATH=OFF                                      		\
+			-DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF                              		\
+			-DCMAKE_INSTALL_RPATH="${grpc_ins_dir}/lib;${HIKSDK_DIR}/re2/lib" 		\
+			-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON
 
 ${my_cmake} --build ${grpc_build_dir} --target clean
 ${my_cmake} --build ${grpc_build_dir} --target all -- -j 16
