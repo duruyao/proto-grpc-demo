@@ -14,17 +14,17 @@
 #include "rpc_service.h"
 
 using grpc::Server;
-using grpc::ServerAsyncResponseWriter;
+using grpc::Status;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
 using grpc::ServerCompletionQueue;
-using grpc::Status;
+using grpc::ServerAsyncResponseWriter;
 
 class MyRPCServer {
 public:
     MyRPCServer() = delete;
 
-    explicit MyRPCServer(std::string &serverAddr);
+    explicit MyRPCServer(std::string &serverAddr) : addr(serverAddr) {};
 
     MyRPCServer(const MyRPCServer &) = delete;
 

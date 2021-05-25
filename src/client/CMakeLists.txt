@@ -6,7 +6,7 @@ AUX_SOURCE_DIRECTORY(${proto_gen_dir} source_files)
 AUX_SOURCE_DIRECTORY(${grpc_gen_dir} source_files)
 AUX_SOURCE_DIRECTORY(${CMAKE_CURRENT_SOURCE_DIR} source_files)
 
-set(app_name "rpc-client-demo")
+set(app_name "rpc_client_demo")
 
 add_executable(${app_name} ${source_files})
 

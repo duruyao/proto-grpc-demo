@@ -4,10 +4,6 @@
 
 #include "rpc_server.h"
 
-MyRPCServer::MyRPCServer(std::string &serverAddr) : addr(serverAddr) {
-
-}
-
 void MyRPCServer::run() {
     builder.AddListeningPort(addr, grpc::InsecureServerCredentials());
     builder.RegisterService(&service);
@@ -16,11 +12,12 @@ void MyRPCServer::run() {
         fprintf(stderr, "error building and starting RPC Server (%s)\n", addr.data());
         return;
     }
-    fprintf(stdout, "RPC Server listen on %s", addr.data());
     server->Wait();
 }
 
 void MyRPCServer::start() {
     std::thread myThread(&MyRPCServer::run, this);
-    myThread.detach();
+    fprintf(stdout, "RPC Server listen on %s\n\n", addr.data());
+    myThread.join();
+
 }
