@@ -188,19 +188,19 @@ const char descriptor_table_protodef_route_5fguide_2eproto[] PROTOBUF_SECTION_VA
   "ED\020\000\022\021\n\rMSG_TYPE_INFO\020\001\022\022\n\016MSG_TYPE_DEBU"
   "G\020\002\022\022\n\016MAG_TYPE_TRACK\020\003\022\024\n\020MSG_TYPE_WARN"
   "ING\020\004\022\022\n\016MSG_TYPE_ERROR\020\005\022\022\n\016MSG_TYPE_FA"
-  "TAL\020\0062\205\002\n\nRouteGuide\0226\n\nGetFeature\022\021.rou"
-  "teguide.Point\032\023.routeguide.Feature\"\000\022>\n\014"
-  "ListFeatures\022\025.routeguide.Rectangle\032\023.ro"
-  "uteguide.Feature\"\0000\001\022>\n\013RecordRoute\022\021.ro"
-  "uteguide.Point\032\030.routeguide.RouteSummary"
-  "\"\000(\001\022\?\n\tRouteChat\022\025.routeguide.RouteNote"
-  "\032\025.routeguide.RouteNote\"\000(\0010\001B0\n\033io.grpc"
-  ".examples.routeguideB\017RouteGuideProtoP\001b"
-  "\006proto3"
+  "TAL\020\0062\214\002\n\021RouteGuideService\0226\n\nGetFeatur"
+  "e\022\021.routeguide.Point\032\023.routeguide.Featur"
+  "e\"\000\022>\n\014ListFeatures\022\025.routeguide.Rectang"
+  "le\032\023.routeguide.Feature\"\0000\001\022>\n\013RecordRou"
+  "te\022\021.routeguide.Point\032\030.routeguide.Route"
+  "Summary\"\000(\001\022\?\n\tRouteChat\022\025.routeguide.Ro"
+  "uteNote\032\025.routeguide.RouteNote\"\000(\0010\001B0\n\033"
+  "io.grpc.examples.routeguideB\017RouteGuideP"
+  "rotoP\001b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_route_5fguide_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_route_5fguide_2eproto = {
-  false, false, 967, descriptor_table_protodef_route_5fguide_2eproto, "route_guide.proto", 
+  false, false, 974, descriptor_table_protodef_route_5fguide_2eproto, "route_guide.proto", 
   &descriptor_table_route_5fguide_2eproto_once, nullptr, 0, 6,
   schemas, file_default_instances, TableStruct_route_5fguide_2eproto::offsets,
   file_level_metadata_route_5fguide_2eproto, file_level_enum_descriptors_route_5fguide_2eproto, file_level_service_descriptors_route_5fguide_2eproto,

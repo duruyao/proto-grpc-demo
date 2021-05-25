@@ -44,10 +44,10 @@
 namespace routeguide {
 
 // Interface exported by the server.
-class RouteGuide final {
+class RouteGuideService final {
  public:
   static constexpr char const* service_full_name() {
-    return "routeguide.RouteGuide";
+    return "routeguide.RouteGuideService";
   }
   class StubInterface {
    public:
