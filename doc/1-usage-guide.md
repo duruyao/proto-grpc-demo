@@ -13,6 +13,7 @@
             - [1.3.1.4. 默认值](#1314-default-values)
             - [1.3.1.5. 嵌套类型](#1315-nested-types)
             - [1.3.1.6. 枚举类型](#1316-enumerations)
+            - [1.3.1.7. 映射类型](#1317-maps)
         - [1.3.4. 导入 Message](#134-importing-message)
         - [1.3.5. 更新 Message](#135-updating-message)
         - [1.3.6. 映射 JSON](#136-json-mapping)
@@ -237,6 +238,28 @@ message MyMessage2 {
 }
 ```
 
+##### 1.3.1.7. Maps
+
+Protocol Buffers 支持使用 Maps，示例如下：
+
+```protobuf
+syntax = "proto3";
+
+message Project {
+  string name = 1;
+  string repository_url = 2;
+  repeated string authors = 3;
+}
+
+message TestMsg {
+  map<uint32, Project> id_2_project = 1;
+}
+```
+
+- map 字段不能被`repeated`关键字修饰
+
+- map 是无序的
+
 #### 1.3.4. Importing Message
 
 Protocol Buffers 允许使用定义在其他`.proto`文件中的 Message，通过使用`import`语句导入相应的`.proto`来实现。示例如下：
@@ -268,6 +291,28 @@ message TestMsg {
 - 使用`public`意味 **依赖关系可以传递**，例如：b.proto 中 `import public "a.proto";`，c.proto 中 `import "b.proto";`，那么在 c.proto 中可以直接使用 a.proto 中定义的 Message
 
 #### 1.3.5. Updating Message
+
+随着开发的推进，`.proto`文件将被频繁修改，如果你已经在 C++ 代码中使用了访问其中 Message 的 API，那么可能会出现一些问题（某些API会消失、更新）。当开发团队本应共用相同的`.proto`文件，但各自的内容却不一致时，问题会更复杂。
+
+最简单的解决办法就是永远和团队在`.proto`的内容上保持一致，但这其实很难。遵循下述的 **更新规则** 和 **更新建议** 可以尽量减少团队的麻烦：
+
+- **不要修改** 已存在字段的字段号
+
+- 如果在`.proto`中添加新字段，仍可以使用新生成的 C++ 代码来解析旧的`.proto`生成的 C++ 代码序列化的 Message。同样，由新代码创建的 Message 可也以被旧代码解析（新字段会被忽略，标记为`Unknown Fields`）
+
+- 字段可以被移除，该字段号 **不该** 再被使用。使用`reserved`关键字可以保证`.proto`的其他使用者无法再使用此字段号，例如：`reserved 2;`、`reserved 15, 9 to 11;`、`reserved "foo", "bar";`
+
+- `int32`、`uint32`、`int64`、`uint64`以及`bool`类型彼此兼容，所有可以修改字段从一种类型到另一种类型（位数不同会被截断）
+
+- `sint32`与`sint64`类型兼容（与其他数字类型不兼容）
+
+- `fixed32`与`sfixed32`类型兼容
+
+- `fixed64`与`sfixed64`类型兼容
+
+- 当字节序列是`UTF-8`编码方式时，`string`与`bytes`类型兼容
+
+- `int32`、`uint32`、`int64`、`uint64`以及 枚举常量 彼此兼容（不建议如此修改）
 
 #### 1.3.6. JSON Mapping
 
