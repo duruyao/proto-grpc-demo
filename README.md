@@ -31,7 +31,7 @@ mkdir -p build && rm -rf build/* &&                                     \
         popd
 ```
 
-### 2.2. Run Execute
+### 2.2. Run Demo
 
 执行`build/src/server/rpc_server_demo <IPV4:PORT>`启动 RPC 服务端：
 
@@ -68,4 +68,8 @@ location {
 }
 ```
 
-在此项目中，客户端通过 RPC 的方式与服务端的通信，发送 **序列化** 的数据作为请求，接收服务端的返回的应答数据，并 **反序列化** 为一个 C++ 中的对象。其中序列化方式为 [Protocol Buffers](https://developers.google.com/protocol-buffers)，RPC 框架为 [gRPC](https://grpc.io/)。
+### 2.3. Overview
+
+在此项目中，客户端通过 RPC 的方式与服务端的通信，发送 **序列化** 的数据作为请求，接收服务端的返回的应答数据，并 **反序列化** 为一个 C++ 中的对象。
+
+其中序列化数据方式为 [Protocol Buffers](https://developers.google.com/protocol-buffers)，RPC 框架为 [gRPC](https://grpc.io/)。
