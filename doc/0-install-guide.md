@@ -36,6 +36,8 @@ Check if Protocol Buffers is installed successfully by execute `ldd <PROTO_INSTA
 
 Show version of Protocol Buffers by execute `<PROTO_INSTALL_DIR>/bin/protoc --version`.
 
+---
+
 ## 2. Dependents of gRPC
 
 Install multiple libraries or applications (contains [Protocol Buffers](#1-protocol-buffers)) before compiling source codes of gRPC.
@@ -124,6 +126,8 @@ $ ./zlib_install <ZLIB_ZIP_DIR> <ZLIB_INSTALL_DIR>
 
 Check if zlib is installed successfully by execute `ldd <ZLIB_INSTALL_DIR>/lib/libz*.so`, and make sure all dependent libraries are linked rightly.
 
+---
+
 ### 3. gRPC
 
 ### 3.1. Download
@@ -146,6 +150,8 @@ Make sure you have set the value of **`my_prefix_path`** and **`my_cxx_flags`** 
 ### 3.3 Check
 
 Check if gRPC is installed successfully by command `ldd <GRPC_INSTALL_DIR>/lib/libgrpc*.so`, and make sure all dependent libraries are linked rightly.
+
+---
 
 ### 4. Remark
 
