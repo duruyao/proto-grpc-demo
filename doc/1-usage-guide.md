@@ -33,7 +33,7 @@
 
 [Protocol Buffers](https://developers.google.com/protocol-buffers) 是 Google 的跨语言的，跨平台的可扩展的机制，用于对结构化数据进行序列化。它类似于 XML，但更小，更快，更简单。先定义数据的构造方式，再生成特定的编程语言的源代码，就可以轻松地在各种数据流中用他们读/写结构化数据。
 
-Protocol Buffers 当前支持生成 Java，Python，Objective-C 和 C++ 的代码。使用最新的 proto3 版本，还可以使用 Dart，Go，Ruby 和 C＃。
+Protocol Buffers 当前支持生成 Java，Python，Objective-C 和 C++ 的代码。使用最新的`proto3`版本，还可以在 Dart，Go，Ruby 和 C＃ 中使用。
 
 系统性地学习请优先参见下述官方文档，前人之述备矣。
 
@@ -49,11 +49,11 @@ Protocol Buffers 当前支持生成 Java，Python，Objective-C 和 C++ 的代�
 
 ### 1.3. Usage
 
-本节主要讲述了：使用 Protocol Buffers 构造数据、生成相应的 C++ `Class` 以及使用 C++ 编程接口。本节使用的语法标准为 `proto3`，关于 `proto2` 的信息请参考 *[Proto2 Language Guide](https://developers.google.com/protocol-buffers/docs/proto)* 。
+本节主要讲述了：1）使用 Protocol Buffers 构造数据、2）生成相应的 C++ `Class` 以及 3）使用 C++ 编程接口。本节使用的语法标准为`proto3`，关于 `proto2` 的信息请参考 *[Proto2 Language Guide](https://developers.google.com/protocol-buffers/docs/proto)* 。
 
 #### 1.3.1. Defining Message
 
-Protocol Buffers 使用一种名为 Message 的抽象数据类型（类似于 C++ 中的 `Class`），通过`message`关键字，定义在`.proto`结尾的文件中。下面是一个简单的例子：
+Protocol Buffers 使用一种名为 Message 的抽象数据类型（类似于 C++ 中的 `Class`），通过`message`关键字，定义在`.proto`的文件中。下面是一个简单的例子：
 
 ```protobuf
 // author: duruyao@hikvision.com
@@ -106,7 +106,7 @@ Message 基础数据类型与 C++ 的基础数据类型的对应关系如下：
 | `sfixed32` | 比`uint32`更高效地编码其值总是 4 字节的数 | `int`<br>`int32_t` |
 | `sfixed64` | 比`uint32`更高效地编码其值总是 8 字节的数 | `int64_t` |
 | `bool` | 布尔类型 | `bool` |
-| `string` | 始终包含`UTF-8`编码或7位`ASCII`编码的字节序列，并且长度不能超过`2 ^ 32` | `std::__cxx11::string` |
+| `string` | 始终包含`UTF-8`编码或 7 位`ASCII`编码的字节序列，并且长度不能超过`2 ^ 32` | `std::__cxx11::string` |
 | `bytes` | 可以包含不超过`2 ^ 32`的任意字节序列 | `std::__cxx11::string` |
 
 ##### 1.3.1.2. Field Names
@@ -292,7 +292,7 @@ message TestMsg {
 
 #### 1.3.5. Updating Message
 
-随着开发的推进，`.proto`文件将被频繁修改，如果你已经在 C++ 代码中使用了访问其中 Message 的 API，那么可能会出现一些问题（某些API会消失、更新）。当开发团队本应共用相同的`.proto`文件，但各自的内容却不一致时，问题会更复杂。
+随着开发的推进，`.proto`文件将被频繁修改，如果你已经在 C++ 代码中使用了访问其中 Message 的 API，那么可能会出现一些问题（某些 API 会消失、更新）。当开发团队本应共用相同的`.proto`文件，但各自的内容却不一致时，问题会更复杂。
 
 最简单的解决办法就是永远和团队在`.proto`的内容上保持一致，但这其实很难。遵循下述的 **更新规则** 和 **更新建议** 可以尽量减少团队的麻烦：
 
@@ -302,7 +302,7 @@ message TestMsg {
 
 - 字段可以被移除，该字段号 **不该** 再被使用。使用`reserved`关键字可以保证`.proto`的其他使用者无法再使用此字段号，例如：`reserved 2;`、`reserved 15, 9 to 11;`、`reserved "foo", "bar";`
 
-- `int32`、`uint32`、`int64`、`uint64`以及`bool`类型彼此兼容，所有可以修改字段从一种类型到另一种类型（位数不同会被截断）
+- `int32`、`uint32`、`int64`、`uint64`以及`bool`类型彼此兼容，所以可以修改字段从一种类型到另一种类型（位数不同会被截断）
 
 - `sint32`与`sint64`类型兼容（与其他数字类型不兼容）
 
@@ -321,19 +321,23 @@ message TestMsg {
 确认已经正确安装 Protocol Buffers（参考 [Protocol Buffers 源码编译安装指南](./0-install-guide.md#1-protocol-buffers)），编译`.proto`文件生成 C++ API 文件（`.cc`、`.h`）方式如下：
 
 ```shell
-$ <PROTO_INSTALL_DIR>/bin/protoc -I --proto_path=<IMPORT_PATH> --cpp_out=<DST_DIR> <PROTO_FILENAME_1> <PROTO_FILENAME_2> ...
+$ <PROTO_INSTALL_DIR>/bin/protoc -I --proto_path=<IMPORT_PATH>  \
+                                    --cpp_out=<DST_DIR> <PROTO_FILENAME_1> <PROTO_FILENAME_2> ...
 ```
 
 示例：
 
 ```shell
+$ echo "make sure your ip is '10.1.65.114'"
 $ pushd /data1/duruyao/project/proto-grpc-demo
 $ mkdir -p src/proto/gen
-$ /data1/duruyao/HikSDK/proto/bin/protoc -I --proto_path=./src/proto --cpp_out=./src/proto/gen route_guide.proto
+$ /data1/duruyao/HikSDK/proto/bin/protoc -I --proto_path=./src/proto    \
+                                            --cpp_out=./src/proto/gen route_guide.proto
+$ ls ./src/proto/gen
 $ popd
 ```
 
-确认已经正确安装 **支持多语言版本** 的Protocol Buffers，编译`.proto`文件生成 多语言 API 文件（`.cc`、`.h`）方式如下：
+确认已经正确安装 **支持多语言** 版本的 Protocol Buffers，编译`.proto`文件生成 多语言 API 文件方式如下：
 
 ```shell
 $ <PROTO_INSTALL_DIR>/bin/protoc -I --proto_path=<IMPORT_PATH>  \
