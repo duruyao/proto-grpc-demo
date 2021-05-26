@@ -360,7 +360,7 @@ $ <PROTO_INSTALL_DIR>/bin/protoc -I --proto_path=<IMPORT_PATH>  \
 我们从一个简单的示例出发介绍常用的 C++ API：
 
 ```protobuf
-// project/src/proto/base_data.proto
+// project/src/proto/addressbook.proto
 
 syntax = "proto3";
 
@@ -390,10 +390,10 @@ message AddressBook {
 }
 ```
 
-编译上述的`base_data.proto`将生成`base_data.pb.cc`、`base_data.pb.h`。相应的 C++ API 如下：
+编译上述的`addressbook.proto`将生成`addressbook.pb.cc`、`addressbook.pb.h`。相应的 C++ API 如下：
 
-```cpp
-// project/src/proto/gen/base_data.pb.h
+```c++
+// project/src/proto/gen/addressbook.pb.h
 
 namespace tutorial {
 
@@ -428,6 +428,50 @@ namespace tutorial {
   inline ::tutorial::Person_PhoneNumber* mutable_phones(int index);     // return a pointer points to element of the 'phones' filed
   inline ::tutorial::Person_PhoneNumber* add_phones();                  // add a new element to the 'phones' filed, and return the pointer points to the new
 
+}
+```
+
+在 C++ 代码中使用上述 API 的示例如下：
+
+```c++
+#include <iostream>
+#include <fstream>
+#include <string>
+
+#include "addressbook.pb.h"
+
+using tutorial::Person;
+using tutorial::PhoneType;
+using tutorial::PhoneNumber;
+using tutorial::AddressBook;
+
+void ListPeople(const AddressBook& address_book) {
+  for (int i = 0; i < address_book.people_size(); i++) {
+    const Person& person = address_book.people(i);
+
+    std::cout << "Person ID: " << person.id() << endl;
+    std::cout << "Name: " << person.name() << endl;
+    if (person.has_email()) {
+      std::cout << "E-mail address: " << person.email() << endl;
+    }
+
+    for (int j = 0; j < person.phones_size(); j++) {
+      const Person::PhoneNumber& phone_number = person.phones(j);
+
+      switch (phone_number.type()) {
+        case Person::MOBILE:
+          std::cout << "  Mobile phone #: ";
+          break;
+        case Person::HOME:
+          std::cout << "  Home phone #: ";
+          break;
+        case Person::WORK:
+          std::cout << "  Work phone #: ";
+          break;
+      }
+      cout << phone_number.number() << endl;
+    }
+  }
 }
 ```
 
