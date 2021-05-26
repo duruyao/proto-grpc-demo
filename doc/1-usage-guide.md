@@ -56,10 +56,13 @@ Protocol Buffers 当前支持生成 Java，Python，Objective-C 和 C++ 的代�
 Protocol Buffers 使用一种名为 Message 的抽象数据类型（类似于 C++ 中的 `Class`），通过`message`关键字，定义在`.proto`的文件中。下面是一个简单的例子：
 
 ```protobuf
-// author: duruyao@hikvision.com
 // date:   2021.05.26
+// file:   simple_msg.proto
+// author: duruyao@hikvision.com
 
 syntax = "proto3";
+
+package simple_demo;
 
 /* SearchRequest represents a search query, with pagination
  * options to indicate which results to include in the response. */
@@ -76,6 +79,8 @@ message SearchResponse {
 ```
 
 - 必须在文件正文（非注释、非空行）的 **第一行** 明确`proto`语法标准，上述示例确定语法标准为`proto3`
+
+- `package simple_demo;`为当前文件声明 **包名**，编译该`.proto`文件生成的 C++ 代码中，`simple_demo`为其命名空间
 
 - Message 中的每个字段至少包含 “类型”、“名称”、“字段号”，即`[Field Value Type] [Field Name] = [Field Number];`
 
@@ -351,6 +356,80 @@ $ <PROTO_INSTALL_DIR>/bin/protoc -I --proto_path=<IMPORT_PATH>  \
 ```
 
 #### 1.3.8. CPP API
+
+我们从一个简单的示例出发介绍常用的 C++ API：
+
+```protobuf
+// project/src/proto/base_data.proto
+
+syntax = "proto3";
+
+package tutorial;
+
+message Person {
+  string name = 1;
+  int32 id = 2;
+  string email = 3;
+
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+
+  message PhoneNumber {
+    string number = 1;
+    PhoneType type = 2 [default = HOME];
+  }
+
+  repeated PhoneNumber phones = 4;
+}
+
+message AddressBook {
+  repeated Person people = 1;
+}
+```
+
+编译上述的`base_data.proto`将生成`base_data.pb.cc`、`base_data.pb.h`。相应的 C++ API 如下：
+
+```cpp
+// project/src/proto/gen/base_data.pb.h
+
+namespace tutorial {
+
+  // name
+  inline bool has_name() const;                                         # check if the 'name' filed is not empty
+  inline void clear_name();                                             # reset the 'name' filed to default value
+  inline const ::std::string& name() const;                             # get value of the 'name' filed
+  inline void set_name(const ::std::string& value);                     # set value of the 'name' filed
+  inline void set_name(const char* value);                              # set value of the 'name' filed
+  inline ::std::string* mutable_name();                                 # return a pointer points to the 'name' filed
+
+  // id
+  inline bool has_id() const;
+  inline void clear_id();
+  inline int32_t id() const;
+  inline void set_id(int32_t value);
+
+  // email
+  inline bool has_email() const;
+  inline void clear_email();
+  inline const ::std::string& email() const;
+  inline void set_email(const ::std::string& value);
+  inline void set_email(const char* value);
+  inline ::std::string* mutable_email();
+
+  // phones
+  inline int phones_size() const;                                       # get number of element of the 'phones' filed
+  inline void clear_phones();
+  inline const ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber >& phones() const;
+  inline ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber >* mutable_phones();
+  inline const ::tutorial::Person_PhoneNumber& phones(int index) const; # get value of element of the 'phones' filed
+  inline ::tutorial::Person_PhoneNumber* mutable_phones(int index);     # return a pointer points to element of the 'phones' filed
+  inline ::tutorial::Person_PhoneNumber* add_phones();                  # add a new element to the 'phones' filed, and return the pointer points to the new
+
+}
+```
 
 ---
 
