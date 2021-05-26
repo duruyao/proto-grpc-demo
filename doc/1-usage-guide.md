@@ -211,11 +211,11 @@ message SearchRequest {
   Corpus corpus = 4;
 }
 ```
-- ENUM 中的每个字段至少包含 “名称”、“字段号”，即`[Constant] = [Field Number];`
+- ENUM 中的每个字段至少包含 “枚举常量”、“字段号”，即`[Constant] = [Field Number];`
 
-- 每个 ENUM 有且必须有一个字段号为 0 的枚举常量作为其第一个枚举常量，同时也是其默认值
+- 每个 ENUM 有且必须有一个字段号为 0 的枚举常量作为其第一个枚举常量，同时也是其 **默认值**
 
-Protocol Buffers 支持使用已存在的枚举常量，通过使用设置`allow_alias = true`为枚举类型创建别名来实现，示例如下：
+Protocol Buffers 支持使用已存在的枚举常量，通过为枚举类型创建别名来实现，即设置`allow_alias = true`。示例如下：
 
 ```protobuf
 syntax = "proto3";
@@ -239,10 +239,10 @@ message MyMessage2 {
 
 #### 1.3.4. Importing Message
 
-Protocol Buffers 允许使用定义在其他`.proto`文件中的 Message，通过使用`import`语句导入相应的`.proto`文件来实现。示例如下：
+Protocol Buffers 允许使用定义在其他`.proto`文件中的 Message，通过使用`import`语句导入相应的`.proto`来实现。示例如下：
 
 ```protobuf
-// route_guide.proto
+// project/src/proto/route_guide.proto
 
 syntax = "proto3";
 
@@ -253,7 +253,7 @@ message Point {
 ```
 
 ```protobuf
-// test_import.proto
+// project/doc/test_import.proto
 
 syntax = "proto3";
 import public "../src/proto/route_guide.proto";
