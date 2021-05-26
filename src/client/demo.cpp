@@ -19,7 +19,7 @@ using routeguide::Rectangle;
 using routeguide::RouteNote;
 using routeguide::RouteSummary;
 
-int main() {
+int main(int argc, char **argv) {
     fprintf(stdout,
             "+-------------------------------+\n"
             "| RPC-CLIENT-DEMO               |\n"
@@ -41,7 +41,7 @@ int main() {
 //    fprintf(stdout, "[testMsg1]\n%s\n", testMsg1.DebugString().data());
 //    fprintf(stdout, "[testMsg2]\n%s\n", testMsg2.DebugString().data());
 
-    std::string addr("0.0.0.0:1213");
+    std::string addr((nullptr == argv[1]) ? "0.0.0.0:1214" : argv[1]);
     MyRPCClient client(addr);
     if (!client.connectOK())
         return 1;

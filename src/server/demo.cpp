@@ -4,7 +4,7 @@
 
 #include "rpc_server.h"
 
-int main() {
+int main(int argc, char **argv) {
     fprintf(stdout,
             "+-------------------------------+\n"
             "| RPC-SERVER-DEMO               |\n"
@@ -12,7 +12,7 @@ int main() {
             "| author: duruyao@hikvision.com |\n"
             "+-------------------------------+\n\n");
 
-    std::string addr = "0.0.0.0:1213";
+    std::string addr((nullptr == argv[1]) ? "0.0.0.0:1214" : argv[1]);
     MyRPCServer server(addr);
     server.start();
 
