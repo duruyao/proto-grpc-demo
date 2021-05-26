@@ -2,6 +2,8 @@
 
 ## 1. Rre-requisites
 
+编译、运行此项目代码需要预安装 [Protocol Buffers](https://developers.google.com/protocol-buffers) 和 [gRPC](https://grpc.io/)。
+
 ### 1.1. Protocol Buffers
 
 - Protocol Buffers 源码编译安装指南：[Installation Guide of Protocol Buffers](./doc/0-install-guide.md#1-protocol-buffers)
@@ -157,9 +159,11 @@ note left: bytes 反序列化为 C++ 对象
     
     - [tools/cmake/use_grpc.cmake](tools/cmake/use_grpc.cmake)：编译`.proto`文件生成 C++ 源文件（`.grpc.pb.cc`、`grpc.pb.h`）
     
-在 [CMakeLists.txt](src/CMakeLists.txt) 中引入`use_proto.cmake`，设置`.proto`源文件目录`proto_src_dir`和生成 C++ 文件目录`proto_gen_dir`，之后项目增添了一个名为`proto_2_cxx`的 **target**。
+### 2.5 Tips
 
-CMakeLists 示例如下：
+在你的 `CMakeLists.txt` 中引入 [use_proto.cmake](tools/cmake/use_proto.cmake)，设置`.proto`源文件目录`proto_src_dir`和生成 C++ 文件目录`proto_gen_dir`，之后项目将增添了一个名为`proto_2_cxx`的 **target**。
+
+可以参考 [CMakeLists.txt](src/CMakeLists.txt)：
 
 ```cmake
 set(proto_src_dir ${PROJECT_SOURCE_DIR}/src/proto)          ## set your folder of .proto files as `proto_src_dir`
@@ -167,7 +171,7 @@ set(proto_gen_dir ${PROJECT_SOURCE_DIR}/src/proto/gen)      ## generate .cc, .h 
 include(${PROJECT_SOURCE_DIR}/tools/cmake/use_proto.cmake)
 ```
 
-编译`.proto`文件示例如下
+编译名为`proto_2_cxx`的 **target**：
 
 ```shell
 /usr/bin/camke --build . --target proto_2_cxx -- -j 16
