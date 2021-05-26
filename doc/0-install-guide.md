@@ -26,8 +26,8 @@ Execute the script named [proto_install](../tools/script/proto_install) which is
 The usage likes this:
 
 ```shell
-$ chmod +x proto_install
-$ ./proto_install <PROTO_ZIP_DIR> <PROTO_INSTALL_DIR>
+chmod +x proto_install && \
+    ./proto_install <PROTO_ZIP_DIR> <PROTO_INSTALL_DIR>
 ```
 
 ### 1.3. Check
@@ -55,8 +55,8 @@ Execute the script named [abseil_install](../tools/script/abseil_install) which 
 The usage likes this:
 
 ```shell
-$ chmod +x abseil_install
-$ ./abseil_install <ABSL_ZIP_DIR> <ABSL_INSTALL_DIR>
+chmod +x abseil_install &&  \
+    ./abseil_install <ABSL_ZIP_DIR> <ABSL_INSTALL_DIR>
 ```
 
 #### 2.1.3. Check
@@ -76,8 +76,8 @@ Execute the script named [cares_install](../tools/script/cares_install) which is
 The usage likes this:
 
 ```shell
-$ chmod +x cares_install
-$ ./cares_install <CARES_ZIP_DIR> <CARES_INSTALL_DIR>
+chmod +x cares_install &&   \
+    ./cares_install <CARES_ZIP_DIR> <CARES_INSTALL_DIR>
 ```
 
 #### 2.2.3. Check
@@ -97,8 +97,8 @@ Execute the script named [re2_install](../tools/script/re2_install) which is in 
 The usage likes this:
 
 ```shell
-$ chmod +x re2_install
-$ ./re2_install <RE2_ZIP_DIR> <RE2_INSTALL_DIR>
+chmod +x re2_install && \
+    ./re2_install <RE2_ZIP_DIR> <RE2_INSTALL_DIR>
 ```
 
 #### 2.3.3. Check
@@ -118,8 +118,8 @@ Download source files (ZIP format) from [https://www.zlib.net/](https://www.zlib
 The usage likes this:
 
 ```shell
-$ chmod +x zlib_install
-$ ./zlib_install <ZLIB_ZIP_DIR> <ZLIB_INSTALL_DIR>
+chmod +x zlib_install &&    \
+    ./zlib_install <ZLIB_ZIP_DIR> <ZLIB_INSTALL_DIR>
 ```
 
 #### 2.4.3. Check
@@ -141,8 +141,8 @@ Execute the script named [grpc_install](../tools/script/grpc_install) which is i
 The usage likes this:
 
 ```shell
-$ chmod +x grpc_install
-$ ./grpc_install <GRPC_ZIP_DIR> <GRPC_INSTALL_DIR>
+chmod +x grpc_install &&    \
+    ./grpc_install <GRPC_ZIP_DIR> <GRPC_INSTALL_DIR>
 ```
 
 Make sure you have set the value of **`my_prefix_path`** and **`my_cxx_flags`** rightly by modifying [grpc_install](../tools/script/grpc_install) before compiling source codes.

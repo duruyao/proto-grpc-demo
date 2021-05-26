@@ -19,9 +19,7 @@
         - [1.3.6. 映射 JSON](#136-json-mapping)
         - [1.3.7. 编译 proto](#137-compiling-proto-files)
         - [1.3.8. C++ 编程接口](#138-cpp-api)
-    - [1.4. 项目 Demo]()
-        - [1.4.1. CMake]()
-        - [1.4.2. 运行]()
+    - [1.4. 样例项目](#14-demo-project)
 - [2. gRPC]()
     - [2.1. 简介](#21-introduction)
     - [2.2. 安装](#22-install)
@@ -323,31 +321,49 @@ message TestMsg {
 
 #### 1.3.6. JSON Mapping
 
+`proto3`版本的 Protocol Buffers 支持 Message 格式数据与 JSON 格式数据互相映射，从而使在团队之间共享数据更加容易。
+
+相关的 C++ API 声明在`google/protobuf/util/json_util.h`中：
+
+```c++
+// google/protobuf/util/json_util.h
+
+namespace google::protobuf::util {
+
+    /**
+     * Convert proto to JSON
+     */
+    util::Status util::MessageToJsonString(const Message &message, std::string *output, const JsonOptions &options);
+    
+    /**
+     * Convert JSON to proto
+     */
+    util::Status util::JsonStringToMessage(StringPiece input, Message *message, const JsonParseOptions &options);
+}
+```
+
 #### 1.3.7. Compiling Proto Files
 
 确认已经正确安装 Protocol Buffers（参考 [Protocol Buffers 源码编译安装指南](./0-install-guide.md#1-protocol-buffers)），编译`.proto`文件生成 C++ API 文件（`.cc`、`.h`）方式如下：
 
 ```shell
-$ <PROTO_INSTALL_DIR>/bin/protoc -I --proto_path=<IMPORT_PATH>  \
+<PROTO_INSTALL_DIR>/bin/protoc -I   --proto_path=<IMPORT_PATH>  \
                                     --cpp_out=<DST_DIR> <PROTO_FILENAME_1> <PROTO_FILENAME_2> ...
 ```
 
 示例：
 
 ```shell
-$ echo "make sure your ip is '10.1.65.114'"
-$ pushd /data1/duruyao/project/proto-grpc-demo
-$ mkdir -p src/proto/gen
-$ /data1/duruyao/HikSDK/proto/bin/protoc -I --proto_path=./src/proto    \
-                                            --cpp_out=./src/proto/gen route_guide.proto
-$ ls ./src/proto/gen
-$ popd
+pushd /data1/duruyao/project/proto-grpc-demo && mkdir -p src/proto/gen &&           \
+            /data1/duruyao/HikSDK/proto/bin/protoc -I   --proto_path=./src/proto    \
+                                    --cpp_out=./src/proto/gen route_guide.proto &&  \
+            ls ./src/proto/gen && popd
 ```
 
 确认已经正确安装 **支持多语言** 版本的 Protocol Buffers，编译`.proto`文件生成 多语言 API 文件方式如下：
 
 ```shell
-$ <PROTO_INSTALL_DIR>/bin/protoc -I --proto_path=<IMPORT_PATH>  \
+<PROTO_INSTALL_DIR>/bin/protoc -I   --proto_path=<IMPORT_PATH>  \
                                     --cpp_out=<DST_DIR>         \
                                     --java_out=<DST_DIR>        \
                                     --python_out=<DST_DIR>      \
@@ -473,6 +489,11 @@ void ListPeople(const AddressBook &address_book) {
     }
 }
 ```
+
+#### 1.4. Demo Project
+
+参考首页的 [Demo Project](../README.md#2-demo-project)。
+
 ---
 
 ## 2. gRPC

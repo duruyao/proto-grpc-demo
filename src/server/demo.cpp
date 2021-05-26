@@ -12,7 +12,7 @@ int main(int argc, char **argv) {
             "| author: duruyao@hikvision.com |\n"
             "+-------------------------------+\n\n");
 
-    std::string addr((nullptr == argv[1]) ? "0.0.0.0:1214" : argv[1]);
+    std::string addr((nullptr == argv[1]) ? "0.0.0.0:1213" : argv[1]);
     MyRPCServer server(addr);
     server.start();
 

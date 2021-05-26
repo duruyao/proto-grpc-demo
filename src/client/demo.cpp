@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
             "| author: duruyao@hikvision.com |\n"
             "+-------------------------------+\n\n");
 
-    std::string addr((nullptr == argv[1]) ? "0.0.0.0:1214" : argv[1]);
+    std::string addr((nullptr == argv[1]) ? "0.0.0.0:1213" : argv[1]);
     MyRPCClient client(addr);
     if (!client.connectOK())
         return 1;
@@ -35,23 +35,27 @@ int main(int argc, char **argv) {
     fprintf(stdout, "RPC Client connect to %s\n\n", addr.data());
 
     { // GetFeature
-        ClientContext ctx;
-        Point point1;
-        Feature feature1;
-        Status status;
+        for (int n = 0; n < 20; n++) {
+            ClientContext ctx;
+            Point point1;
+            Feature feature1;
+            Status status;
 
-        point1.set_longitude(1202193123 + 100);
-        point1.set_latitude(302131123 + 100);
+            point1.set_longitude(1202193123 + 100 * n);
+            point1.set_latitude(302131123 + 100 * n);
 
-        fprintf(stdout, "---> [Point]\n%s\n", point1.DebugString().data());
+            fprintf(stdout, "---> [Point]\n%s\n", point1.DebugString().data());
 
-        status = client.STUB->GetFeature(&ctx, point1, &feature1);
+            status = client.STUB->GetFeature(&ctx, point1, &feature1);
 
-        if (status.ok()) {
-            fprintf(stdout, "<--- [Feature]\n%s\n", feature1.DebugString().data());
-        } else {
-            fprintf(stderr, "error calling GetFeature\n\n");
+            if (status.ok()) {
+                fprintf(stdout, "<--- [Feature]\n%s\n", feature1.DebugString().data());
+            } else {
+                fprintf(stderr, "error calling GetFeature\n\n");
+            }
+            sleep(2);
         }
+
     }
 
     { // ListFeatures
