@@ -397,36 +397,33 @@ message AddressBook {
 
 namespace tutorial {
 
-  // name
-  inline bool has_name() const;                                         // check if the 'name' filed is not empty
-  inline void clear_name();                                             // reset the 'name' filed to default value
-  inline const ::std::string& name() const;                             // get value of the 'name' filed
-  inline void set_name(const ::std::string& value);                     // set value of the 'name' filed
-  inline void set_name(const char* value);                              // set value of the 'name' filed
-  inline ::std::string* mutable_name();                                 // return a pointer points to the 'name' filed
-
-  // id
-  inline bool has_id() const;
-  inline void clear_id();
-  inline int32_t id() const;
-  inline void set_id(int32_t value);
-
-  // email
-  inline bool has_email() const;
-  inline void clear_email();
-  inline const ::std::string& email() const;
-  inline void set_email(const ::std::string& value);
-  inline void set_email(const char* value);
-  inline ::std::string* mutable_email();
-
-  // phones
-  inline int phones_size() const;                                       // get number of element of the 'phones' filed
-  inline void clear_phones();
-  inline const ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber >& phones() const;
-  inline ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber >* mutable_phones();
-  inline const ::tutorial::Person_PhoneNumber& phones(int index) const; // get value of element of the 'phones' filed
-  inline ::tutorial::Person_PhoneNumber* mutable_phones(int index);     // return a pointer points to element of the 'phones' filed
-  inline ::tutorial::Person_PhoneNumber* add_phones();                  // add a new element to the 'phones' filed, and return the pointer points to the new
+    // name
+    inline bool has_name() const;                                           // check if the 'name' filed is not empty
+    inline void clear_name();                                               // reset the 'name' filed to default value
+    inline const ::std::string& name() const;                               // get value of the 'name' filed
+    inline void set_name(const ::std::string& value);                       // set value of the 'name' filed
+    inline void set_name(const char* value);                                // set value of the 'name' filed
+    inline ::std::string* mutable_name();                                   // return a pointer points to the 'name' filed    
+    // id
+    inline bool has_id() const;
+    inline void clear_id();
+    inline int32_t id() const;
+    inline void set_id(int32_t value);  
+    // email
+    inline bool has_email() const;
+    inline void clear_email();
+    inline const ::std::string& email() const;
+    inline void set_email(const ::std::string& value);
+    inline void set_email(const char* value);
+    inline ::std::string* mutable_email();  
+    // phones
+    inline int phones_size() const;                                         // get number of element of the 'phones' filed
+    inline void clear_phones();
+    inline const ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber >& phones() const;
+    inline ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber >* mutable_phones();
+    inline const ::tutorial::Person_PhoneNumber& phones(int index) const;   // get value of element of the 'phones' filed
+    inline ::tutorial::Person_PhoneNumber* mutable_phones(int index);       // return a pointer points to element of the 'phones' filed
+    inline ::tutorial::Person_PhoneNumber* add_phones();                    // add a new element to the 'phones' filed, and return the pointer points to the new
 
 }
 ```
@@ -434,9 +431,9 @@ namespace tutorial {
 在 C++ 代码中使用上述 API 的示例如下：
 
 ```c++
-#include <iostream>
-#include <fstream>
 #include <string>
+#include <fstream>
+#include <iostream>
 
 #include "addressbook.pb.h"
 
@@ -445,33 +442,33 @@ using tutorial::PhoneType;
 using tutorial::PhoneNumber;
 using tutorial::AddressBook;
 
-void ListPeople(const AddressBook& address_book) {
-  for (int i = 0; i < address_book.people_size(); i++) {
-    const Person& person = address_book.people(i);
+void ListPeople(const AddressBook &address_book) {
+    for (int i = 0; i < address_book.people_size(); i++) {
+        const Person &person = address_book.people(i);
 
-    std::cout << "Person ID: " << person.id() << endl;
-    std::cout << "Name: " << person.name() << endl;
-    if (person.has_email()) {
-      std::cout << "E-mail address: " << person.email() << endl;
+        std::cout << "Person ID: " << person.id() << std::endl;
+        std::cout << "Name: " << person.name() << std::endl;
+        if (person.has_email()) {
+            std::cout << "E-mail address: " << person.email() << std::endl;
+        }
+
+        for (int j = 0; j < person.phones_size(); j++) {
+            const Person::PhoneNumber &phone_number = person.phones(j);
+
+            switch (phone_number.type()) {
+                case Person::MOBILE:
+                    std::cout << "Mobile phone #: ";
+                    break;
+                case Person::HOME:
+                    std::cout << "Home phone #: ";
+                    break;
+                case Person::WORK:
+                    std::cout << "Work phone #: ";
+                    break;
+            }
+            std::cout << phone_number.number() << std::endl;
+        }
     }
-
-    for (int j = 0; j < person.phones_size(); j++) {
-      const Person::PhoneNumber& phone_number = person.phones(j);
-
-      switch (phone_number.type()) {
-        case Person::MOBILE:
-          std::cout << "  Mobile phone #: ";
-          break;
-        case Person::HOME:
-          std::cout << "  Home phone #: ";
-          break;
-        case Person::WORK:
-          std::cout << "  Work phone #: ";
-          break;
-      }
-      cout << phone_number.number() << endl;
-    }
-  }
 }
 ```
 
