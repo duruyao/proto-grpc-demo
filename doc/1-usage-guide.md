@@ -318,6 +318,34 @@ message TestMsg {
 
 #### 1.3.7. Compiling Proto Files
 
+确认已经正确安装 Protocol Buffers（参考 [Protocol Buffers 源码编译安装指南](./0-install-guide.md#1-protocol-buffers)），编译`.proto`文件生成 C++ API 文件（`.cc`、`.h`）方式如下：
+
+```shell
+$ <PROTO_INSTALL_DIR>/bin/protoc -I --proto_path=<IMPORT_PATH> --cpp_out=<DST_DIR> <PROTO_FILENAME_1> <PROTO_FILENAME_2> ...
+```
+
+示例：
+
+```shell
+$ pushd /data1/duruyao/project/proto-grpc-demo
+$ mkdir -p src/proto/gen
+$ /data1/duruyao/HikSDK/proto/bin/protoc -I --proto_path=./src/proto --cpp_out=./src/proto/gen route_guide.proto
+$ popd
+```
+
+确认已经正确安装 **支持多语言版本** 的Protocol Buffers，编译`.proto`文件生成 多语言 API 文件（`.cc`、`.h`）方式如下：
+
+```shell
+$ <PROTO_INSTALL_DIR>/bin/protoc -I --proto_path=<IMPORT_PATH>  \
+                                    --cpp_out=<DST_DIR>         \
+                                    --java_out=<DST_DIR>        \
+                                    --python_out=<DST_DIR>      \
+                                    --go_out=<DST_DIR>          \
+                                    --ruby_out=<DST_DIR>        \
+                                    --objc_out=<DST_DIR>        \
+                                    --csharp_out=<DST_DIR> <PROTO_FILENAME_1> <PROTO_FILENAME_2> ...
+```
+
 #### 1.3.8. CPP API
 
 ---
