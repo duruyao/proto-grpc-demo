@@ -398,12 +398,12 @@ message AddressBook {
 namespace tutorial {
 
   // name
-  inline bool has_name() const;                                         # check if the 'name' filed is not empty
-  inline void clear_name();                                             # reset the 'name' filed to default value
-  inline const ::std::string& name() const;                             # get value of the 'name' filed
-  inline void set_name(const ::std::string& value);                     # set value of the 'name' filed
-  inline void set_name(const char* value);                              # set value of the 'name' filed
-  inline ::std::string* mutable_name();                                 # return a pointer points to the 'name' filed
+  inline bool has_name() const;                                         // check if the 'name' filed is not empty
+  inline void clear_name();                                             // reset the 'name' filed to default value
+  inline const ::std::string& name() const;                             // get value of the 'name' filed
+  inline void set_name(const ::std::string& value);                     // set value of the 'name' filed
+  inline void set_name(const char* value);                              // set value of the 'name' filed
+  inline ::std::string* mutable_name();                                 // return a pointer points to the 'name' filed
 
   // id
   inline bool has_id() const;
@@ -420,13 +420,13 @@ namespace tutorial {
   inline ::std::string* mutable_email();
 
   // phones
-  inline int phones_size() const;                                       # get number of element of the 'phones' filed
+  inline int phones_size() const;                                       // get number of element of the 'phones' filed
   inline void clear_phones();
   inline const ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber >& phones() const;
   inline ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber >* mutable_phones();
-  inline const ::tutorial::Person_PhoneNumber& phones(int index) const; # get value of element of the 'phones' filed
-  inline ::tutorial::Person_PhoneNumber* mutable_phones(int index);     # return a pointer points to element of the 'phones' filed
-  inline ::tutorial::Person_PhoneNumber* add_phones();                  # add a new element to the 'phones' filed, and return the pointer points to the new
+  inline const ::tutorial::Person_PhoneNumber& phones(int index) const; // get value of element of the 'phones' filed
+  inline ::tutorial::Person_PhoneNumber* mutable_phones(int index);     // return a pointer points to element of the 'phones' filed
+  inline ::tutorial::Person_PhoneNumber* add_phones();                  // add a new element to the 'phones' filed, and return the pointer points to the new
 
 }
 ```
