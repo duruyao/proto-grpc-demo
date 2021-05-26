@@ -70,6 +70,37 @@ location {
 
 ### 2.3. Overview
 
-在此项目中，客户端通过 RPC 的方式与服务端的通信，发送 **序列化** 的数据作为请求，接收服务端的返回的应答数据，并 **反序列化** 为一个 C++ 中的对象。
+<!-- ```plantuml
+@startuml proto-grpc-req-rep
 
-其中序列化数据方式为 [Protocol Buffers](https://developers.google.com/protocol-buffers)，RPC 框架为 [gRPC](https://grpc.io/)。
+!include plantuml-style-c4/core.puml
+
+"RPC Client" -> "RPC Client": 
+note left: C++ 对象 序列化为 bytes
+
+"RPC Client" -> "RPC Server": [请求 bytes]
+
+"RPC Server" -> "RPC Server":
+note right: bytes 反序列化为 C++ 对象
+
+"RPC Server" -> "RPC Server":
+note right: 进一步处理
+
+"RPC Server" -> "RPC Server":
+note right: C++ 对象 序列化为 bytes
+
+"RPC Client" <- "RPC Server": [应答 bytes]
+
+"RPC Client" -> "RPC Client": 
+note left: bytes 反序列化为 C++ 对象
+
+@enduml
+```plantuml -->
+
+![](img/proto-grpc-req-rep.svg)
+
+客户端发送给服务端 **序列化** 的请求数据，接收服务端返回的 **序列化** 的应答数据，并 **反序列化** 为一个 C++ 中的对象，进一步处理。
+
+服务端接收客户端发送的 **序列化** 的请求数据，**反序列化** 为一个 C++ 中的对象，进一步处理后，返回一个 **序列化** 的应答数据。
+
+其中数据序列化均方式为 [Protocol Buffers](https://developers.google.com/protocol-buffers)，通信框架为 [gRPC](https://grpc.io/)。

@@ -27,20 +27,6 @@ int main(int argc, char **argv) {
             "| author: duruyao@hikvision.com |\n"
             "+-------------------------------+\n\n");
 
-//    TestMsg testMsg1;
-//    TestMsg testMsg2;
-//
-//    testMsg1.set_id(23);
-//    testMsg1.set_title("TEST-MESSAGE-1");
-//    testMsg1.set_timestamp(1621837293123UL);
-//
-//    testMsg2.ParseFromString(testMsg1.SerializeAsString());
-//    testMsg2.set_title("TEST-MESSAGE-2");
-//    testMsg2.set_msg_type(TestMsg::MAG_TYPE_TRACK);
-//
-//    fprintf(stdout, "[testMsg1]\n%s\n", testMsg1.DebugString().data());
-//    fprintf(stdout, "[testMsg2]\n%s\n", testMsg2.DebugString().data());
-
     std::string addr((nullptr == argv[1]) ? "0.0.0.0:1214" : argv[1]);
     MyRPCClient client(addr);
     if (!client.connectOK())
