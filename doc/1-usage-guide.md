@@ -6,9 +6,12 @@
     - [1.1. 简介](#11-introduction)
     - [1.2. 安装](#12-install)
     - [1.3. 使用](#13-usage)
-        - [1.3.1. 定义 Message](#131-defining-a-message-type)
-        - [1.3.2. 数据类型](#132-scalar-value-types)
-        - [1.3.3. 缺省值](#133-default-values)
+        - [1.3.1. 定义 Message](#131-defining-message)
+            - [1.3.1.1. 基础类型](#1311-basic-field-types)
+            - [1.3.1.2. 嵌套类型](#1312-nested-field-types)
+            - [1.3.1.3. 字段名称](#1313-field-names)
+            - [1.3.1.4. 字段号](#1314-field-numbers)
+            - [1.3.1.5. 默认值](#1315-default-values)
         - [1.3.4. 导入 Message](#134-importing-a-message-type)
         - [1.3.5. 更新 Message](#135-updating-a-message-type)
         - [1.3.6. 映射 JSON](#136-json-mapping)
@@ -46,11 +49,45 @@ Protocol Buffers 当前支持生成 Java，Python，Objective-C 和 C++ 的代�
 
 本节主要讲述了：使用 Protocol Buffers 构造数据、生成相应的 C++ `Class` 以及使用 C++ 编程接口。本节使用的语法标准为 `proto3`，关于 `proto2` 的信息请参考 *[Proto2 Language Guide](https://developers.google.com/protocol-buffers/docs/proto)* 。
 
-#### 1.3.1. Defining A Message Type
+#### 1.3.1. Defining Message
 
-#### 1.3.2. Scalar Value Types
+Protocol Buffers 使用一种名为 Message 的抽象数据类型（类似于 C++ 中的 `Class`），定义在`.proto`结尾的文件中。下面是一个简单的例子：
 
+```protobuf
+// author: duruyao
+// date:   2021.05.26
 
+syntax = "proto3";
+
+/* SearchRequest represents a search query, with pagination options to
+ * indicate which results to include in the response. */
+message SearchRequest {
+  string query = 1;
+  repeated string factors = 2;      // multiple factor that we want to search in query
+  int32 page_number = 3;            // page number that we want
+  int32 result_per_page = 4;        // number of results to return per page that we want
+}
+
+message SearchResponse {
+
+}
+```
+
+- 必须在文件正文（非注释、非空行）的**第一行**明确`proto`语法标准，上述示例确定语法标准为`proto3`
+
+- Message 中的每个字段至少包含“类型”、“名称”、“字段号”，即`[Field Value Type] [Field Name] = [Field Number];`
+
+- `repeated`关键字表示该字段出现 0 次或多次（类似 C++ 中的`std::vector`），未使用该关键字的字段出现 0 次或 1 次（`singular`类型）
+
+- 多个 Message 可以被定义在同一个`.proto`文件中（也可以引用其他文件中的 Message 通过`import`语法）
+
+- `proto`语法支持 C/C++ 风格的注释，即`//...`和`/*...*/`
+
+- 建议使用大驼峰（且首字母大写）为 Message 命名
+
+##### 1.3.1.1. Basic Field Types
+
+Message 基础数据类型与 C++ 的基础数据类型的对应关系如下：
 
 | proto 数据类型 | 备注 | C++ 数据类型 |
 | :-: | :-: | :-: |
@@ -64,15 +101,82 @@ Protocol Buffers 当前支持生成 Java，Python，Objective-C 和 C++ 的代�
 | `sint64` | 比`int64`更高效地编码负数 | `int64_t` |
 | `fixed32` | 比`uint32`更高效地编码其值经常大于`2 ^ 28`的数 | `unsigned int`<br>`uint32_t` |
 | `fixed64` | 比`uint64`更高效地编码其值经常大于`2 ^ 56`的数 | `uint64_t` |
-| `sfixed32` | 比`uint32`更高效地编码其值总是4字节的数 | `int`<br>`int32_t` |
-| `sfixed64` | 比`uint32`更高效地编码其值总是8字节的数 | `int64_t` |
+| `sfixed32` | 比`uint32`更高效地编码其值总是 4 字节的数 | `int`<br>`int32_t` |
+| `sfixed64` | 比`uint32`更高效地编码其值总是 8 字节的数 | `int64_t` |
 | `bool` |  | `bool` |
 | `string` | 始终包含`UTF-8`编码或7位`ASCII`编码的字节序列，并且长度不能超过`2 ^ 32` | `std::__cxx11::string` |
 | `bytes` | 可以包含不超过`2 ^ 32`的任意字节序列 | `std::__cxx11::string` |
 
-#### 1.3.3. Default Values
+##### 1.3.1.2. Nested Field Types
 
+可以在 Message a 中嵌套定义并使用另一个 Message b（Message b 也可以继续嵌套定义其他 Message ），如下示例所示:
 
+```protobuf
+syntax = "proto3";
+
+message SearchResponse {
+  message Result {
+    string url = 1;
+    string title = 2;
+    repeated string snippets = 3;
+  }
+  repeated Result results = 1;
+}
+```
+
+可以在 Message a 中使用已经定义好的其他 Message b 及其嵌套定义的 Message c，如下示例所示:
+
+```protobuf
+syntax = "proto3";
+
+message Result {
+    string url = 1;
+    string title = 2;
+    repeated string snippets = 3;
+}
+
+message ExtractInfo {
+    message Timestamp {
+        uint64 timestamp_u64 = 1;
+        string timestamp_str = 2;
+    }
+}
+
+message SearchResponse {
+    repeated Result results = 1;
+    ExtractInfo.Timestamp timestamp = 2;
+}
+```
+
+##### 1.3.1.3. Field Names
+
+- 建议使用 **下划线分隔** 方式为字段命名，如`result_per_page`、`page_1`、`page_2`（优势：与生成的 C++ API 中的名称保持一致）
+
+- 建议使用 **复数** 方式为`repeated`修饰的字段命名，如`factors`
+
+##### 1.3.1.4. Field Numbers
+
+- 在一个 Message 内，每个字段都有 **唯一** 的字段号
+
+- 字段号使用后，更改要慎重（多人共用一个`.proto`时可能会出现问题）
+
+- 不同于 ENUM 类型中有且必须有字段号`0`，Message 类型可用的字段号的范围是`[1, 19000) U (19999, 2 ^ 29 - 1]`（其中`[19000, 19999]`被 Protocol Buffers 保留）
+
+- 范围为`[1, 15]`的字段编号需要 1 个字节来编码，为频繁出现的字段分配这些字段号可以优化编码
+
+- 范围为`[2, 2 ^ 11 - 1]`的字段编号需要 2 个字节来编码
+
+##### 1.3.1.5. Default Values
+
+如果编码（序列化） Message 时，某些字段的值未指定，那么解析（反序列化）时，生成的 Message 中的相应字段将设置为该字段的默认值。各个数据类型的默认值如下：
+
+| proto 数据类型 | 默认值（对应 C++ ） |
+| :-: | :-: |
+| `string` | 空的`std::__cxx11::string` |
+| `bytes` | 空的`std::__cxx11::string` |
+| `bool` | `false` |
+| 数字类型 | `0` |
+| 枚举类型 | 第一个枚举值（字段号必须为`0`）
 
 #### 1.3.4. Importing A Message Type
 
