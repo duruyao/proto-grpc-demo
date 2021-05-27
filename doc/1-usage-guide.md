@@ -35,7 +35,7 @@
 
 Protocol Buffers 当前支持生成 Java，Python，Objective-C 和 C++ 的代码。使用最新的`proto3`版本，还可以在 Dart，Go，Ruby 和 C＃ 中使用。
 
-系统性地学习请优先参见下述官方文档，前人之述备矣。
+系统性地学习请优先参见下述 **官方文档**，前人之述备矣。
 
 - [Protocol Buffers 源代码](https://github.com/protocolbuffers/protobuf)
 
@@ -80,7 +80,7 @@ message SearchResponse {
 
 - 必须在文件正文（非注释、非空行）的 **第一行** 明确`proto`语法标准，上述示例确定语法标准为`proto3`
 
-- `package simple_demo;`为当前文件声明 **包名**，编译该`.proto`文件生成的 C++ 代码中，`simple_demo`为其命名空间
+- `package simple_demo;`为当前文件声明 **包名**，编译该`.proto`文件生成的 C++ 代码中，`simple_demo`为 **其命名空间**
 
 - Message 中的每个字段至少包含 “类型”、“名称”、“字段号”，即`[Field Value Type] [Field Name] = [Field Number];`
 
@@ -344,6 +344,8 @@ namespace google::protobuf::util {
 
 #### 1.3.7. Compiling Proto Files
 
+Protcol Buffers 的编译器`protoc`默认编译生成 C++ 源代码文件。
+
 确认已经正确安装 Protocol Buffers（参考 [Protocol Buffers 源码编译安装指南](./0-install-guide.md#1-protocol-buffers)），编译`.proto`文件生成 C++ API 文件（`.cc`、`.h`）方式如下：
 
 ```shell
@@ -354,11 +356,13 @@ namespace google::protobuf::util {
 示例：
 
 ```shell
-pushd /data1/duruyao/project/proto-grpc-demo && mkdir -p src/proto/gen &&           \
+pushd /data1/duruyao/project/proto-grpc-demo && mkdir -p src/proto/gen &&   \
             /data1/duruyao/HikSDK/proto/bin/protoc -I   --proto_path=./src/proto    \
-                                    --cpp_out=./src/proto/gen route_guide.proto &&  \
+                                                        --cpp_out=./src/proto/gen route_guide.proto &&  \
             ls ./src/proto/gen && popd
 ```
+
+选择合适的 Protcol Buffers 的编译器`protoc`，也可以编译生成其他编程语言的源代码文件。
 
 确认已经正确安装 **支持多语言** 版本的 Protocol Buffers，编译`.proto`文件生成 多语言 API 文件方式如下：
 
