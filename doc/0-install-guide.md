@@ -23,7 +23,7 @@ Download source files (ZIP format) from [https://github.com/protocolbuffers/prot
 
 Execute the script named [proto_install](../tools/script/proto_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
 
-The usage likes this:
+The usage likes this (**sudo permission may be needed**):
 
 ```shell
 chmod +x proto_install && \
@@ -52,7 +52,7 @@ Download source files (ZIP format) from [https://github.com/abseil/abseil-cpp/re
 
 Execute the script named [abseil_install](../tools/script/abseil_install) which is in [tools/scripts/](../tools/script) to check pre-requisites, compile source codes, link shared libraries and install.
 
-The usage likes this:
+The usage likes this (**sudo permission may be needed**):
 
 ```shell
 chmod +x abseil_install &&  \
@@ -73,7 +73,7 @@ Download source files (ZIP format) from [https://github.com/c-ares/c-ares/releas
  
 Execute the script named [cares_install](../tools/script/cares_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
  
-The usage likes this:
+The usage likes this (**sudo permission may be needed**):
 
 ```shell
 chmod +x cares_install &&   \
@@ -94,7 +94,7 @@ Download source files (ZIP format) from [https://github.com/google/re2/releases]
 
 Execute the script named [re2_install](../tools/script/re2_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
 
-The usage likes this:
+The usage likes this (**sudo permission may be needed**):
 
 ```shell
 chmod +x re2_install && \
@@ -115,7 +115,7 @@ Download source files (ZIP format) from [https://www.zlib.net/](https://www.zlib
 
 -Execute the script named [zlib_install](../tools/script/zlib_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
 
-The usage likes this:
+The usage likes this (**sudo permission may be needed**):
 
 ```shell
 chmod +x zlib_install &&    \
@@ -138,7 +138,7 @@ Download source files (ZIP format) from [https://github.com/grpc/grpc/releases](
 
 Execute the script named [grpc_install](../tools/script/grpc_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
 
-The usage likes this:
+The usage likes this (**sudo permission may be needed**):
 
 ```shell
 chmod +x grpc_install &&    \
