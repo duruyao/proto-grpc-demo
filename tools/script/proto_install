@@ -3,6 +3,7 @@
 ## date:    2021.05.14
 ## file:    compile and install protobuf
 ## author:  duruyao@hikvision.com
+## release: https://github.com/protocolbuffers/protobuf/releases
 
 CONSOLE_COLOR_NONE="\033[m"
 CONSOLE_COLOR_RED="\033[1;32;31m"
