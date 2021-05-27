@@ -23,14 +23,14 @@
 执行下述命令编译此项目：
 
 ```shell
-mkdir -p build && rm -rf build/* &&                                     \
-        pushd build && /usr/bin/cmake .. &&                             \
-        /usr/bin/cmake --build . --target clean -- -j 16 &&             \
-        /usr/bin/cmake --build . --target proto_2_cxx -- -j 16 &&       \
-        /usr/bin/cmake --build . --target grpc_2_cxx -- -j 16 &&        \
-        /usr/bin/cmake --build . --target rpc_server_demo -- -j 16 &&   \
-        /usr/bin/cmake --build . --target rpc_client_demo -- -j 16 &&   \
-        popd
+mkdir -p build && rm -rf build/* &&                             \
+pushd build && /usr/bin/cmake .. &&                             \
+/usr/bin/cmake --build . --target clean -- -j 16 &&             \
+/usr/bin/cmake --build . --target proto_2_cxx -- -j 16 &&       \
+/usr/bin/cmake --build . --target grpc_2_cxx -- -j 16 &&        \
+/usr/bin/cmake --build . --target rpc_server_demo -- -j 16 &&   \
+/usr/bin/cmake --build . --target rpc_client_demo -- -j 16 &&   \
+popd
 ```
 
 ### 2.2. Run Demo
@@ -166,8 +166,8 @@ note left: bytes 反序列化为 C++ 对象
 可以参考 [CMakeLists.txt](src/CMakeLists.txt)：
 
 ```cmake
-set(proto_src_dir ${PROJECT_SOURCE_DIR}/src/proto)          ## set your folder of .proto files as `proto_src_dir`
-set(proto_gen_dir ${PROJECT_SOURCE_DIR}/src/proto/gen)      ## generate .cc, .h files to `proto_gen_dir`
+set(proto_src_dir ${PROJECT_SOURCE_DIR}/src/proto)          ## contains of .proto files
+set(proto_gen_dir ${PROJECT_SOURCE_DIR}/src/proto/gen)      ## contains of .cc, .h files
 include(${PROJECT_SOURCE_DIR}/tools/cmake/use_proto.cmake)
 ```
 

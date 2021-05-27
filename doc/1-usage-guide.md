@@ -14,11 +14,11 @@
             - [1.3.1.5. 嵌套类型](#1315-nested-types)
             - [1.3.1.6. 枚举类型](#1316-enumerations)
             - [1.3.1.7. 映射类型](#1317-maps)
-        - [1.3.4. 导入 Message](#134-importing-message)
-        - [1.3.5. 更新 Message](#135-updating-message)
-        - [1.3.6. 映射 JSON](#136-json-mapping)
-        - [1.3.7. 编译 proto](#137-compiling-proto-files)
-        - [1.3.8. C++ 编程接口](#138-cpp-api)
+        - [1.3.2. 导入 Message](#132-importing-message)
+        - [1.3.3. 更新 Message](#133-updating-message)
+        - [1.3.4. 映射 JSON](#134-json-mapping)
+        - [1.3.5. 编译 proto](#135-compiling-proto-files)
+        - [1.3.6. C++ 编程接口](#136-cpp-api)
     - [1.4. 样例项目](#14-demo-project)
 - [2. gRPC]()
     - [2.1. 简介](#21-introduction)
@@ -68,9 +68,9 @@ package simple_demo;
  * options to indicate which results to include in the response. */
 message SearchRequest {
   string query = 1;
-  repeated string factors = 2;      // multiple factor that we want to search in query
-  int32 page_number = 3;            // page number that we want
-  int32 result_per_page = 4;        // number of results to return per page that we want
+  repeated string factors = 2;  // multiple factor that we want to search in query
+  int32 page_number = 3;        // page number that we want
+  int32 result_per_page = 4;    // number of results to return per page that we want
 }
 
 message SearchResponse {
@@ -238,7 +238,9 @@ message MyMessage2 {
   enum EnumNotAllowingAlias {
     UNKNOWN = 0;
     STARTED = 1;
-//  RUNNING = 1;    // Uncommenting this line will cause a compile error inside Google and a warning message outside.
+//  RUNNING = 1;    // Uncommenting this line will cause
+                    // a compile error inside Google and
+                    // a warning message outside.
   }
 }
 ```
@@ -265,7 +267,7 @@ message TestMsg {
 
 - map 是无序的
 
-#### 1.3.4. Importing Message
+#### 1.3.2. Importing Message
 
 Protocol Buffers 允许使用定义在其他`.proto`文件中的 Message，通过使用`import`语句导入相应的`.proto`来实现。示例如下：
 
@@ -295,7 +297,7 @@ message TestMsg {
 
 - 使用`public`意味 **依赖关系可以传递**，例如：b.proto 中 `import public "a.proto";`，c.proto 中 `import "b.proto";`，那么在 c.proto 中可以直接使用 a.proto 中定义的 Message
 
-#### 1.3.5. Updating Message
+#### 1.3.3. Updating Message
 
 随着开发的推进，`.proto`文件将被频繁修改，如果你已经在 C++ 代码中使用了访问其中 Message 的 API，那么可能会出现一些问题（某些 API 会消失、更新）。当开发团队本应共用相同的`.proto`文件，但各自的内容却不一致时，问题会更复杂。
 
@@ -319,7 +321,7 @@ message TestMsg {
 
 - `int32`、`uint32`、`int64`、`uint64`以及 枚举常量 彼此兼容（不建议如此修改）
 
-#### 1.3.6. JSON Mapping
+#### 1.3.4. JSON Mapping
 
 `proto3`版本的 Protocol Buffers 支持 Message 格式数据与 JSON 格式数据互相映射，从而使在团队之间共享数据更加容易。
 
@@ -333,33 +335,43 @@ namespace google::protobuf::util {
     /**
      * Convert proto to JSON
      */
-    util::Status util::MessageToJsonString(const Message &message, std::string *output, const JsonOptions &options);
+    util::Status 
+    util::MessageToJsonString(const Message &message,
+                              std::string *output,
+                              const JsonOptions &options);
     
     /**
      * Convert JSON to proto
      */
-    util::Status util::JsonStringToMessage(StringPiece input, Message *message, const JsonParseOptions &options);
+    util::Status 
+    util::JsonStringToMessage(StringPiece input,
+                              Message *message,
+                              const JsonParseOptions &options);
 }
 ```
 
-#### 1.3.7. Compiling Proto Files
+#### 1.3.5. Compiling Proto Files
 
-Protcol Buffers 的编译器`protoc`默认编译生成 C++ 源代码文件。
+Protocol Buffers 的编译器`protoc`默认编译生成 C++ 源代码文件。
 
 确认已经正确安装 Protocol Buffers（参考 [Protocol Buffers 源码编译安装指南](./0-install-guide.md#1-protocol-buffers)），编译`.proto`文件生成 C++ API 文件（`.cc`、`.h`）方式如下：
 
 ```shell
-<PROTO_INSTALL_DIR>/bin/protoc -I   --proto_path=<IMPORT_PATH>  \
-                                    --cpp_out=<DST_DIR> <PROTO_FILENAME_1> <PROTO_FILENAME_2> ...
+<PROTO_INSTALL_DIR>/bin/protoc      \
+    -I --proto_path=<IMPORT_PATH>   \
+    --cpp_out=<DST_DIR>             \
+    <PROTO_FILENAME_1> <PROTO_FILENAME_2> ...
 ```
 
 示例：
 
 ```shell
-pushd /data1/duruyao/project/proto-grpc-demo && mkdir -p src/proto/gen &&   \
-            /data1/duruyao/HikSDK/proto/bin/protoc -I   --proto_path=./src/proto    \
-                                                        --cpp_out=./src/proto/gen route_guide.proto &&  \
-            ls ./src/proto/gen && popd
+pushd /data1/duruyao/project/proto-grpc-demo &&     \
+mkdir -p src/proto/gen &&                           \
+/data1/duruyao/HikSDK/proto/bin/protoc              \
+    -I --proto_path=./src/proto                     \
+    --cpp_out=./src/proto/gen route_guide.proto &&  \
+ls ./src/proto/gen && popd
 ```
 
 选择合适的 Protcol Buffers 的编译器`protoc`，也可以编译生成其他编程语言的源代码文件。
@@ -367,17 +379,19 @@ pushd /data1/duruyao/project/proto-grpc-demo && mkdir -p src/proto/gen &&   \
 确认已经正确安装 **支持多语言** 版本的 Protocol Buffers，编译`.proto`文件生成 多语言 API 文件方式如下：
 
 ```shell
-<PROTO_INSTALL_DIR>/bin/protoc -I   --proto_path=<IMPORT_PATH>  \
-                                    --cpp_out=<DST_DIR>         \
-                                    --java_out=<DST_DIR>        \
-                                    --python_out=<DST_DIR>      \
-                                    --go_out=<DST_DIR>          \
-                                    --ruby_out=<DST_DIR>        \
-                                    --objc_out=<DST_DIR>        \
-                                    --csharp_out=<DST_DIR> <PROTO_FILENAME_1> <PROTO_FILENAME_2> ...
+<PROTO_INSTALL_DIR>/bin/protoc      \
+    -I --proto_path=<IMPORT_PATH>   \
+    --cpp_out=<DST_DIR>             \
+    --java_out=<DST_DIR>            \
+    --python_out=<DST_DIR>          \
+    --go_out=<DST_DIR>              \
+    --ruby_out=<DST_DIR>            \
+    --objc_out=<DST_DIR>            \
+    --csharp_out=<DST_DIR>          \
+    <PROTO_FILENAME_1> <PROTO_FILENAME_2> ...
 ```
 
-#### 1.3.8. CPP API
+#### 1.3.6. CPP API
 
 我们从一个简单的示例出发介绍常用的 C++ API：
 
@@ -419,33 +433,52 @@ message AddressBook {
 
 namespace tutorial {
 
-    // name
-    inline bool has_name() const;                                           // check if the 'name' filed is not empty
-    inline void clear_name();                                               // reset the 'name' filed to default value
-    inline const ::std::string& name() const;                               // get value of the 'name' filed
-    inline void set_name(const ::std::string& value);                       // set value of the 'name' filed
-    inline void set_name(const char* value);                                // set value of the 'name' filed
-    inline ::std::string* mutable_name();                                   // return a pointer points to the 'name' filed    
-    // id
+    //// name
+
+    // Check if the 'name' filed is not empty.
+    inline bool has_name() const;
+    // Reset the 'name' filed to default value.
+    inline void clear_name();
+    // Get value of the 'name' filed.
+    inline const ::std::string& name() const;
+    // Set value of the 'name' filed.
+    inline void set_name(const ::std::string& value);
+    // Set value of the 'name' filed.
+    inline void set_name(const char* value);
+    //Return a pointer points to the 'name' filed.
+    inline ::std::string* mutable_name();
+ 
+    //// id
+
     inline bool has_id() const;
     inline void clear_id();
     inline int32_t id() const;
     inline void set_id(int32_t value);  
-    // email
+
+    //// email
+
     inline bool has_email() const;
     inline void clear_email();
     inline const ::std::string& email() const;
     inline void set_email(const ::std::string& value);
     inline void set_email(const char* value);
     inline ::std::string* mutable_email();  
-    // phones
-    inline int phones_size() const;                                         // get number of element of the 'phones' filed
+
+    //// phones
+
+    // Get number of element of the 'phones' filed.
+    inline int phones_size() const;
     inline void clear_phones();
-    inline const ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber >& phones() const;
-    inline ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber >* mutable_phones();
-    inline const ::tutorial::Person_PhoneNumber& phones(int index) const;   // get value of element of the 'phones' filed
-    inline ::tutorial::Person_PhoneNumber* mutable_phones(int index);       // return a pointer points to element of the 'phones' filed
-    inline ::tutorial::Person_PhoneNumber* add_phones();                    // add a new element to the 'phones' filed, and return the pointer points to the new
+    inline const ::google::protobuf::
+                    RepeatedPtrField<::tutorial::Person_PhoneNumber >& phones() const;
+    inline ::google::protobuf::
+                    RepeatedPtrField< ::tutorial::Person_PhoneNumber >* mutable_phones();
+    // Get value of element of the 'phones' filed.
+    inline const ::tutorial::Person_PhoneNumber& phones(int index) const;
+    // Return a pointer points to element of the 'phones' filed.
+    inline ::tutorial::Person_PhoneNumber* mutable_phones(int index);
+    // Add a new element to the 'phones' filed, and return the pointer points to the new.
+    inline ::tutorial::Person_PhoneNumber* add_phones();
 
 }
 ```
@@ -494,7 +527,7 @@ void ListPeople(const AddressBook &address_book) {
 }
 ```
 
-#### 1.4. Demo Project
+### 1.4. Demo Project
 
 参考首页的 [Demo Project](../README.md#2-demo-project)。
 

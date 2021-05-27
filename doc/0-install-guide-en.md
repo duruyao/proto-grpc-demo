@@ -27,7 +27,7 @@ The usage likes this (**sudo permission may be needed**):
 
 ```shell
 chmod +x proto_install && \
-    ./proto_install <PROTO_ZIP_DIR> <PROTO_INSTALL_DIR>
+./proto_install <PROTO_ZIP_DIR> <PROTO_INSTALL_DIR>
 ```
 
 ### 1.3. Check
@@ -56,7 +56,7 @@ The usage likes this (**sudo permission may be needed**):
 
 ```shell
 chmod +x abseil_install &&  \
-    ./abseil_install <ABSL_ZIP_DIR> <ABSL_INSTALL_DIR>
+./abseil_install <ABSL_ZIP_DIR> <ABSL_INSTALL_DIR>
 ```
 
 #### 2.1.3. Check
@@ -77,7 +77,7 @@ The usage likes this (**sudo permission may be needed**):
 
 ```shell
 chmod +x cares_install &&   \
-    ./cares_install <CARES_ZIP_DIR> <CARES_INSTALL_DIR>
+./cares_install <CARES_ZIP_DIR> <CARES_INSTALL_DIR>
 ```
 
 #### 2.2.3. Check
@@ -98,7 +98,7 @@ The usage likes this (**sudo permission may be needed**):
 
 ```shell
 chmod +x re2_install && \
-    ./re2_install <RE2_ZIP_DIR> <RE2_INSTALL_DIR>
+./re2_install <RE2_ZIP_DIR> <RE2_INSTALL_DIR>
 ```
 
 #### 2.3.3. Check
@@ -119,7 +119,7 @@ The usage likes this (**sudo permission may be needed**):
 
 ```shell
 chmod +x zlib_install &&    \
-    ./zlib_install <ZLIB_ZIP_DIR> <ZLIB_INSTALL_DIR>
+./zlib_install <ZLIB_ZIP_DIR> <ZLIB_INSTALL_DIR>
 ```
 
 #### 2.4.3. Check
@@ -128,7 +128,7 @@ Check if zlib is installed successfully by execute `/usr/bin/ldd <ZLIB_INSTALL_D
 
 ---
 
-### 3. gRPC
+## 3. gRPC
 
 ### 3.1. Download
 
@@ -142,7 +142,7 @@ The usage likes this (**sudo permission may be needed**):
 
 ```shell
 chmod +x grpc_install &&    \
-    ./grpc_install <GRPC_ZIP_DIR> <GRPC_INSTALL_DIR>
+./grpc_install <GRPC_ZIP_DIR> <GRPC_INSTALL_DIR>
 ```
 
 Make sure you have set the value of **`my_prefix_path`** and **`my_cxx_flags`** rightly by modifying [grpc_install](../tools/script/grpc_install) before compiling source codes.
@@ -153,7 +153,7 @@ Check if gRPC is installed successfully by command `/usr/bin/ldd <GRPC_INSTALL_D
 
 ---
 
-### 4. Remark
+## 4. Remark
 
 It is recommended that all libraries or applications are installed to `<YOUR_SDK_DIR>/<APP_NAME>`, likes this:
 
