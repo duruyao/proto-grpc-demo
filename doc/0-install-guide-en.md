@@ -32,7 +32,7 @@ chmod +x proto_install && \
 
 ### 1.3. Check
 
-Check if Protocol Buffers is installed successfully by execute `ldd <PROTO_INSTALL_DIR>/lib/libproto*.so`, and make sure all dependent libraries are linked rightly.
+Check if Protocol Buffers is installed successfully by execute `/usr/bin/ldd <PROTO_INSTALL_DIR>/lib/libproto*.so`, and make sure all dependent libraries are linked rightly.
 
 Show version of Protocol Buffers by execute `<PROTO_INSTALL_DIR>/bin/protoc --version`.
 
@@ -61,7 +61,7 @@ chmod +x abseil_install &&  \
 
 #### 2.1.3. Check
 
-Check if abseil-cpp is installed successfully by execute `ldd <ABSL_INSTALL_DIR>/lib/libabsl*.so`, and make sure all dependent libraries are linked rightly.
+Check if abseil-cpp is installed successfully by execute `/usr/bin/ldd <ABSL_INSTALL_DIR>/lib/libabsl*.so`, and make sure all dependent libraries are linked rightly.
 
 ### 2.2. c-ares
 
@@ -82,7 +82,7 @@ chmod +x cares_install &&   \
 
 #### 2.2.3. Check
 
-Check if c-ares is installed successfully by execute `ldd <CARES_INSTALL_DIR>/lib/libcares*.so`, and make sure all dependent libraries are linked rightly.
+Check if c-ares is installed successfully by execute `/usr/bin/ldd <CARES_INSTALL_DIR>/lib/libcares*.so`, and make sure all dependent libraries are linked rightly.
 
 ### 2.3. re2
 
@@ -103,7 +103,7 @@ chmod +x re2_install && \
 
 #### 2.3.3. Check
 
-Check if re2 is installed successfully by execute `ldd <RE2_INSTALL_DIR>/lib/libre2*.so`, and make sure all dependent libraries are linked rightly.
+Check if re2 is installed successfully by execute `/usr/bin/ldd <RE2_INSTALL_DIR>/lib/libre2*.so`, and make sure all dependent libraries are linked rightly.
 
 ### 2.4. zlib
 
@@ -124,7 +124,7 @@ chmod +x zlib_install &&    \
 
 #### 2.4.3. Check
 
-Check if zlib is installed successfully by execute `ldd <ZLIB_INSTALL_DIR>/lib/libz*.so`, and make sure all dependent libraries are linked rightly.
+Check if zlib is installed successfully by execute `/usr/bin/ldd <ZLIB_INSTALL_DIR>/lib/libz*.so`, and make sure all dependent libraries are linked rightly.
 
 ---
 
@@ -149,7 +149,7 @@ Make sure you have set the value of **`my_prefix_path`** and **`my_cxx_flags`** 
 
 ### 3.3 Check
 
-Check if gRPC is installed successfully by command `ldd <GRPC_INSTALL_DIR>/lib/libgrpc*.so`, and make sure all dependent libraries are linked rightly.
+Check if gRPC is installed successfully by command `/usr/bin/ldd <GRPC_INSTALL_DIR>/lib/libgrpc*.so`, and make sure all dependent libraries are linked rightly.
 
 ---
 
