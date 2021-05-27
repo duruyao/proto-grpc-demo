@@ -136,7 +136,7 @@ chmod +x zlib_install &&    \
 
 ### 3.2. Compile & Install
 
-- 编译源代码之前修改 [tools/scripts/grpc_install](../tools/script/grpc_install) 的内容，正确设置**`my_prefix_path`**和**`my_cxx_flags`**的值
+- 编译源代码之前修改 [tools/scripts/grpc_install](../tools/script/grpc_install) 的内容，正确设置 **`my_prefix_path`** 和 **`my_cxx_flags`** 的值
 
 - 执行 bash 脚本 [tools/scripts/grpc_install](../tools/script/grpc_install) 检查依赖，编译源代码，链接共享库并安装
 
