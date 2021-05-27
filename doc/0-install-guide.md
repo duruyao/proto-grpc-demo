@@ -17,13 +17,13 @@
 
 ### 1.1. Download
 
-Download source files (ZIP format) from [https://github.com/protocolbuffers/protobuf/releases](https://github.com/protocolbuffers/protobuf/releases).
+- 从 [https://github.com/protocolbuffers/protobuf/releases](https://github.com/protocolbuffers/protobuf/releases) 下载 ZIP 格式的源代码压缩包
 
 ### 1.2. Compile & Install
 
-Execute the script named [proto_install](../tools/script/proto_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
+- 执行 bash 脚本 [tools/script/proto_install](../tools/script/proto_install) 检查依赖，编译源代码，链接共享库并安装。
 
-The usage likes this (**sudo permission may be needed**):
+用法示例如下（**可能需要 sudo 权限**）：
 
 ```shell
 chmod +x proto_install && \
@@ -32,27 +32,27 @@ chmod +x proto_install && \
 
 ### 1.3. Check
 
-Check if Protocol Buffers is installed successfully by execute `ldd <PROTO_INSTALL_DIR>/lib/libproto*.so`, and make sure all dependent libraries are linked rightly.
+- 执行`ldd <PROTO_INSTALL_DIR>/lib/libproto*.so`检查 Protocol Buffers 是否成功安装，确认正确链接所有共享库。
 
-Show version of Protocol Buffers by execute `<PROTO_INSTALL_DIR>/bin/protoc --version`.
+- 执行`<PROTO_INSTALL_DIR>/bin/protoc --version`显示 Protocol Buffers 版本。
 
 ---
 
 ## 2. Dependents of gRPC
 
-Install multiple libraries or applications (contains [Protocol Buffers](#1-protocol-buffers)) before compiling source codes of gRPC.
+编译 gRPC 源代码之前需要安装多个 **依赖库** 或 **软件**（包括 [Protocol Buffers](#1-protocol-buffers)）。
 
 ### 2.1. abseil-cpp
 
 #### 2.1.1. Download
 
-Download source files (ZIP format) from [https://github.com/abseil/abseil-cpp/releases](https://github.com/abseil/abseil-cpp/releases).
+- 从 [https://github.com/abseil/abseil-cpp/releases](https://github.com/abseil/abseil-cpp/releases) 下载 ZIP 格式的源代码压缩包
 
 #### 2.1.2. Compile & Install
 
-Execute the script named [abseil_install](../tools/script/abseil_install) which is in [tools/scripts/](../tools/script) to check pre-requisites, compile source codes, link shared libraries and install.
+- 执行 bash 脚本 [tools/script/abseil_install](../tools/script/abseil_install) 检查依赖，编译源代码，链接共享库并安装。
 
-The usage likes this (**sudo permission may be needed**):
+用法示例如下（**可能需要 sudo 权限**）：
 
 ```shell
 chmod +x abseil_install &&  \
@@ -61,19 +61,19 @@ chmod +x abseil_install &&  \
 
 #### 2.1.3. Check
 
-Check if abseil-cpp is installed successfully by execute `ldd <ABSL_INSTALL_DIR>/lib/libabsl*.so`, and make sure all dependent libraries are linked rightly.
+- 执行`ldd <ABSL_INSTALL_DIR>/lib/libabsl*.so`检查 abseil-cpp 被成功安装，确认正确链接所有共享库。
 
 ### 2.2. c-ares
 
 #### 2.2.1. Download
 
-Download source files (ZIP format) from [https://github.com/c-ares/c-ares/releases](https://github.com/c-ares/c-ares/releases).
+- 从 [https://github.com/c-ares/c-ares/releases](https://github.com/c-ares/c-ares/releases) 下载 ZIP 格式的源代码压缩包。
 
 #### 2.2.2. Compile & Install
  
-Execute the script named [cares_install](../tools/script/cares_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
+- 执行 bash 脚本 [tools/script/cares_install](../tools/script/cares_install) 检查依赖，编译源代码，链接共享库并安装。
  
-The usage likes this (**sudo permission may be needed**):
+- 用法示例如下（**可能需要 sudo 权限**）：
 
 ```shell
 chmod +x cares_install &&   \
@@ -82,19 +82,19 @@ chmod +x cares_install &&   \
 
 #### 2.2.3. Check
 
-Check if c-ares is installed successfully by execute `ldd <CARES_INSTALL_DIR>/lib/libcares*.so`, and make sure all dependent libraries are linked rightly.
+- 执行`ldd <CARES_INSTALL_DIR>/lib/libcares*.so`检查 c-ares 是否被成功安装，确认正确链接所有共享库。
 
 ### 2.3. re2
 
 #### 2.3.1. Download
 
-Download source files (ZIP format) from [https://github.com/google/re2/releases](https://github.com/google/re2/releases).
+- 从 [https://github.com/google/re2/releases](https://github.com/google/re2/releases) 下载 ZIP 格式的源代码压缩包。
 
 #### 2.3.2. Compile & Install
 
-Execute the script named [re2_install](../tools/script/re2_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
+- 执行 bash 脚本 [tools/script/re2_install](../tools/script/re2_install) 检查依赖，编译源代码，链接共享库并安装。
 
-The usage likes this (**sudo permission may be needed**):
+用法示例如下（**可能需要 sudo 权限**）：
 
 ```shell
 chmod +x re2_install && \
@@ -103,19 +103,19 @@ chmod +x re2_install && \
 
 #### 2.3.3. Check
 
-Check if re2 is installed successfully by execute `ldd <RE2_INSTALL_DIR>/lib/libre2*.so`, and make sure all dependent libraries are linked rightly.
+- 执行`ldd <RE2_INSTALL_DIR>/lib/libre2*.so`检查 re2 是否被成功安装，确认正确链接所有共享库。
 
 ### 2.4. zlib
 
 #### 2.4.1. Download
 
-Download source files (ZIP format) from [https://www.zlib.net/](https://www.zlib.net/).
+- 从 [https://www.zlib.net/](https://www.zlib.net/) 下载 ZIP 格式的源代码压缩包。
 
 #### 2.4.2. Compile & Install
 
--Execute the script named [zlib_install](../tools/script/zlib_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
+- 执行 bash 脚本 [tools/scripts/zlib_install](../tools/script/zlib_install) 检查依赖，编译源代码，链接共享库并安装。
 
-The usage likes this (**sudo permission may be needed**):
+用法示例如下（**可能需要 sudo 权限**）：
 
 ```shell
 chmod +x zlib_install &&    \
@@ -124,7 +124,7 @@ chmod +x zlib_install &&    \
 
 #### 2.4.3. Check
 
-Check if zlib is installed successfully by execute `ldd <ZLIB_INSTALL_DIR>/lib/libz*.so`, and make sure all dependent libraries are linked rightly.
+- 执行`ldd <ZLIB_INSTALL_DIR>/lib/libz*.so`检查 zlib 是否被安装成，确认正确链接所有共享库。
 
 ---
 
@@ -132,30 +132,30 @@ Check if zlib is installed successfully by execute `ldd <ZLIB_INSTALL_DIR>/lib/l
 
 ### 3.1. Download
 
-Download source files (ZIP format) from [https://github.com/grpc/grpc/releases](https://github.com/grpc/grpc/releases).
+- 从 [https://github.com/grpc/grpc/releases](https://github.com/grpc/grpc/releases) 下载 ZIP 格式的源代码压缩包
 
 ### 3.2. Compile & Install
 
-Execute the script named [grpc_install](../tools/script/grpc_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
+- 编译源代码之前修改 [tools/scripts/grpc_install](../tools/script/grpc_install) 的内容，正确设置**`my_prefix_path`**和**`my_cxx_flags`**的值。
 
-The usage likes this (**sudo permission may be needed**):
+- 执行 bash 脚本 [tools/scripts/grpc_install](../tools/script/grpc_install) 检查依赖，编译源代码，链接共享库并安装。
+
+用法示例如下（**可能需要 sudo 权限**）：
 
 ```shell
 chmod +x grpc_install &&    \
     ./grpc_install <GRPC_ZIP_DIR> <GRPC_INSTALL_DIR>
 ```
 
-Make sure you have set the value of **`my_prefix_path`** and **`my_cxx_flags`** rightly by modifying [grpc_install](../tools/script/grpc_install) before compiling source codes.
-
 ### 3.3 Check
 
-Check if gRPC is installed successfully by command `ldd <GRPC_INSTALL_DIR>/lib/libgrpc*.so`, and make sure all dependent libraries are linked rightly.
+- 执行`ldd <GRPC_INSTALL_DIR>/lib/libgrpc*.so`检查 gRPC 是否被成功安装，确认正确链接所有共享库。
 
 ---
 
 ### 4. Remark
 
-It is recommended that all libraries or applications are installed to `<YOUR_SDK_DIR>/<APP_NAME>`, likes this:
+建议所有的 **依赖库** 和 **软件** 被安装到统一的路径（`<YOUR_SDK_DIR>/<APP_NAME>`），就像这样：
 
 ```shell
 /opt/HikSDK/
