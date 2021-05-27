@@ -165,7 +165,7 @@ message SearchResponse {
 }
 ```
 
-Protocol Buffers 允许在 Message a 中使用已经定义好的 Message b 及 b 嵌套定义的 Message c（**定义顺序不影响使用**），如下示例所示:
+Protocol Buffers 允许在 Message a 中使用已经定义好的 Message b 及 b 嵌套定义的 Message c（**定义顺序不影响编译**），如下示例所示:
 
 ```protobuf
 syntax = "proto3";
