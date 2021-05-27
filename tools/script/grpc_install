@@ -3,6 +3,7 @@
 ## date:    2021.05.17
 ## file:    compile and install grpc
 ## author:  duruyao@hikvision.com
+## release: https://github.com/grpc/grpc/releases
 
 CONSOLE_COLOR_NONE="\033[m"
 CONSOLE_COLOR_RED="\033[1;32;31m"
