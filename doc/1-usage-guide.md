@@ -90,7 +90,7 @@ message SearchResponse {
 
 - `proto`语法支持 C/C++ 风格的注释，即`//...`和`/*...*/`
 
-- 建议使用大驼峰（且首字母大写）为 Message 命名
+- 建议使用 **大驼峰** 规范为 Message 命名
 
 ##### 1.3.1.1. Field Types
 
@@ -327,18 +327,18 @@ message TestMsg {
 
 `proto3`的数据类型与`JSON`的数据类型存在如下的映射关系：
 
-| proto3 | JSON | 示例 |
-| :-: | :-: | :-: |
-| `message` | `object` | `{"f_1": v_1, "f_2": v_2, ...}` |
-| `enum` | `string` | `"FOO_BAR"` |
-| `map<K, V>` | `object` | `{"k_1": v_1, "k_2": v_2, ...}` |
-| `repeated V` | `array` | `[v_1, v_2, ...]` |
-| `bool` | `true`,<br>`false` |  |
-| `string` | `string` |  |
-| `bytes` | `base64 string` |  |
-| `int32`,<br>`fixed32`,<br>`uint32` | `number` | `1`, `-10`, `0` |
-| `int64`,<br>`fixed64`,<br>`uint64` | `string` | `"1"`, `"-10"`, `"0"` |
-| `float`,<br>`double` | `number` | `1.1`, `-10.0`, `0`, `"NaN"`, `"Infinity"` |
+| proto3 | JSON | 示例 | 备注 |
+| :-: | :-: | :-: | :-: |
+| `message` | `object` | `{"fooBar1": v1, "fooBar2": v2, ...}` | `Message`映射为`object`后，其字段命名遵循为 **小驼峰** 规范 |
+| `enum` | `string` | `"FOO_BAR"` |  |
+| `map<K, V>` | `object` | `{"k1": v1, "k2": v2, ...}` | `map`中的所有的`key`映射为`string` |
+| `repeated V` | `array` | `[v1, v2, ...]` | 空的`repeated`字段映射为值是`null`的`array` |
+| `bool` | `true`,<br>`false` | `true`,<br>`false` |  |
+| `string` | `string` | `"Hello World!"` |  |
+| `bytes` | `base64 string` | `"YWJjMTIzIT8kKiYoKSctPUB+"` | `bytes`值映射为带有填充的标准`base64`编码的字符串 |
+| `int32`,<br>`fixed32`,<br>`uint32` | `number` | `1`,<br>`-10`,<br>`0` |  |
+| `int64`,<br>`fixed64`,<br>`uint64` | `string` | `"1"`,<br>`"-10"`,<br>`"0"` |  |
+| `float`,<br>`double` | `number` | `1.1`,<br>`-10.0`,<br>`0`,<br>`"NaN"`,<br>`"Infinity"`,<br>`"-Infinity"` | 浮点型映射结果可能为数字或`"NaN"`、`"Infinity"`、"-Infinity"`等字符串 |
 
 相关的 C++ API 声明在`google/protobuf/util/json_util.h`中：
 
