@@ -20,7 +20,7 @@
         - [1.3.5. 编译 proto](#135-compiling-proto-files)
         - [1.3.6. C++ 编程接口](#136-cpp-api)
     - [1.4. 样例项目](#14-demo-project)
-- [2. gRPC]()
+- [2. gRPC](#2-grpc)
     - [2.1. 简介](#21-introduction)
     - [2.2. 安装](#22-install)
     - [2.3. 使用](#23-usage)
@@ -323,7 +323,22 @@ message TestMsg {
 
 #### 1.3.4. JSON Mapping
 
-`proto3`版本的 Protocol Buffers 支持 Message 格式数据与 JSON 格式数据互相映射，从而使在团队之间共享数据更加容易。
+`proto3`版本的 Protocol Buffers 支持 Message 格式数据与 JSON 格式数据互相映射，从而使在团队间共享数据更加容易。
+
+`proto3`的数据类型与`JSON`的数据类型存在如下的映射关系：
+
+| proto3 | JSON | 示例 |
+| :-: | :-: | :-: |
+| `message` | `object` | `{"f_1": v_1, "f_2": v_2, ...}` |
+| `enum` | `string` | `"FOO_BAR"` |
+| `map<K, V>` | `object` | `{"k_1": v_1, "k_2": v_2, ...}` |
+| `repeated V` | `array` | `[v_1, v_2, ...]` |
+| `bool` | `true`,<br>`false` |  |
+| `string` | `string` |  |
+| `bytes` | `base64 string` |  |
+| `int32`,<br>`fixed32`,<br>`uint32` | `number` | `1`, `-10`, `0` |
+| `int64`,<br>`fixed64`,<br>`uint64` | `string` | `"1"`, `"-10"`, `"0"` |
+| `float`,<br>`double` | `number` | `1.1`, `-10.0`, `0`, `"NaN"`, `"Infinity"` |
 
 相关的 C++ API 声明在`google/protobuf/util/json_util.h`中：
 
@@ -415,7 +430,7 @@ message Person {
 
   message PhoneNumber {
     string number = 1;
-    PhoneType type = 2 [default = HOME];
+    PhoneType type = 2;
   }
 
   repeated PhoneNumber phones = 4;

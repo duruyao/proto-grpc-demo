@@ -43,6 +43,8 @@ int main(int argc, char **argv) {
 
             point1.set_longitude(1202193123 + 100 * n);
             point1.set_latitude(302131123 + 100 * n);
+            point1.set_point_type(Point::POINT_TYPE_2D_LL);
+            point1.set_allocated_timestamp(MyRPCClient::getTimestamp());
 
             fprintf(stdout, "---> [Point]\n%s\n", point1.DebugString().data());
 
@@ -53,9 +55,8 @@ int main(int argc, char **argv) {
             } else {
                 fprintf(stderr, "error calling GetFeature\n\n");
             }
-            sleep(2);
+            sleep(5);
         }
-
     }
 
     { // ListFeatures

@@ -30,7 +30,10 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
+#include <google/protobuf/timestamp.pb.h>
+#include <google/protobuf/duration.pb.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_route_5fguide_2eproto
@@ -79,6 +82,34 @@ template<> ::routeguide::RouteSummary* Arena::CreateMaybeMessage<::routeguide::R
 PROTOBUF_NAMESPACE_CLOSE
 namespace routeguide {
 
+enum Point_PointType : int {
+  Point_PointType_POINT_TYPE_UNSPECIFIED = 0,
+  Point_PointType_POINT_TYPE_2D_LL = 1,
+  Point_PointType_POINT_TYPE_2D_XY = 2,
+  Point_PointType_POINT_TYPE_3D_LLA = 3,
+  Point_PointType_POINT_TYPE_3D_XYZ = 4,
+  Point_PointType_Point_PointType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  Point_PointType_Point_PointType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool Point_PointType_IsValid(int value);
+constexpr Point_PointType Point_PointType_PointType_MIN = Point_PointType_POINT_TYPE_UNSPECIFIED;
+constexpr Point_PointType Point_PointType_PointType_MAX = Point_PointType_POINT_TYPE_3D_XYZ;
+constexpr int Point_PointType_PointType_ARRAYSIZE = Point_PointType_PointType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Point_PointType_descriptor();
+template<typename T>
+inline const std::string& Point_PointType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, Point_PointType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function Point_PointType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    Point_PointType_descriptor(), enum_t_value);
+}
+inline bool Point_PointType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Point_PointType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Point_PointType>(
+    Point_PointType_descriptor(), name, value);
+}
 // ===================================================================
 
 class Point final :
@@ -186,12 +217,68 @@ class Point final :
 
   // nested types ----------------------------------------------------
 
+  typedef Point_PointType PointType;
+  static constexpr PointType POINT_TYPE_UNSPECIFIED =
+    Point_PointType_POINT_TYPE_UNSPECIFIED;
+  static constexpr PointType POINT_TYPE_2D_LL =
+    Point_PointType_POINT_TYPE_2D_LL;
+  static constexpr PointType POINT_TYPE_2D_XY =
+    Point_PointType_POINT_TYPE_2D_XY;
+  static constexpr PointType POINT_TYPE_3D_LLA =
+    Point_PointType_POINT_TYPE_3D_LLA;
+  static constexpr PointType POINT_TYPE_3D_XYZ =
+    Point_PointType_POINT_TYPE_3D_XYZ;
+  static inline bool PointType_IsValid(int value) {
+    return Point_PointType_IsValid(value);
+  }
+  static constexpr PointType PointType_MIN =
+    Point_PointType_PointType_MIN;
+  static constexpr PointType PointType_MAX =
+    Point_PointType_PointType_MAX;
+  static constexpr int PointType_ARRAYSIZE =
+    Point_PointType_PointType_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  PointType_descriptor() {
+    return Point_PointType_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& PointType_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, PointType>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function PointType_Name.");
+    return Point_PointType_Name(enum_t_value);
+  }
+  static inline bool PointType_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      PointType* value) {
+    return Point_PointType_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
 
   enum : int {
+    kTimestampFieldNumber = 4,
     kLatitudeFieldNumber = 1,
     kLongitudeFieldNumber = 2,
+    kPointTypeFieldNumber = 3,
   };
+  // .google.protobuf.Timestamp timestamp = 4;
+  bool has_timestamp() const;
+  private:
+  bool _internal_has_timestamp() const;
+  public:
+  void clear_timestamp();
+  const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Timestamp* release_timestamp();
+  PROTOBUF_NAMESPACE_ID::Timestamp* mutable_timestamp();
+  void set_allocated_timestamp(PROTOBUF_NAMESPACE_ID::Timestamp* timestamp);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Timestamp& _internal_timestamp() const;
+  PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_timestamp();
+  public:
+  void unsafe_arena_set_allocated_timestamp(
+      PROTOBUF_NAMESPACE_ID::Timestamp* timestamp);
+  PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_timestamp();
+
   // int32 latitude = 1;
   void clear_latitude();
   ::PROTOBUF_NAMESPACE_ID::int32 latitude() const;
@@ -210,6 +297,15 @@ class Point final :
   void _internal_set_longitude(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
+  // .routeguide.Point.PointType point_type = 3;
+  void clear_point_type();
+  ::routeguide::Point_PointType point_type() const;
+  void set_point_type(::routeguide::Point_PointType value);
+  private:
+  ::routeguide::Point_PointType _internal_point_type() const;
+  void _internal_set_point_type(::routeguide::Point_PointType value);
+  public:
+
   // @@protoc_insertion_point(class_scope:routeguide.Point)
  private:
   class _Internal;
@@ -217,8 +313,10 @@ class Point final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  PROTOBUF_NAMESPACE_ID::Timestamp* timestamp_;
   ::PROTOBUF_NAMESPACE_ID::int32 latitude_;
   ::PROTOBUF_NAMESPACE_ID::int32 longitude_;
+  int point_type_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_route_5fguide_2eproto;
 };
@@ -495,6 +593,7 @@ class Feature final :
   enum : int {
     kNameFieldNumber = 1,
     kLocationFieldNumber = 2,
+    kTimestampFieldNumber = 3,
   };
   // string name = 1;
   void clear_name();
@@ -528,6 +627,24 @@ class Feature final :
       ::routeguide::Point* location);
   ::routeguide::Point* unsafe_arena_release_location();
 
+  // .google.protobuf.Timestamp timestamp = 3;
+  bool has_timestamp() const;
+  private:
+  bool _internal_has_timestamp() const;
+  public:
+  void clear_timestamp();
+  const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Timestamp* release_timestamp();
+  PROTOBUF_NAMESPACE_ID::Timestamp* mutable_timestamp();
+  void set_allocated_timestamp(PROTOBUF_NAMESPACE_ID::Timestamp* timestamp);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Timestamp& _internal_timestamp() const;
+  PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_timestamp();
+  public:
+  void unsafe_arena_set_allocated_timestamp(
+      PROTOBUF_NAMESPACE_ID::Timestamp* timestamp);
+  PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_timestamp();
+
   // @@protoc_insertion_point(class_scope:routeguide.Feature)
  private:
   class _Internal;
@@ -537,6 +654,7 @@ class Feature final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::routeguide::Point* location_;
+  PROTOBUF_NAMESPACE_ID::Timestamp* timestamp_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_route_5fguide_2eproto;
 };
@@ -807,11 +925,30 @@ class RouteSummary final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kDurationFieldNumber = 5,
     kPointCountFieldNumber = 1,
     kFeatureCountFieldNumber = 2,
     kDistanceFieldNumber = 3,
     kElapsedTimeFieldNumber = 4,
   };
+  // .google.protobuf.Duration duration = 5;
+  bool has_duration() const;
+  private:
+  bool _internal_has_duration() const;
+  public:
+  void clear_duration();
+  const PROTOBUF_NAMESPACE_ID::Duration& duration() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Duration* release_duration();
+  PROTOBUF_NAMESPACE_ID::Duration* mutable_duration();
+  void set_allocated_duration(PROTOBUF_NAMESPACE_ID::Duration* duration);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Duration& _internal_duration() const;
+  PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_duration();
+  public:
+  void unsafe_arena_set_allocated_duration(
+      PROTOBUF_NAMESPACE_ID::Duration* duration);
+  PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_duration();
+
   // int32 point_count = 1;
   void clear_point_count();
   ::PROTOBUF_NAMESPACE_ID::int32 point_count() const;
@@ -855,6 +992,7 @@ class RouteSummary final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  PROTOBUF_NAMESPACE_ID::Duration* duration_;
   ::PROTOBUF_NAMESPACE_ID::int32 point_count_;
   ::PROTOBUF_NAMESPACE_ID::int32 feature_count_;
   ::PROTOBUF_NAMESPACE_ID::int32 distance_;
@@ -911,6 +1049,105 @@ inline void Point::_internal_set_longitude(::PROTOBUF_NAMESPACE_ID::int32 value)
 inline void Point::set_longitude(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_longitude(value);
   // @@protoc_insertion_point(field_set:routeguide.Point.longitude)
+}
+
+// .routeguide.Point.PointType point_type = 3;
+inline void Point::clear_point_type() {
+  point_type_ = 0;
+}
+inline ::routeguide::Point_PointType Point::_internal_point_type() const {
+  return static_cast< ::routeguide::Point_PointType >(point_type_);
+}
+inline ::routeguide::Point_PointType Point::point_type() const {
+  // @@protoc_insertion_point(field_get:routeguide.Point.point_type)
+  return _internal_point_type();
+}
+inline void Point::_internal_set_point_type(::routeguide::Point_PointType value) {
+  
+  point_type_ = value;
+}
+inline void Point::set_point_type(::routeguide::Point_PointType value) {
+  _internal_set_point_type(value);
+  // @@protoc_insertion_point(field_set:routeguide.Point.point_type)
+}
+
+// .google.protobuf.Timestamp timestamp = 4;
+inline bool Point::_internal_has_timestamp() const {
+  return this != internal_default_instance() && timestamp_ != nullptr;
+}
+inline bool Point::has_timestamp() const {
+  return _internal_has_timestamp();
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& Point::_internal_timestamp() const {
+  const PROTOBUF_NAMESPACE_ID::Timestamp* p = timestamp_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& Point::timestamp() const {
+  // @@protoc_insertion_point(field_get:routeguide.Point.timestamp)
+  return _internal_timestamp();
+}
+inline void Point::unsafe_arena_set_allocated_timestamp(
+    PROTOBUF_NAMESPACE_ID::Timestamp* timestamp) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(timestamp_);
+  }
+  timestamp_ = timestamp;
+  if (timestamp) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:routeguide.Point.timestamp)
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* Point::release_timestamp() {
+  
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = timestamp_;
+  timestamp_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* Point::unsafe_arena_release_timestamp() {
+  // @@protoc_insertion_point(field_release:routeguide.Point.timestamp)
+  
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = timestamp_;
+  timestamp_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* Point::_internal_mutable_timestamp() {
+  
+  if (timestamp_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    timestamp_ = p;
+  }
+  return timestamp_;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* Point::mutable_timestamp() {
+  // @@protoc_insertion_point(field_mutable:routeguide.Point.timestamp)
+  return _internal_mutable_timestamp();
+}
+inline void Point::set_allocated_timestamp(PROTOBUF_NAMESPACE_ID::Timestamp* timestamp) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(timestamp_);
+  }
+  if (timestamp) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(timestamp));
+    if (message_arena != submessage_arena) {
+      timestamp = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, timestamp, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  timestamp_ = timestamp;
+  // @@protoc_insertion_point(field_set_allocated:routeguide.Point.timestamp)
 }
 
 // -------------------------------------------------------------------
@@ -1215,6 +1452,85 @@ inline void Feature::set_allocated_location(::routeguide::Point* location) {
   // @@protoc_insertion_point(field_set_allocated:routeguide.Feature.location)
 }
 
+// .google.protobuf.Timestamp timestamp = 3;
+inline bool Feature::_internal_has_timestamp() const {
+  return this != internal_default_instance() && timestamp_ != nullptr;
+}
+inline bool Feature::has_timestamp() const {
+  return _internal_has_timestamp();
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& Feature::_internal_timestamp() const {
+  const PROTOBUF_NAMESPACE_ID::Timestamp* p = timestamp_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& Feature::timestamp() const {
+  // @@protoc_insertion_point(field_get:routeguide.Feature.timestamp)
+  return _internal_timestamp();
+}
+inline void Feature::unsafe_arena_set_allocated_timestamp(
+    PROTOBUF_NAMESPACE_ID::Timestamp* timestamp) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(timestamp_);
+  }
+  timestamp_ = timestamp;
+  if (timestamp) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:routeguide.Feature.timestamp)
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* Feature::release_timestamp() {
+  
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = timestamp_;
+  timestamp_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* Feature::unsafe_arena_release_timestamp() {
+  // @@protoc_insertion_point(field_release:routeguide.Feature.timestamp)
+  
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = timestamp_;
+  timestamp_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* Feature::_internal_mutable_timestamp() {
+  
+  if (timestamp_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    timestamp_ = p;
+  }
+  return timestamp_;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* Feature::mutable_timestamp() {
+  // @@protoc_insertion_point(field_mutable:routeguide.Feature.timestamp)
+  return _internal_mutable_timestamp();
+}
+inline void Feature::set_allocated_timestamp(PROTOBUF_NAMESPACE_ID::Timestamp* timestamp) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(timestamp_);
+  }
+  if (timestamp) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(timestamp));
+    if (message_arena != submessage_arena) {
+      timestamp = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, timestamp, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  timestamp_ = timestamp;
+  // @@protoc_insertion_point(field_set_allocated:routeguide.Feature.timestamp)
+}
+
 // -------------------------------------------------------------------
 
 // RouteNote
@@ -1431,6 +1747,85 @@ inline void RouteSummary::set_elapsed_time(::PROTOBUF_NAMESPACE_ID::int32 value)
   // @@protoc_insertion_point(field_set:routeguide.RouteSummary.elapsed_time)
 }
 
+// .google.protobuf.Duration duration = 5;
+inline bool RouteSummary::_internal_has_duration() const {
+  return this != internal_default_instance() && duration_ != nullptr;
+}
+inline bool RouteSummary::has_duration() const {
+  return _internal_has_duration();
+}
+inline const PROTOBUF_NAMESPACE_ID::Duration& RouteSummary::_internal_duration() const {
+  const PROTOBUF_NAMESPACE_ID::Duration* p = duration_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Duration&>(
+      PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Duration& RouteSummary::duration() const {
+  // @@protoc_insertion_point(field_get:routeguide.RouteSummary.duration)
+  return _internal_duration();
+}
+inline void RouteSummary::unsafe_arena_set_allocated_duration(
+    PROTOBUF_NAMESPACE_ID::Duration* duration) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(duration_);
+  }
+  duration_ = duration;
+  if (duration) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:routeguide.RouteSummary.duration)
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* RouteSummary::release_duration() {
+  
+  PROTOBUF_NAMESPACE_ID::Duration* temp = duration_;
+  duration_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* RouteSummary::unsafe_arena_release_duration() {
+  // @@protoc_insertion_point(field_release:routeguide.RouteSummary.duration)
+  
+  PROTOBUF_NAMESPACE_ID::Duration* temp = duration_;
+  duration_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* RouteSummary::_internal_mutable_duration() {
+  
+  if (duration_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    duration_ = p;
+  }
+  return duration_;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* RouteSummary::mutable_duration() {
+  // @@protoc_insertion_point(field_mutable:routeguide.RouteSummary.duration)
+  return _internal_mutable_duration();
+}
+inline void RouteSummary::set_allocated_duration(PROTOBUF_NAMESPACE_ID::Duration* duration) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(duration_);
+  }
+  if (duration) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(duration));
+    if (message_arena != submessage_arena) {
+      duration = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, duration, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  duration_ = duration;
+  // @@protoc_insertion_point(field_set_allocated:routeguide.RouteSummary.duration)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
@@ -1446,6 +1841,16 @@ inline void RouteSummary::set_elapsed_time(::PROTOBUF_NAMESPACE_ID::int32 value)
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace routeguide
+
+PROTOBUF_NAMESPACE_OPEN
+
+template <> struct is_proto_enum< ::routeguide::Point_PointType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::routeguide::Point_PointType>() {
+  return ::routeguide::Point_PointType_descriptor();
+}
+
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 

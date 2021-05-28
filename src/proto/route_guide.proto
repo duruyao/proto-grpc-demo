@@ -3,9 +3,12 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "io.grpc.examples.routeguide";
 option java_outer_classname = "RouteGuideProto";
-//option objc_class_prefix = "RTG";
+option objc_class_prefix = "RTG";
 
 package routeguide;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
 
 // Points are represented as latitude-longitude pairs in the E7 representation
 // (degrees multiplied by 10**7 and rounded to the nearest integer).
@@ -14,6 +17,15 @@ package routeguide;
 message Point {
     int32 latitude = 1;
     int32 longitude = 2;
+    enum PointType {
+        POINT_TYPE_UNSPECIFIED = 0;
+        POINT_TYPE_2D_LL = 1;
+        POINT_TYPE_2D_XY = 2;
+        POINT_TYPE_3D_LLA = 3;
+        POINT_TYPE_3D_XYZ = 4;
+    }
+    PointType point_type = 3;
+    google.protobuf.Timestamp timestamp = 4;
 }
 
 // A latitude-longitude rectangle, represented as two diagonally opposite
@@ -35,6 +47,8 @@ message Feature {
 
     // The point where the feature is detected.
     Point location = 2;
+
+    google.protobuf.Timestamp timestamp = 3;
 }
 
 // A RouteNote is a message sent while at a given point.
@@ -63,6 +77,7 @@ message RouteSummary {
 
     // The duration of the traversal in seconds.
     int32 elapsed_time = 4;
+    google.protobuf.Duration duration = 5;
 }
 
 // Interface exported by the server.

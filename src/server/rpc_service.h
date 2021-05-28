@@ -77,6 +77,11 @@ private:
     static double getDistance(const routeguide::Point &start, const routeguide::Point &end);
 
     static inline double convertToRadians(double num) { return (num * 3.1415926 / 180); }
+
+    static google::protobuf::Timestamp *getTimestamp();
+
+    static google::protobuf::Duration *
+    getDuration(google::protobuf::Timestamp &start, google::protobuf::Timestamp &end);
 };
 
 #endif //PROTO_GRPC_DEMO_RPC_SERVICE_H

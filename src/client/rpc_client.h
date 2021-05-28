@@ -39,6 +39,12 @@ public:
 private:
     std::shared_ptr<grpc::Channel> channel;
     std::unique_ptr<routeguide::RouteGuideService::Stub> stub;
+
+public:
+    static google::protobuf::Timestamp *getTimestamp();
+
+    static google::protobuf::Duration *
+    getDuration(google::protobuf::Timestamp &start, google::protobuf::Timestamp &end);
 };
 
 #endif //PROTO_GRPC_DEMO_RPC_CLIENT_H

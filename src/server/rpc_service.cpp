@@ -50,6 +50,8 @@ Status MyRPCService::GetFeature(ServerContext *ctx, const Point *point, Feature 
     feature->set_name(getFeatureName(*point, featureList));
     feature->mutable_location()->CopyFrom(*point);
 
+    feature->set_allocated_timestamp(getTimestamp());
+
     fprintf(stdout, "---> [Feature]\n%s\n", feature->DebugString().data());
 
     ret = Status::OK;
@@ -102,6 +104,7 @@ Status MyRPCService::RecordRoute(ServerContext *ctx, ServerReader<Point> *reader
     Point previous;
 
     system_clock::time_point startTime = system_clock::now();
+    google::protobuf::Timestamp *start = getTimestamp();
     while (reader->Read(&point)) {
         pointCount++;
         if (!getFeatureName(point, featureList).empty()) {
@@ -113,11 +116,13 @@ Status MyRPCService::RecordRoute(ServerContext *ctx, ServerReader<Point> *reader
         previous = point;
     }
     system_clock::time_point endTime = system_clock::now();
+    google::protobuf::Timestamp *end = getTimestamp();
     summary->set_point_count(pointCount);
     summary->set_feature_count(featureCount);
     summary->set_distance(static_cast<long>(distance));
     auto secs = std::chrono::duration_cast<std::chrono::seconds>(endTime - startTime);
     summary->set_elapsed_time(secs.count());
+    summary->set_allocated_duration(getDuration(*start, *end));
 
     ret = Status::OK;
     return ret;
@@ -185,4 +190,41 @@ double MyRPCService::getDistance(const Point &start, const Point &end) {
     int R = 6371000;  // metres
 
     return R * c;
+}
+
+/**
+ * 
+ * @return 
+ */
+google::protobuf::Timestamp *MyRPCService::getTimestamp() {
+    auto *timestamp = new(google::protobuf::Timestamp);
+    struct timeval tv{};
+    gettimeofday(&tv, nullptr);
+
+    timestamp->set_seconds(tv.tv_sec);
+    timestamp->set_nanos(tv.tv_usec * 1000);
+
+    return timestamp;
+}
+
+/**
+ * 
+ * @param start 
+ * @param end 
+ * @return 
+ */
+google::protobuf::Duration *
+MyRPCService::getDuration(google::protobuf::Timestamp &start, google::protobuf::Timestamp &end) {
+    auto *duration = new(google::protobuf::Duration);
+    duration->set_seconds(end.seconds() - start.seconds());
+    duration->set_nanos(end.nanos() - start.nanos());
+
+    if (duration->seconds() < 0 && duration->nanos() > 0) {
+        duration->set_seconds(duration->seconds() + 1);
+        duration->set_nanos(duration->nanos() - 1000000000);
+    } else if (duration->seconds() > 0 && duration->nanos() < 0) {
+        duration->set_seconds(duration->seconds() - 1);
+        duration->set_nanos(duration->nanos() + 1000000000);
+    }
+    return duration;
 }
