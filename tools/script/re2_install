@@ -14,7 +14,7 @@ fi
 zip_dir="${1}"
 ins_dir="${2}"
 new_folder="`dirname ${zip_dir}`/re2_source"
-
+ re 
 mkdir -p ${new_folder} && rm -rf ${new_folder}/*
 unzip -q ${zip_dir} -d ${new_folder}
 
@@ -26,13 +26,15 @@ mkdir -p ${ins_dir} && rm -rf ${ins_dir}/*
 cd ${src_dir}
 
 ## modify `prefix="/usr/local"` in `Makefile`
-ins_dir=${ins_dir//\//\\\/}
-ins_dir_old="/usr/local"
-ins_dir_old=${ins_dir_old//\//\\\/}
+#ins_dir=${ins_dir//\//\\\/}
+#ins_dir_old="/usr/local"
+#ins_dir_old=${ins_dir_old//\//\\\/}
+#
+#sed -i "s/prefix=${ins_dir_old}/prefix=${ins_dir}/g" `grep "prefix=${ins_dir_old}" -rl Makefile`
+#
+#make -j16 && make install
 
-sed -i "s/prefix=${ins_dir_old}/prefix=${ins_dir}/g" `grep "prefix=${ins_dir_old}" -rl Makefile`
-
-make -j16 && make install
+make -j16 && make prefix=${ins_dir} install
 
 printf "\n"
 printf "Install re2 "
