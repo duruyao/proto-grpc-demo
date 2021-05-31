@@ -1,0 +1,33 @@
+#! /bin/bash
+
+## date:    2021.05.31
+## file:    compile and install tree
+## author:  duruyao@hikvision.com
+## release: http://mama.indstate.edu/users/ice/tree/src/
+
+if [ $# != 2 ]; then
+  printf "USAGE (sudo permission may be needed):\n"
+  printf "	\`${0} <TGZ_DIR> <INSTALL_DIR>\`\n"
+  exit 1;
+fi
+
+zip_dir="${1}"
+ins_dir="${2}"
+new_folder="`dirname ${zip_dir}`/cmake_source"
+
+mkdir -p ${new_folder} && rm -rf ${new_folder}/*
+tar -zxvf ${zip_dir} -C ${new_folder}
+
+src_dir="${new_folder}/`ls ${new_folder}`"
+
+mkdir -p ${ins_dir} && rm -rf ${ins_dir}/* && mkdir ${ins_dir}/man
+cd ${src_dir}
+
+make -j16 && make prefix=${ins_dir} install
+
+printf "\n"
+printf "Install tree "
+printf "to \`${ins_dir}\`:\n"
+ls -all ${ins_dir}
+printf "\n"
+
