@@ -335,7 +335,7 @@ do_scan_etc_ldsoconf() {
     [ -f "${ldsoconf}" ] || return 0
     do_trace "Parsing ld.so.conf: '%s'\n" "${ldsoconf}"
 
-    while read line; do
+    while read -r line; do
         case "${line}" in
             include\ *)
                 g="${root}${line#include }"
@@ -383,4 +383,3 @@ declare -a search_rpath
 do_trace "Scanning file '%s'\n" "${1}"
 do_process_file "${1}"
 do_trace "Done scanning file '%s'\n" "${1}"
-

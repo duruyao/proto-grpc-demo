@@ -70,12 +70,12 @@ printf "To build protobuf from source, the following tools are needed:\n"
 
 req_app_list=("g++" "make" "unzip" "autoconf" "automake" "libtool")
 
-for req_app in ${req_app_list[@]}; do
-	prt_ye "    %-16s" ${req_app}
+for req_app in "${req_app_list[@]}"; do
+	prt_ye "    %-16s" "${req_app}"
 	printf ":	 "
 	
-	req_app_dir="`which ${req_app}`"
-	if [ -z ${req_app_dir} ]; then
+	req_app_dir="$(command -v "${req_app}")"
+	if [ -z "${req_app_dir}" ]; then
 		prt_re "NOT FOUND\n"
 	else
 		printf "\`${req_app_dir}\`\n"
@@ -83,22 +83,22 @@ for req_app in ${req_app_list[@]}; do
 done
 
 printf "On Ubuntu/Debian, you can install them with:\n"
-printf "   \`sudo apt-get install ${req_app_list[*]}\`\n\n"
+printf "    sudo apt-get install %s\n\n" "${req_app_list[*]}"
 
 ## 2nd step
 
 prt_ye "2)\n"
 printf "Unzip \`${proto_zip_dir}\` ...\n"
 
-new_folder="`dirname ${proto_zip_dir}`/proto_source"
+new_folder="$(dirname "${proto_zip_dir}")/proto_source"
 
-mkdir -p ${new_folder} && rm -rf ${new_folder}/*
-unzip -q ${proto_zip_dir} -d ${new_folder}
+mkdir -p "${new_folder}" && rm -rf "${new_folder:?}/"*
+unzip -q "${proto_zip_dir}" -d "${new_folder}"
 
-proto_src_dir="${new_folder}/`ls ${new_folder}`"
+proto_src_dir="${new_folder}/$(ls "${new_folder}")"
 
 printf "Generate source code to \`${proto_src_dir}\`:\n"
-ls ${proto_src_dir}
+ls "${proto_src_dir}"
 
 printf "\n"
 
@@ -107,16 +107,15 @@ printf "\n"
 prt_ye "3)\n"
 printf "Compile protobuf ...\n"
 
-mkdir -p ${proto_ins_dir} && rm -rf ${proto_ins_dir}/*
-cd ${proto_src_dir}
-./configure --prefix=${proto_ins_dir}
+mkdir -p "${proto_ins_dir}" && rm -rf "${proto_ins_dir:?}/"*
+cd "${proto_src_dir}" || exit
+./configure --prefix="${proto_ins_dir}"
 make -j16 && make check
 make install						## copy `lib`, `bin`, `include` to destination (sudo permission needed).
 
 printf "\n"
 printf "Install protobuf "
-prt_ye "(`${proto_ins_dir}/bin/protoc --version`) "
+prt_ye "($("${proto_ins_dir}"/bin/protoc --version)) "
 printf "to \`${proto_ins_dir}\`:\n"
-ls -all ${proto_ins_dir}
+ls -all "${proto_ins_dir}"
 printf "\n"
-

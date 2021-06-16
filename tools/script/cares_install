@@ -7,29 +7,28 @@
 
 if [ $# != 2 ]; then
   printf "USAGE (sudo permission may be needed):\n"
-  printf "	\`${0} <ZIP_DIR> <INSTALL_DIR>\`\n"
+  printf "    %s <ZIP_DIR> <INSTALL_DIR>\n" "${0}"
   exit 1
 fi
 
 zip_dir="${1}"
 ins_dir="${2}"
-new_folder="`dirname ${zip_dir}`/cares_source"
+new_folder="$(dirname "${zip_dir}")/cares_source"
 
-mkdir -p ${new_folder} && rm -rf ${new_folder}/*
-unzip -q ${zip_dir} -d ${new_folder}
+mkdir -p "${new_folder}" && rm -rf "${new_folder:?}/"*
+unzip -q "${zip_dir}" -d "${new_folder}"
 
-src_dir="${new_folder}/`ls ${new_folder}`"
+src_dir="${new_folder}/$(ls "${new_folder}")"
 
-mkdir -p ${ins_dir} && rm -rf ${ins_dir}/*
-cd ${src_dir}
+mkdir -p "${ins_dir}" && rm -rf "${ins_dir:?}/"*
+cd "${src_dir}" || exit
 ./buildconf
 autoconf configure.ac
-./configure --prefix=${ins_dir}
+./configure --prefix="${ins_dir}"
 make -j16 && make install
 
 printf "\n"
 printf "Install c-ares "
 printf "to \`${ins_dir}\`:\n"
-ls -all ${ins_dir}
+ls -all "${ins_dir}"
 printf "\n"
-
