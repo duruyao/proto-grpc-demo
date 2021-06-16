@@ -7,8 +7,8 @@
 
 if [ $# != 2 ]; then
   printf "USAGE (sudo permission may be needed):\n"
-	printf "    %s <ZIP_DIR> <INSTALL_DIR>\n" "${0}"
-	exit 1;
+  printf "    %s <ZIP_DIR> <INSTALL_DIR>\n" "${0}"
+  exit 1
 fi
 
 zip_dir="${1}"

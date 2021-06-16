@@ -7,8 +7,8 @@
 
 if [ $# != 2 ]; then
   printf "USAGE (sudo permission may be needed):\n"
-	printf "    %s <ZIP_DIR> <INSTALL_DIR>\n" "${0}"
-	exit 1;
+  printf "    %s <ZIP_DIR> <INSTALL_DIR>\n" "${0}"
+  exit 1
 fi
 
 zip_dir="${1}"
@@ -27,9 +27,7 @@ cd "${src_dir}" || exit
 #ins_dir=${ins_dir//\//\\\/}
 #ins_dir_old="/usr/local"
 #ins_dir_old=${ins_dir_old//\//\\\/}
-#
 #sed -i "s/prefix=${ins_dir_old}/prefix=${ins_dir}/g" `grep "prefix=${ins_dir_old}" -rl Makefile`
-#
 #make -j16 && make install
 
 make -j16 && make prefix="${ins_dir}" install

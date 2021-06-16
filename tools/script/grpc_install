@@ -13,27 +13,27 @@ CONSOLE_COLOR_MAGENTA="\033[1;35m"
 CONSOLE_COLOR_CYAN_BLUE="\033[1;36m"
 CONSOLE_COLOR_LIGHT_BLUE="\033[1;32;34m"
 
-function prt_re(){
-	printf "${@}"
-	printf "${CONSOLE_COLOR_NONE}"
+function prt_re() {
+  printf "${@}"
+  printf "${CONSOLE_COLOR_NONE}"
 }
 
-function prt_ye(){
-	printf "${CONSOLE_COLOR_YELLOW}"
-	printf "${@}"
-	printf "${CONSOLE_COLOR_NONE}"
+function prt_ye() {
+  printf "${CONSOLE_COLOR_YELLOW}"
+  printf "${@}"
+  printf "${CONSOLE_COLOR_NONE}"
 }
 
-function prt_gr(){
-	printf "${CONSOLE_COLOR_GREEN}"
-	printf "${@}"
-	printf "${CONSOLE_COLOR_NONE}"
+function prt_gr() {
+  printf "${CONSOLE_COLOR_GREEN}"
+  printf "${@}"
+  printf "${CONSOLE_COLOR_NONE}"
 }
 
-function prt_bl(){
-	printf "${CONSOLE_COLOR_LIGHT_BLUE}"
-	printf "${@}"
-	printf "${CONSOLE_COLOR_NONE}"
+function prt_bl() {
+  printf "${CONSOLE_COLOR_LIGHT_BLUE}"
+  printf "${@}"
+  printf "${CONSOLE_COLOR_NONE}"
 }
 
 ## pre-check
@@ -45,12 +45,12 @@ grpc_zip_dir=${PWD}/grpc-${grpc_version}.zip
 grpc_ins_dir="/opt/HikSDK/grpc"
 
 if [ -n "${1}" ] && [ -n "${2}" ]; then
-	grpc_zip_dir="${1}"
+  grpc_zip_dir="${1}"
   grpc_ins_dir="${2}"
 else
   prt_ye "USAGE (sudo permission may be needed):\n"
-	printf "    %s <GRPC_ZIP_DIR> <GRPC_INSTALL_DIR>\n" "${0}"
-	exit 1;
+  printf "    %s <GRPC_ZIP_DIR> <GRPC_INSTALL_DIR>\n" "${0}"
+  exit 1
 fi
 
 printf "\n"
@@ -68,18 +68,18 @@ prt_bl "    https://github.com/grpc/grpc/blob/master/BUILDING.md\n\n"
 prt_ye "1)\n"
 printf "To build gRPC from source, the following tools are needed:\n"
 
-req_app_list=( "g++" "make" "cmake" "autoconf" "libtool" "pkg-config" "build-essential" )
+req_app_list=("g++" "make" "cmake" "autoconf" "libtool" "pkg-config" "build-essential")
 
 for req_app in "${req_app_list[@]}"; do
-	prt_ye "    %-16s" "${req_app}"
-	printf ":	 "
-	
-	req_app_dir="$(command -v "${req_app}")"
-	if [ -z "${req_app_dir}" ]; then
-		prt_re "NOT FOUND\n"
-	else
-		printf "\`${req_app_dir}\`\n"
-	fi
+  prt_ye "    %-16s" "${req_app}"
+  printf ":	 "
+
+  req_app_dir="$(command -v "${req_app}")"
+  if [ -z "${req_app_dir}" ]; then
+    prt_re "NOT FOUND\n"
+  else
+    printf "\`${req_app_dir}\`\n"
+  fi
 done
 
 printf "On Ubuntu/Debian, you can install them with:\n"
@@ -115,28 +115,28 @@ mkdir -p "${grpc_build_dir}" && cd "${grpc_build_dir}" || exit
 HIKSDK_DIR="/opt/HikSDK"
 
 my_prefix_path="${HIKSDK_DIR}/proto;${HIKSDK_DIR}/absl;${HIKSDK_DIR}/cares;${HIKSDK_DIR}/re2;${HIKSDK_DIR}/zlib"
-my_cxx_flags="-I${HIKSDK_DIR}/proto/include ${HIKSDK_DIR}/zlib/include"    ## (higher version cmake be needed)
+my_cxx_flags="-I${HIKSDK_DIR}/proto/include ${HIKSDK_DIR}/zlib/include" ## (higher version cmake be needed)
 my_cmake=${HIKSDK_DIR}/cmake/bin/cmake
 
 ## add rpath for the installed lib
 
-${my_cmake} "${grpc_src_dir}" 														                \
-			-DgRPC_INSTALL=ON														                        \
-			-DBUILD_SHARED_LIBS=ON		   		                                  	\
-			-DCMAKE_BUILD_TYPE=Release       		                              	\
-			-DCMAKE_INSTALL_PREFIX="${grpc_ins_dir}"                            \
-			-DgRPC_ABSL_PROVIDER=package     		                              	\
-			-DgRPC_CARES_PROVIDER=package    		                              	\
-			-DgRPC_PROTOBUF_PROVIDER=package 		                              	\
-			-DgRPC_RE2_PROVIDER=package      		                              	\
-			-DgRPC_SSL_PROVIDER=package      		                              	\
-			-DgRPC_ZLIB_PROVIDER=package			                                  \
-			-DCMAKE_PREFIX_PATH=${my_prefix_path}	                            	\
-			-DCMAKE_CXX_FLAGS="${my_cxx_flags}"                                 \
-			-DCMAKE_SKIP_BUILD_RPATH=OFF                                        \
-			-DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF                                \
-			-DCMAKE_INSTALL_RPATH="${grpc_ins_dir}/lib;${HIKSDK_DIR}/re2/lib"   \
-			-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON
+${my_cmake} "${grpc_src_dir}" \
+  -DgRPC_INSTALL=ON \
+  -DBUILD_SHARED_LIBS=ON \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_INSTALL_PREFIX="${grpc_ins_dir}" \
+  -DgRPC_ABSL_PROVIDER=package \
+  -DgRPC_CARES_PROVIDER=package \
+  -DgRPC_PROTOBUF_PROVIDER=package \
+  -DgRPC_RE2_PROVIDER=package \
+  -DgRPC_SSL_PROVIDER=package \
+  -DgRPC_ZLIB_PROVIDER=package \
+  -DCMAKE_PREFIX_PATH=${my_prefix_path} \
+  -DCMAKE_CXX_FLAGS="${my_cxx_flags}" \
+  -DCMAKE_SKIP_BUILD_RPATH=OFF \
+  -DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="${grpc_ins_dir}/lib;${HIKSDK_DIR}/re2/lib" \
+  -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON
 
 ${my_cmake} --build "${grpc_build_dir}" --target clean
 ${my_cmake} --build "${grpc_build_dir}" --target all -- -j 16

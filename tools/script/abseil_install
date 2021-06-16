@@ -7,8 +7,8 @@
 
 if [ ${#} != 2 ]; then
   printf "USAGE (sudo permission may be needed):\n"
-	printf "    %s <ZIP_DIR> <INSTALL_DIR>\n" "${0}"
-	exit 1;
+  printf "    %s <ZIP_DIR> <INSTALL_DIR>\n" "${0}"
+  exit 1
 fi
 
 zip_dir="${1}"
@@ -28,14 +28,14 @@ cd "${build_dir}" || exit
 
 ## add rpath for the installed lib
 
-cmake ..    -DCMAKE_CXX_FLAGS="-std=c++11"          \
-            -DCMAKE_BUILD_TYPE=Release              \
-            -DBUILD_SHARED_LIBS=ON                  \
-            -DCMAKE_INSTALL_PREFIX="${ins_dir}"     \
-            -DCMAKE_SKIP_BUILD_RPATH=OFF            \
-            -DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF    \
-            -DCMAKE_INSTALL_RPATH="${ins_dir}/lib"  \
-            -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON
+cmake .. -DCMAKE_CXX_FLAGS="-std=c++11" \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DBUILD_SHARED_LIBS=ON \
+  -DCMAKE_INSTALL_PREFIX="${ins_dir}" \
+  -DCMAKE_SKIP_BUILD_RPATH=OFF \
+  -DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="${ins_dir}/lib" \
+  -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON
 
 make -j16 && make install
 
