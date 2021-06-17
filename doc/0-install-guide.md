@@ -21,7 +21,7 @@
 
 ### 1.2. Compile & Install
 
-- 执行 bash 脚本 [tools/script/proto_install](../tools/script/proto_install) 检查依赖，编译源代码，链接共享库并安装
+- 执行 bash 脚本 [tools/script/proto_install](../third_party/proto/proto_install) 检查依赖，编译源代码，链接共享库并安装
 
 用法示例如下（**可能需要 sudo 权限**）：
 
@@ -50,7 +50,7 @@ chmod +x proto_install && \
 
 #### 2.1.2. Compile & Install
 
-- 执行 bash 脚本 [tools/script/abseil_install](../tools/script/abseil_install) 检查依赖，编译源代码，链接共享库并安装
+- 执行 bash 脚本 [tools/script/abseil_install](../third_party/absl/abseil_install) 检查依赖，编译源代码，链接共享库并安装
 
 用法示例如下（**可能需要 sudo 权限**）：
 
@@ -71,7 +71,7 @@ chmod +x abseil_install &&  \
 
 #### 2.2.2. Compile & Install
  
-- 执行 bash 脚本 [tools/script/cares_install](../tools/script/cares_install) 检查依赖，编译源代码，链接共享库并安装
+- 执行 bash 脚本 [tools/script/cares_install](../third_party/cares/cares_install) 检查依赖，编译源代码，链接共享库并安装
  
 - 用法示例如下（**可能需要 sudo 权限**）：
 
@@ -92,7 +92,7 @@ chmod +x cares_install &&   \
 
 #### 2.3.2. Compile & Install
 
-- 执行 bash 脚本 [tools/script/re2_install](../tools/script/re2_install) 检查依赖，编译源代码，链接共享库并安装
+- 执行 bash 脚本 [tools/script/re2_install](../third_party/re2/re2_install) 检查依赖，编译源代码，链接共享库并安装
 
 用法示例如下（**可能需要 sudo 权限**）：
 
@@ -113,7 +113,7 @@ chmod +x re2_install && \
 
 #### 2.4.2. Compile & Install
 
-- 执行 bash 脚本 [tools/scripts/zlib_install](../tools/script/zlib_install) 检查依赖，编译源代码，链接共享库并安装
+- 执行 bash 脚本 [tools/scripts/zlib_install](../third_party/zlib/zlib_install) 检查依赖，编译源代码，链接共享库并安装
 
 用法示例如下（**可能需要 sudo 权限**）：
 
@@ -136,9 +136,9 @@ chmod +x zlib_install &&    \
 
 ### 3.2. Compile & Install
 
-- 编译源代码之前修改 [tools/scripts/grpc_install](../tools/script/grpc_install) 的内容，正确设置 **`my_prefix_path`** 和 **`my_cxx_flags`** 的值
+- 编译源代码之前修改 [tools/scripts/grpc_install](../third_party/grpc/grpc_install) 的内容，正确设置 **`my_prefix_path`** 和 **`my_cxx_flags`** 的值
 
-- 执行 bash 脚本 [tools/scripts/grpc_install](../tools/script/grpc_install) 检查依赖，编译源代码，链接共享库并安装
+- 执行 bash 脚本 [tools/scripts/grpc_install](../third_party/grpc/grpc_install) 检查依赖，编译源代码，链接共享库并安装
 
 用法示例如下（**可能需要 sudo 权限**）：
 

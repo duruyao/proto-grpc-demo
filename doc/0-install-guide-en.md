@@ -21,7 +21,7 @@ Download source files (ZIP format) from [https://github.com/protocolbuffers/prot
 
 ### 1.2. Compile & Install
 
-Execute the script named [proto_install](../tools/script/proto_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
+Execute the script named [proto_install](../third_party/proto/proto_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
 
 The usage likes this (**sudo permission may be needed**):
 
@@ -50,7 +50,7 @@ Download source files (ZIP format) from [https://github.com/abseil/abseil-cpp/re
 
 #### 2.1.2. Compile & Install
 
-Execute the script named [abseil_install](../tools/script/abseil_install) which is in [tools/scripts/](../tools/script) to check pre-requisites, compile source codes, link shared libraries and install.
+Execute the script named [abseil_install](../third_party/absl/abseil_install) which is in [tools/scripts/](../tools/script) to check pre-requisites, compile source codes, link shared libraries and install.
 
 The usage likes this (**sudo permission may be needed**):
 
@@ -71,7 +71,7 @@ Download source files (ZIP format) from [https://github.com/c-ares/c-ares/releas
 
 #### 2.2.2. Compile & Install
  
-Execute the script named [cares_install](../tools/script/cares_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
+Execute the script named [cares_install](../third_party/cares/cares_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
  
 The usage likes this (**sudo permission may be needed**):
 
@@ -92,7 +92,7 @@ Download source files (ZIP format) from [https://github.com/google/re2/releases]
 
 #### 2.3.2. Compile & Install
 
-Execute the script named [re2_install](../tools/script/re2_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
+Execute the script named [re2_install](../third_party/re2/re2_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
 
 The usage likes this (**sudo permission may be needed**):
 
@@ -113,7 +113,7 @@ Download source files (ZIP format) from [https://www.zlib.net/](https://www.zlib
 
 #### 2.4.2. Compile & Install
 
--Execute the script named [zlib_install](../tools/script/zlib_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
+-Execute the script named [zlib_install](../third_party/zlib/zlib_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
 
 The usage likes this (**sudo permission may be needed**):
 
@@ -136,7 +136,7 @@ Download source files (ZIP format) from [https://github.com/grpc/grpc/releases](
 
 ### 3.2. Compile & Install
 
-Execute the script named [grpc_install](../tools/script/grpc_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
+Execute the script named [grpc_install](../third_party/grpc/grpc_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
 
 The usage likes this (**sudo permission may be needed**):
 
@@ -145,7 +145,7 @@ chmod +x grpc_install &&    \
 ./grpc_install <GRPC_ZIP_DIR> <GRPC_INSTALL_DIR>
 ```
 
-Make sure you have set the value of **`my_prefix_path`** and **`my_cxx_flags`** rightly by modifying [grpc_install](../tools/script/grpc_install) before compiling source codes.
+Make sure you have set the value of **`my_prefix_path`** and **`my_cxx_flags`** rightly by modifying [grpc_install](../third_party/grpc/grpc_install) before compiling source codes.
 
 ### 3.3 Check
 

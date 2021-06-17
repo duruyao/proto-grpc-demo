@@ -1,0 +1,5 @@
+Size of c structure,Size of protobuf structure,Time of serializing,Time of parsing
+10240,512,137,175
+20480,1024,368,419
+40960,2048,695,856
+81920,40960,1076,1270
