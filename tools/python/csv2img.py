@@ -35,18 +35,18 @@ def print_usage():
 def check_arg():
     """
 
-    :return: [filename, path] if success, otherwise []
+    :return: [filename, path] if success, otherwise [[], []]
     """
     filename = ''
     path = ''
 
     if len(sys.argv) < 2 or len(sys.argv) > 3:
         print_usage()
-        return []
+        return [[], []]
 
     if not os.path.isfile(str(sys.argv[1])):
         print('No such file \'%s\'' % str(sys.argv[1]))
-        return []
+        return [[], []]
 
     filename = os.path.realpath(str(sys.argv[1]))  # get absolute path of 'IN_SCV_FILENAME'
 
@@ -69,6 +69,19 @@ def check_arg():
 
 
 def draw_img(x_arr, y_arr, title='', x_label='', y_label='', x_unit='', y_unit='', show_img=False, img_dir=''):
+    """
+
+    :param x_arr:
+    :param y_arr:
+    :param title:
+    :param x_label:
+    :param y_label:
+    :param x_unit:
+    :param y_unit:
+    :param show_img:
+    :param img_dir:
+    :return:
+    """
     x_ = np.asarray(x_arr)
     y_ = np.asarray(y_arr)
 
@@ -121,13 +134,8 @@ def main():
 
     :return:
     """
-    csv_filename = ''
-    img_path = ''
-
-    try:
-        [csv_filename, img_path] = check_arg()
-    except ValueError as e:
-        print(e)
+    [csv_filename, img_path] = check_arg()
+    if not (len(csv_filename) and len(img_path)):
         exit(1)
 
     csv_list = read_scv_file(csv_filename)
@@ -144,7 +152,7 @@ def main():
         for idx in range(key_num):
             data_list[idx].append(int(d[key_list[idx]]))
 
-    print(data_list)
+    # print(data_list)
     draw_img(data_list[1], data_list[3], 'Title 1',
              x_label=str(key_list[1]), y_label=str(key_list[3]),
              x_unit=' B', y_unit=' ms', show_img=False, img_dir=img_path + '1.png')
