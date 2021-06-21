@@ -8,12 +8,10 @@ set(grpc_src_dir ${PROJECT_SOURCE_DIR}/src/proto)           ## set your folder o
 set(grpc_gen_dir ${PROJECT_SOURCE_DIR}/src/proto/gen)       ## generate .cc, .h files to `grpc_gen_dir`
 include(${PROJECT_SOURCE_DIR}/tools/cmake/use_grpc.cmake)
 
-message(STATUS "THIRD_PARTY_LIBS: ${third_party_libs}")
+## using zmq
+include(${PROJECT_SOURCE_DIR}/tools/cmake/use_zmq.cmake)
 
-#get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
-#foreach (dir ${dirs})
-#    message(STATUS "INCLUDE DIR: ${dir}")
-#endforeach ()
+message(STATUS "THIRD_PARTY_LIBS: ${third_party_libs}")
 
 add_subdirectory(server)
 add_subdirectory(client)
