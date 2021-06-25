@@ -161,13 +161,13 @@ note left: bytes 反序列化为 C++ 对象
     
 ### 2.5 Tips
 
-在你的 `CMakeLists.txt` 中引入 [use_proto.cmake](tools/cmake/use_proto.cmake)，设置`.proto`源文件目录`proto_src_dir`和生成 C++ 文件目录`proto_gen_dir`，之后项目将增添了一个名为`proto_2_cxx`的 **target**。
+在你的 `CMakeLists.txt` 中引入 [use_proto.cmake](tools/cmake/use_proto.cmake)，设置`.proto`源文件目录`proto_in_dir`和生成 C++ 文件目录`proto_out_dir`，之后项目将增添了一个名为`proto_2_cxx`的 **target**。
 
 可以参考 [CMakeLists.txt](src/CMakeLists.txt)：
 
 ```cmake
-set(proto_src_dir ${PROJECT_SOURCE_DIR}/src/proto)          ## contains of .proto files
-set(proto_gen_dir ${PROJECT_SOURCE_DIR}/src/proto/gen)      ## contains of .cc, .h files
+set(proto_in_dir ${PROJECT_SOURCE_DIR}/src/proto)           ## contains of .proto files
+set(proto_out_dir ${PROJECT_SOURCE_DIR}/src/proto/gen)      ## contains of .cc, .h files
 include(${PROJECT_SOURCE_DIR}/tools/cmake/use_proto.cmake)
 ```
 
