@@ -39,17 +39,12 @@ function prt_bl() {
 
 ## pre-check
 
-proto_languages="all"
-proto_version="3.17.0"
-proto_zip_dir=${PWD}/protobuf-${proto_languages}-${proto_version}.zip
-proto_ins_dir="/opt/HikSDK/proto"
-
 if [ -n "${1}" ] && [ -n "${2}" ]; then
-  proto_zip_dir="${1}"
-  proto_ins_dir="${2}"
+  protobuf_zip_path="${1}"
+  protobuf_ins_path="${2}"
 else
   prt_ye "USAGE (sudo permission may be needed):\n"
-  printf "    %s <PROTO_ZIP_DIR> <PROTO_INSTALL_DIR> [-x86|-arm-hisiv300]\n" "${0}"
+  printf "    %s <PROTO_ZIP_PATH> <PROTO_INSTALL_PATH> [-x86|-arm-hisiv300]\n" "${0}"
   exit 1
 fi
 
@@ -74,11 +69,11 @@ for req_app in "${req_app_list[@]}"; do
   prt_ye "    %-16s" "${req_app}"
   printf ":	 "
 
-  req_app_dir="$(command -v "${req_app}")"
-  if [ -z "${req_app_dir}" ]; then
+  req_app_path="$(command -v "${req_app}")"
+  if [ -z "${req_app_path}" ]; then
     prt_re "NOT FOUND\n"
   else
-    printf "\`${req_app_dir}\`\n"
+    printf "\`${req_app_path}\`\n"
   fi
 done
 
@@ -88,17 +83,17 @@ printf "    sudo apt-get install %s\n\n" "${req_app_list[*]}"
 ## 2nd step
 
 prt_ye "2)\n"
-printf "Unzip \`${proto_zip_dir}\` ...\n"
+printf "Unzip \`${protobuf_zip_path}\` ...\n"
 
-new_folder="$(dirname "${proto_zip_dir}")/proto_source"
+new_folder="$(dirname "${protobuf_zip_path}")/protobuf_source"
 
 mkdir -p "${new_folder}" && rm -rf "${new_folder:?}/"*
-unzip -q "${proto_zip_dir}" -d "${new_folder}"
+unzip -q "${protobuf_zip_path}" -d "${new_folder}"
 
-proto_src_dir="${new_folder}/$(ls "${new_folder}")"
+protobuf_src_path="${new_folder}/$(ls "${new_folder}")"
 
-printf "Generate source code to \`${proto_src_dir}\`:\n"
-ls "${proto_src_dir}"
+printf "Generate source code to \`${protobuf_src_path}\`:\n"
+ls "${protobuf_src_path}"
 
 printf "\n"
 
@@ -107,12 +102,12 @@ printf "\n"
 prt_ye "3)\n"
 printf "Compile protobuf ...\n"
 
-mkdir -p "${proto_ins_dir}" && rm -rf "${proto_ins_dir:?}/"*
-cd "${proto_src_dir}" || exit
+mkdir -p "${protobuf_ins_path}" && rm -rf "${protobuf_ins_path:?}/"*
+cd "${protobuf_src_path}" || exit
 
 if [ "${3}" == "-x86" ] || [ -z "${3}" ]; then # compile for x86-linux
   ## auto configure
-  ./configure --prefix="${proto_ins_dir}"
+  ./configure --prefix="${protobuf_ins_path}"
 elif [ "${3}" == "-arm-hisiv300" ]; then # cross compile for arm-hisiv300-linux
   ## add patch (solve error: ‘to_string’ is not a member of ‘std’)
   mkdir -p src/patch
@@ -137,20 +132,20 @@ template <typename T> std::string to_string(const T& n) {
 
 #endif//STDTOSTRING_H"
 EOT
-  std_to_string_h_dir="$(readlink -f src/patch/std_to_string.h)"
-  sed -i "1i #include \"${std_to_string_h_dir}\"" src/google/protobuf/compiler/php/php_generator.cc
+  std_to_string_h_path="$(readlink -f src/patch/std_to_string.h)"
+  sed -i "1i #include \"${std_to_string_h_path}\"" src/google/protobuf/compiler/php/php_generator.cc
 
   ## auto configure
   ./configure --host="arm-hisiv300-linux" CC="/data1/duruyao/HikToolchain/arm-hisiv300-linux/bin/arm-hisiv300-linux-uclibcgnueabi-gcc" \
     CXX="/data1/duruyao/HikToolchain/arm-hisiv300-linux/bin/arm-hisiv300-linux-uclibcgnueabi-g++" --with-protoc="protoc" \
-    --prefix="${proto_ins_dir}"
+    --prefix="${protobuf_ins_path}"
 fi
 make -j16 && make check
 make install ## copy `lib`, `bin`, `include` to destination (sudo permission needed).
 
 printf "\n"
 printf "Install protobuf "
-prt_ye "($("${proto_ins_dir}"/bin/protoc --version)) "
-printf "to \`${proto_ins_dir}\`:\n"
-ls -all "${proto_ins_dir}"
+prt_ye "($("${protobuf_ins_path}"/bin/protoc --version)) "
+printf "to \`${protobuf_ins_path}\`:\n"
+ls -all "${protobuf_ins_path}"
 printf "\n"

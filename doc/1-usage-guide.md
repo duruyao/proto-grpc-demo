@@ -372,10 +372,10 @@ Protocol Buffers 的编译器`protoc`默认编译生成 C++ 源代码文件。
 确认已经正确安装 Protocol Buffers（参考 [Protocol Buffers 源码编译安装指南](./0-install-guide.md#1-protocol-buffers)），编译`.proto`文件生成 C++ API 文件（`.cc`、`.h`）方式如下：
 
 ```shell
-<PROTO_INSTALL_DIR>/bin/protoc      \
+<PROTOBUF_INSTALL_DIR>/bin/protoc      \
     -I --proto_path=<IMPORT_PATH>   \
     --cpp_out=<DST_DIR>             \
-    <PROTO_FILENAME_1> <PROTO_FILENAME_2> ...
+    <PROTOBUF_FILENAME_1> <PROTOBUF_FILENAME_2> ...
 ```
 
 示例：
@@ -394,7 +394,7 @@ ls ./src/proto/gen && popd
 确认已经正确安装 **支持多语言** 版本的 Protocol Buffers，编译`.proto`文件生成 多语言 API 文件方式如下：
 
 ```shell
-<PROTO_INSTALL_DIR>/bin/protoc      \
+<PROTOBUF_INSTALL_DIR>/bin/protoc      \
     -I --proto_path=<IMPORT_PATH>   \
     --cpp_out=<DST_DIR>             \
     --java_out=<DST_DIR>            \
@@ -403,7 +403,7 @@ ls ./src/proto/gen && popd
     --ruby_out=<DST_DIR>            \
     --objc_out=<DST_DIR>            \
     --csharp_out=<DST_DIR>          \
-    <PROTO_FILENAME_1> <PROTO_FILENAME_2> ...
+    <PROTOBUF_FILENAME_1> <PROTOBUF_FILENAME_2> ...
 ```
 
 #### 1.3.6. CPP API

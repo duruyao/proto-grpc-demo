@@ -38,18 +38,13 @@ function prt_bl() {
 
 ## pre-check
 
-#grpc_languages="all"
-grpc_version="1.37.1"
-grpc_zip_dir=${PWD}/grpc-${grpc_version}.zip
-
-grpc_ins_dir="/opt/HikSDK/grpc"
-
-if [ -n "${1}" ] && [ -n "${2}" ]; then
-  grpc_zip_dir="${1}"
-  grpc_ins_dir="${2}"
+if [ -n "${1}" ] && [ -n "${2}" ] && [ -n "${3}" ]; then
+  grpc_zip_path="${1}"
+  grpc_ins_path="${2}"
+  SDK_HOME="${3}"
 else
   prt_ye "USAGE (sudo permission may be needed):\n"
-  printf "    %s <GRPC_ZIP_DIR> <GRPC_INSTALL_DIR>\n" "${0}"
+  printf "    %s <GRPC_ZIP_PATH> <GRPC_INSTALL_PATH> <SDK_HOME>\n" "${0}"
   exit 1
 fi
 
@@ -74,11 +69,11 @@ for req_app in "${req_app_list[@]}"; do
   prt_ye "    %-16s" "${req_app}"
   printf ":	 "
 
-  req_app_dir="$(command -v "${req_app}")"
-  if [ -z "${req_app_dir}" ]; then
+  req_app_path="$(command -v "${req_app}")"
+  if [ -z "${req_app_path}" ]; then
     prt_re "NOT FOUND\n"
   else
-    printf "\`${req_app_dir}\`\n"
+    printf "\`${req_app_path}\`\n"
   fi
 done
 
@@ -88,17 +83,17 @@ printf "    sudo apt-get install %s\n\n" "${req_app_list[*]}"
 ## 2nd step
 
 prt_ye "2)\n"
-printf "Unzip \`${grpc_zip_dir}\` ...\n"
+printf "Unzip \`${grpc_zip_path}\` ...\n"
 
-new_folder="$(dirname "${grpc_zip_dir}")/grpc_source"
+new_folder="$(dirname "${grpc_zip_path}")/grpc_source"
 
 mkdir -p "${new_folder}" && rm -rf "${new_folder:?}/"*
-unzip -q "${grpc_zip_dir}" -d "${new_folder}"
+unzip -q "${grpc_zip_path}" -d "${new_folder}"
 
-grpc_src_dir="${new_folder}/$(ls "${new_folder}")"
+grpc_src_path="${new_folder}/$(ls "${new_folder}")"
 
-printf "Generate source code to \`${grpc_src_dir}\`:\n"
-ls "${grpc_src_dir}"
+printf "Generate source code to \`${grpc_src_path}\`:\n"
+ls "${grpc_src_path}"
 
 printf "\n"
 
@@ -107,24 +102,22 @@ printf "\n"
 prt_ye "3)\n"
 printf "Compile grpc for C++ ...\n"
 
-mkdir -p "${grpc_ins_dir}" && rm -rf "${grpc_ins_dir:?}/"*
+mkdir -p "${grpc_ins_path}" && rm -rf "${grpc_ins_path:?}/"*
 
-grpc_build_dir="${grpc_src_dir}/cmake/build"
-mkdir -p "${grpc_build_dir}" && cd "${grpc_build_dir}" || exit
+grpc_build_path="${grpc_src_path}/cmake/build"
+mkdir -p "${grpc_build_path}" && cd "${grpc_build_path}" || exit
 
-HIKSDK_DIR="/opt/HikSDK"
-
-my_prefix_path="${HIKSDK_DIR}/proto;${HIKSDK_DIR}/absl;${HIKSDK_DIR}/cares;${HIKSDK_DIR}/re2;${HIKSDK_DIR}/zlib"
-my_cxx_flags="-I${HIKSDK_DIR}/proto/include ${HIKSDK_DIR}/zlib/include" ## (higher version cmake be needed)
-my_cmake=${HIKSDK_DIR}/cmake/bin/cmake
+my_prefix_path="${SDK_HOME}/protobuf;${SDK_HOME}/abseil-cpp;${SDK_HOME}/c-ares;${SDK_HOME}/re2;${SDK_HOME}/zlib"
+my_cxx_flags="-I${SDK_HOME}/protobuf/include ${SDK_HOME}/zlib/include" ## (higher version cmake be needed)
+my_cmake="${SDK_HOME}/cmake/bin/cmake"
 
 ## add rpath for the installed lib
 
-${my_cmake} "${grpc_src_dir}" \
+${my_cmake} "${grpc_src_path}" \
   -DgRPC_INSTALL=ON \
   -DBUILD_SHARED_LIBS=ON \
   -DCMAKE_BUILD_TYPE=Release \
-  -DCMAKE_INSTALL_PREFIX="${grpc_ins_dir}" \
+  -DCMAKE_INSTALL_PREFIX="${grpc_ins_path}" \
   -DgRPC_ABSL_PROVIDER=package \
   -DgRPC_CARES_PROVIDER=package \
   -DgRPC_PROTOBUF_PROVIDER=package \
@@ -135,15 +128,14 @@ ${my_cmake} "${grpc_src_dir}" \
   -DCMAKE_CXX_FLAGS="${my_cxx_flags}" \
   -DCMAKE_SKIP_BUILD_RPATH=OFF \
   -DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF \
-  -DCMAKE_INSTALL_RPATH="${grpc_ins_dir}/lib;${HIKSDK_DIR}/re2/lib" \
+  -DCMAKE_INSTALL_RPATH="${grpc_ins_path}/lib;${SDK_HOME}/re2/lib" \
   -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON
 
-${my_cmake} --build "${grpc_build_dir}" --target clean
-${my_cmake} --build "${grpc_build_dir}" --target all -- -j 16
-${my_cmake} --build "${grpc_build_dir}" --target install
+${my_cmake} --build "${grpc_build_path}" --target clean
+${my_cmake} --build "${grpc_build_path}" --target all -- -j 16
+${my_cmake} --build "${grpc_build_path}" --target install
 
 printf "\n"
-printf "Install grpc "
-printf "to \`${grpc_ins_dir}\`:\n"
-ls -all "${grpc_ins_dir}"
+printf "Install grpc to \`${grpc_ins_path}\`:\n"
+ls -all "${grpc_ins_path}"
 printf "\n"

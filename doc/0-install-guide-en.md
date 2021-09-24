@@ -21,20 +21,20 @@ Download source files (ZIP format) from [https://github.com/protocolbuffers/prot
 
 ### 1.2. Compile & Install
 
-Execute the script named [proto_install](../third_party/proto/proto_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
+Execute the script named [third_party/protobuf/install_protobuf.sh](../third_party/protobuf/install_protobuf.sh) to check pre-requisites , compile source codes, link shared libraries and install.
 
 The usage likes this (**sudo permission may be needed**):
 
 ```shell
-chmod +x proto_install && \
-./proto_install <PROTO_ZIP_DIR> <PROTO_INSTALL_DIR>
+chmod +x install_protobuf.sh && \
+./install_protobuf.sh <PROTOBUF_ZIP_DIR> <PROTOBUF_INSTALL_DIR>
 ```
 
 ### 1.3. Check
 
-Check if Protocol Buffers is installed successfully by execute `/usr/bin/ldd <PROTO_INSTALL_DIR>/lib/libproto*.so`, and make sure all dependent libraries are linked rightly.
+Check if Protocol Buffers is installed successfully by execute `/usr/bin/ldd <PROTOBUF_INSTALL_DIR>/lib/libproto*.so`, and make sure all dependent libraries are linked rightly.
 
-Show version of Protocol Buffers by execute `<PROTO_INSTALL_DIR>/bin/protoc --version`.
+Show version of Protocol Buffers by execute `<PROTOBUF_INSTALL_DIR>/bin/protoc --version`.
 
 ---
 
@@ -50,18 +50,18 @@ Download source files (ZIP format) from [https://github.com/abseil/abseil-cpp/re
 
 #### 2.1.2. Compile & Install
 
-Execute the script named [abseil_install](../third_party/absl/abseil_install) which is in [tools/scripts/](../tools/script) to check pre-requisites, compile source codes, link shared libraries and install.
+Execute the script named [third_party/abseil-cpp/install_abseil-cpp.sh](../third_party/abseil-cpp/install_abseil-cpp.sh) to check pre-requisites, compile source codes, link shared libraries and install.
 
 The usage likes this (**sudo permission may be needed**):
 
 ```shell
-chmod +x abseil_install &&  \
-./abseil_install <ABSL_ZIP_DIR> <ABSL_INSTALL_DIR>
+chmod +x install_abseil-cpp.sh &&  \
+./install_abseil-cpp.sh <ABSEIL_ZIP_DIR> <ABSEIL_INSTALL_DIR>
 ```
 
 #### 2.1.3. Check
 
-Check if abseil-cpp is installed successfully by execute `/usr/bin/ldd <ABSL_INSTALL_DIR>/lib/libabsl*.so`, and make sure all dependent libraries are linked rightly.
+Check if abseil-cpp is installed successfully by execute `/usr/bin/ldd <ABSEIL_INSTALL_DIR>/lib/libabsl*.so`, and make sure all dependent libraries are linked rightly.
 
 ### 2.2. c-ares
 
@@ -71,13 +71,13 @@ Download source files (ZIP format) from [https://github.com/c-ares/c-ares/releas
 
 #### 2.2.2. Compile & Install
  
-Execute the script named [cares_install](../third_party/cares/cares_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
+Execute the script named [third_party/c-ares/install_c-ares.sh](../third_party/c-ares/install_c-ares.sh) to check pre-requisites , compile source codes, link shared libraries and install.
  
 The usage likes this (**sudo permission may be needed**):
 
 ```shell
-chmod +x cares_install &&   \
-./cares_install <CARES_ZIP_DIR> <CARES_INSTALL_DIR>
+chmod +x install_c-ares.sh &&   \
+./install_c-ares.sh <CARES_ZIP_DIR> <CARES_INSTALL_DIR>
 ```
 
 #### 2.2.3. Check
@@ -92,13 +92,13 @@ Download source files (ZIP format) from [https://github.com/google/re2/releases]
 
 #### 2.3.2. Compile & Install
 
-Execute the script named [re2_install](../third_party/re2/re2_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
+Execute the script named [third_party/re2/install_re2.sh](../third_party/re2/install_re2.sh) to check pre-requisites , compile source codes, link shared libraries and install.
 
 The usage likes this (**sudo permission may be needed**):
 
 ```shell
-chmod +x re2_install && \
-./re2_install <RE2_ZIP_DIR> <RE2_INSTALL_DIR>
+chmod +x install_re2.sh && \
+./install_re2.sh <RE2_ZIP_DIR> <RE2_INSTALL_DIR>
 ```
 
 #### 2.3.3. Check
@@ -113,13 +113,13 @@ Download source files (ZIP format) from [https://www.zlib.net/](https://www.zlib
 
 #### 2.4.2. Compile & Install
 
--Execute the script named [zlib_install](../third_party/zlib/zlib_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
+-Execute the script named [third_party/zlib/install_zlib.sh](../third_party/zlib/install_zlib.sh) to check pre-requisites , compile source codes, link shared libraries and install.
 
 The usage likes this (**sudo permission may be needed**):
 
 ```shell
-chmod +x zlib_install &&    \
-./zlib_install <ZLIB_ZIP_DIR> <ZLIB_INSTALL_DIR>
+chmod +x install_zlib.sh &&    \
+./install_zlib.sh <ZLIB_ZIP_DIR> <ZLIB_INSTALL_DIR>
 ```
 
 #### 2.4.3. Check
@@ -136,16 +136,16 @@ Download source files (ZIP format) from [https://github.com/grpc/grpc/releases](
 
 ### 3.2. Compile & Install
 
-Execute the script named [grpc_install](../third_party/grpc/grpc_install) which is in [tools/scripts/](../tools/script) to check pre-requisites , compile source codes, link shared libraries and install.
+Execute the script named [third_party/grpc/install_grpc.sh](../third_party/grpc/install_grpc.sh) to check pre-requisites , compile source codes, link shared libraries and install.
 
 The usage likes this (**sudo permission may be needed**):
 
 ```shell
-chmod +x grpc_install &&    \
-./grpc_install <GRPC_ZIP_DIR> <GRPC_INSTALL_DIR>
+chmod +x install_grpc.sh &&    \
+./install_grpc.sh <GRPC_ZIP_DIR> <GRPC_INSTALL_DIR> <SDK_HOME>
 ```
 
-Make sure you have set the value of **`my_prefix_path`** and **`my_cxx_flags`** rightly by modifying [grpc_install](../third_party/grpc/grpc_install) before compiling source codes.
+Make sure you have set the value of **`my_prefix_path`** and **`my_cxx_flags`** rightly by modifying [third_party/grpc/install_grpc.sh](../third_party/grpc/install_grpc.sh) before compiling source codes.
 
 ### 3.3 Check
 
@@ -155,14 +155,14 @@ Check if gRPC is installed successfully by command `/usr/bin/ldd <GRPC_INSTALL_D
 
 ## 4. Remark
 
-It is recommended that all libraries or applications are installed to `<YOUR_SDK_DIR>/<APP_NAME>`, likes this:
+It is recommended that all libraries or applications are installed to `<YOUR_SDK_HOME>/<APP_NAME>`, likes this:
 
 ```shell
 /opt/HikSDK/
-├── absl
+├── abseil-cpp
 │   ├── include
 │   └── lib
-├── cares
+├── c-ares
 │   ├── include
 │   ├── lib
 │   └── share
@@ -171,7 +171,7 @@ It is recommended that all libraries or applications are installed to `<YOUR_SDK
 │   ├── include
 │   ├── lib
 │   └── share
-├── proto
+├── protobuf
 │   ├── bin
 │   ├── include
 │   └── lib

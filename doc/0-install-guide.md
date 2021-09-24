@@ -21,20 +21,20 @@
 
 ### 1.2. Compile & Install
 
-- 执行 bash 脚本 [tools/script/proto_install](../third_party/proto/proto_install) 检查依赖，编译源代码，链接共享库并安装
+- 执行 bash 脚本 [third_party/protobuf/install_protobuf.sh](../third_party/protobuf/install_protobuf.sh) 检查依赖，编译源代码，链接共享库并安装
 
 用法示例如下（**可能需要 sudo 权限**）：
 
 ```shell
-chmod +x proto_install && \
-./proto_install <PROTO_ZIP_DIR> <PROTO_INSTALL_DIR>
+chmod +x install_protobuf.sh && \
+./install_protobuf.sh <PROTOBUF_ZIP_PATH> <PROTOBUF_INSTALL_PATH>
 ```
 
 ### 1.3. Check
 
-- 执行`/usr/bin/ldd <PROTO_INSTALL_DIR>/lib/libproto*.so`检查 Protocol Buffers 是否成功安装，确认正确链接所有共享库
+- 执行`/usr/bin/ldd <PROTOBUF_INSTALL_PATH>/lib/libproto*.so`检查 Protocol Buffers 是否成功安装，确认正确链接所有共享库
 
-- 执行`<PROTO_INSTALL_DIR>/bin/protoc --version`显示 Protocol Buffers 版本
+- 执行`<PROTOBUF_INSTALL_PATH>/bin/protoc --version`显示 Protocol Buffers 版本
 
 ---
 
@@ -50,18 +50,18 @@ chmod +x proto_install && \
 
 #### 2.1.2. Compile & Install
 
-- 执行 bash 脚本 [tools/script/abseil_install](../third_party/absl/abseil_install) 检查依赖，编译源代码，链接共享库并安装
+- 执行 bash 脚本 [third_party/abseil-cpp/install_abseil-cpp.sh](../third_party/abseil-cpp/install_abseil-cpp.sh) 检查依赖，编译源代码，链接共享库并安装
 
 用法示例如下（**可能需要 sudo 权限**）：
 
 ```shell
-chmod +x abseil_install &&  \
-./abseil_install <ABSL_ZIP_DIR> <ABSL_INSTALL_DIR>
+chmod +x install_abseil-cpp.sh &&  \
+./install_abseil-cpp.sh <ABSEIL_ZIP_PATH> <ABSEIL_INSTALL_PATH>
 ```
 
 #### 2.1.3. Check
 
-- 执行`/usr/bin/ldd <ABSL_INSTALL_DIR>/lib/libabsl*.so`检查 abseil-cpp 被成功安装，确认正确链接所有共享库
+- 执行`/usr/bin/ldd <ABSEIL_INSTALL_PATH>/lib/libabsl*.so`检查 abseil-cpp 被成功安装，确认正确链接所有共享库
 
 ### 2.2. c-ares
 
@@ -71,18 +71,18 @@ chmod +x abseil_install &&  \
 
 #### 2.2.2. Compile & Install
  
-- 执行 bash 脚本 [tools/script/cares_install](../third_party/cares/cares_install) 检查依赖，编译源代码，链接共享库并安装
+- 执行 bash 脚本 [third_party/c-ares/install_c-ares.sh](../third_party/c-ares/install_c-ares.sh) 检查依赖，编译源代码，链接共享库并安装
  
 - 用法示例如下（**可能需要 sudo 权限**）：
 
 ```shell
-chmod +x cares_install &&   \
-./cares_install <CARES_ZIP_DIR> <CARES_INSTALL_DIR>
+chmod +x install_c-ares.sh &&   \
+./install_c-ares.sh <CARES_ZIP_PATH> <CARES_INSTALL_PATH>
 ```
 
 #### 2.2.3. Check
 
-- 执行`/usr/bin/ldd <CARES_INSTALL_DIR>/lib/libcares*.so`检查 c-ares 是否被成功安装，确认正确链接所有共享库
+- 执行`/usr/bin/ldd <CARES_INSTALL_PATH>/lib/libcares*.so`检查 c-ares 是否被成功安装，确认正确链接所有共享库
 
 ### 2.3. re2
 
@@ -92,18 +92,18 @@ chmod +x cares_install &&   \
 
 #### 2.3.2. Compile & Install
 
-- 执行 bash 脚本 [tools/script/re2_install](../third_party/re2/re2_install) 检查依赖，编译源代码，链接共享库并安装
+- 执行 bash 脚本 [third_party/re2/install_re2.sh](../third_party/re2/install_re2.sh) 检查依赖，编译源代码，链接共享库并安装
 
 用法示例如下（**可能需要 sudo 权限**）：
 
 ```shell
-chmod +x re2_install && \
-./re2_install <RE2_ZIP_DIR> <RE2_INSTALL_DIR>
+chmod +x install_re2.sh && \
+./install_re2.sh <RE2_ZIP_PATH> <RE2_INSTALL_PATH>
 ```
 
 #### 2.3.3. Check
 
-- 执行`/usr/bin/ldd <RE2_INSTALL_DIR>/lib/libre2*.so`检查 re2 是否被成功安装，确认正确链接所有共享库
+- 执行`/usr/bin/ldd <RE2_INSTALL_PATH>/lib/libre2*.so`检查 re2 是否被成功安装，确认正确链接所有共享库
 
 ### 2.4. zlib
 
@@ -113,18 +113,18 @@ chmod +x re2_install && \
 
 #### 2.4.2. Compile & Install
 
-- 执行 bash 脚本 [tools/scripts/zlib_install](../third_party/zlib/zlib_install) 检查依赖，编译源代码，链接共享库并安装
+- 执行 bash 脚本 [third_party/zlib/install_zlib.sh](../third_party/zlib/install_zlib.sh) 检查依赖，编译源代码，链接共享库并安装
 
 用法示例如下（**可能需要 sudo 权限**）：
 
 ```shell
-chmod +x zlib_install &&    \
-./zlib_install <ZLIB_ZIP_DIR> <ZLIB_INSTALL_DIR>
+chmod +x install_zlib.sh &&    \
+./install_zlib.sh <ZLIB_ZIP_PATH> <ZLIB_INSTALL_PATH>
 ```
 
 #### 2.4.3. Check
 
-- 执行`/usr/bin/ldd <ZLIB_INSTALL_DIR>/lib/libz*.so`检查 zlib 是否被安装成，确认正确链接所有共享库
+- 执行`/usr/bin/ldd <ZLIB_INSTALL_PATH>/lib/libz*.so`检查 zlib 是否被安装成，确认正确链接所有共享库
 
 ---
 
@@ -136,33 +136,33 @@ chmod +x zlib_install &&    \
 
 ### 3.2. Compile & Install
 
-- 编译源代码之前修改 [tools/scripts/grpc_install](../third_party/grpc/grpc_install) 的内容，正确设置 **`my_prefix_path`** 和 **`my_cxx_flags`** 的值
+- 编译源代码之前修改 [third_party/grpc/install_grpc.sh](../third_party/grpc/install_grpc.sh) 的内容，正确设置 **`my_prefix_path`** 和 **`my_cxx_flags`** 的值
 
-- 执行 bash 脚本 [tools/scripts/grpc_install](../third_party/grpc/grpc_install) 检查依赖，编译源代码，链接共享库并安装
+- 执行 bash 脚本 [third_party/grpc/install_grpc.sh](../third_party/grpc/install_grpc.sh) 检查依赖，编译源代码，链接共享库并安装
 
 用法示例如下（**可能需要 sudo 权限**）：
 
 ```shell
-chmod +x grpc_install &&    \
-./grpc_install <GRPC_ZIP_DIR> <GRPC_INSTALL_DIR>
+chmod +x install_grpc.sh &&    \
+./install_grpc.sh <GRPC_ZIP_PATH> <GRPC_INSTALL_PATH> <SDK_HOME>
 ```
 
 ### 3.3 Check
 
-- 执行`/usr/bin/ldd <GRPC_INSTALL_DIR>/lib/libgrpc*.so`检查 gRPC 是否被成功安装，确认正确链接所有共享库
+- 执行`/usr/bin/ldd <GRPC_INSTALL_PATH>/lib/libgrpc*.so`检查 gRPC 是否被成功安装，确认正确链接所有共享库
 
 ---
 
 ## 4. Remark
 
-建议所有的 **依赖库** 和 **软件** 被安装到统一的路径（`<YOUR_SDK_DIR>/<APP_NAME>`），就像这样：
+建议所有的 **依赖库** 和 **软件** 被安装到统一的路径（`<YOUR_SDK_HOME>/<APP_NAME>`），就像这样：
 
 ```shell
 /opt/HikSDK/
-├── absl
+├── abseil-cpp
 │   ├── include
 │   └── lib
-├── cares
+├── c-ares
 │   ├── include
 │   ├── lib
 │   └── share
@@ -171,7 +171,7 @@ chmod +x grpc_install &&    \
 │   ├── include
 │   ├── lib
 │   └── share
-├── proto
+├── protobuf
 │   ├── bin
 │   ├── include
 │   └── lib
